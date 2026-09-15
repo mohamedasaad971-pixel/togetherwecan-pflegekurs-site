@@ -1,0 +1,421 @@
+/* هويّة Togetherwecan Jobs — الألوانُ من العلامة نفسِها:
+   #06243A الشريط الداكن · #19BFC1 الأوسط · #78DCC7 الفاتح.
+   والبنيةُ نفسُ بنية دورة طبّ الأسنان لتبدو الدورتان منصّةً واحدة. */
+:root{
+  --tief:#06243A; --marke:#0F7A78; --akzent:#19BFC1; --mint:#DCEDE8;
+  --text:#10201F; --matt:#5E7470; --linie:#E3EAE7; --kante:#C9D8D3;
+  --grund:#F1F5F3; --flaeche:#FFFFFF; --tiefer:#F6F9F8;
+  --rot:#A8402F; --rotflaeche:#FBEDEA; --warn:#9A6612; --warnflaeche:#FBF3E4;
+  --gut:#166B4F; --gutflaeche:#E4F2EB;
+  --schatten:0 1px 2px rgba(6,36,58,.06), 0 8px 24px rgba(6,36,58,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --tief:#9FD9E4; --marke:#19BFC1; --akzent:#78DCC7; --mint:#14312F;
+    --text:#E9EDEE; --matt:#9AA6A9; --linie:#2E3638; --kante:#3A4446;
+    --grund:#0C1214; --flaeche:#10181A; --tiefer:#161E20;
+    --rot:#E08878; --rotflaeche:#2A1614; --warn:#D9A94A; --warnflaeche:#2A2413;
+    --gut:#6FC3A0; --gutflaeche:#11291F;
+    --schatten:none;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--grund); color:var(--text);
+  font:16px/1.7 "SF Arabic","Noto Naskh Arabic",-apple-system,system-ui,sans-serif;
+}
+a{color:var(--marke)}
+/* المعرّفات اللاتينيّة داخل نصٍّ عربيّ: العزلُ يمنع قفزَ [] و. إلى أوّل الكلمة */
+code{direction:ltr;unicode-bidi:isolate;display:inline-block;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em}
+
+/* ————— الرأس ————— */
+.kopf{
+  position:sticky; top:0; z-index:20; background:var(--flaeche);
+  border-bottom:1px solid var(--linie);
+}
+.kopf-innen{
+  max-width:1000px; margin:0 auto; padding:10px 16px;
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+}
+.zeichen{width:28px;height:29px;flex:0 0 auto}
+.wortmarke{font-weight:700;font-size:13px;letter-spacing:.04em;color:var(--marke);line-height:1.2}
+.wortmarke small{display:block;font-weight:400;font-size:11px;color:var(--matt);letter-spacing:0}
+nav{display:flex;gap:4px;margin-inline-start:auto;flex-wrap:wrap}
+nav a{
+  padding:6px 12px;border-radius:999px;text-decoration:none;color:var(--matt);
+  font-size:14px;border:1px solid transparent;white-space:nowrap;
+}
+nav a:hover{background:var(--tiefer);color:var(--text)}
+nav a.an{background:var(--mint);color:var(--marke);font-weight:600}
+
+/* ————— الهيكل ————— */
+.blatt{max-width:1000px;margin:0 auto;padding:22px 16px 90px}
+h1{font-size:clamp(21px,4.4vw,29px);line-height:1.3;margin:0 0 8px}
+h2{font-size:clamp(17px,3.4vw,21px);margin:0 0 4px;color:var(--marke)}
+h3{font-size:16px;margin:0 0 6px}
+p{margin:0 0 10px}
+.matt{color:var(--matt)}
+.klein{font-size:13px}
+.karte{
+  background:var(--flaeche);border:1px solid var(--linie);border-radius:14px;
+  padding:18px 20px;margin:14px 0;box-shadow:var(--schatten);
+}
+.karte > h2 + .quelle{margin-top:0}
+.quelle{color:var(--matt);font-size:13px;margin:0 0 14px}
+
+/* ————— الشرائط ————— */
+.band{border-radius:12px;padding:12px 16px;margin:14px 0;font-weight:600;border:1px solid transparent}
+.band.warn{background:var(--warnflaeche);color:var(--warn);border-color:var(--kante)}
+.band.rot{background:var(--rotflaeche);color:var(--rot);border-color:var(--kante)}
+.band.gut{background:var(--gutflaeche);color:var(--gut);border-color:var(--kante)}
+.band .klein{font-weight:400;display:block;margin-top:4px;color:inherit;opacity:.9}
+
+/* ————— الوسوم ————— */
+.marke-chip,.chip{
+  display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;
+  border:1px solid var(--kante);white-space:nowrap;font-weight:600;
+}
+.chip.offen{background:var(--tiefer);color:var(--matt);font-weight:400}
+.chip.gedeckt{background:var(--mint);color:var(--marke);border-color:transparent}
+.chip.frei{background:var(--gutflaeche);color:var(--gut);border-color:transparent}
+.chip.rot{background:var(--rotflaeche);color:var(--rot);border-color:transparent}
+.chip.warn{background:var(--warnflaeche);color:var(--warn);border-color:transparent}
+
+/* ————— الجداول: حاوية تمرير على العريض، بطاقات على الضيّق ————— */
+.tabellerei{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px 0;
+  border:1px solid var(--linie);border-radius:12px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:520px}
+th,td{text-align:right;padding:10px 12px;border-bottom:1px solid var(--linie);vertical-align:top}
+th{color:var(--matt);font-weight:600;font-size:13px;background:var(--tiefer);position:sticky;top:0}
+tr:last-child td{border-bottom:0}
+td.n{color:var(--matt);width:52px;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ————— شبكة الأرقام ————— */
+.zahlen{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0}
+.zahl{background:var(--tiefer);border:1px solid var(--linie);border-radius:12px;padding:12px 14px}
+.zahl b{display:block;font-size:26px;line-height:1.2;color:var(--text);font-variant-numeric:tabular-nums}
+.zahl span{font-size:13px;color:var(--matt)}
+
+/* ————— الحوار ————— */
+.zeile{border-inline-start:3px solid var(--linie);padding:10px 14px;margin:10px 0;border-radius:0 10px 10px 0}
+.zeile.Pflegekraft{border-color:var(--marke);background:var(--tiefer)}
+.zeile.Patient{border-color:var(--akzent);background:var(--flaeche)}
+.zeile.Arzt{border-color:var(--tief);background:var(--tiefer)}
+.zeile.Angehoerige{border-color:var(--matt);background:var(--flaeche)}
+.wer{font-size:12px;color:var(--matt);font-weight:600;margin-bottom:4px}
+.de{direction:ltr;text-align:left;font-family:-apple-system,system-ui,sans-serif;margin:0 0 6px}
+/* ألمانيّةٌ داخل سطرٍ عربيّ: العزلُ يمنع انتقال علامة الاستفهام إلى أوّل السطر */
+.de-zeile{direction:ltr;unicode-bidi:isolate;text-align:left;display:inline-block;
+  font-family:-apple-system,system-ui,sans-serif}
+.ar{margin:0}
+.warum{margin:8px 0 0;padding-top:8px;border-top:1px dashed var(--kante);font-size:14px;color:var(--matt)}
+
+/* الترجمة: كاملة · عند الطلب · مخفيّة */
+body[data-ar="aus"] .ar-schalt{display:none}
+body[data-ar="klick"] .ar-schalt:not(.offen) .ar{
+  filter:blur(4px);cursor:pointer;user-select:none;opacity:.65;
+}
+body[data-ar="klick"] .ar-schalt:not(.offen) .ar::after{content:" ↩︎ اضغط"}
+
+.schritte{list-style:none;padding:0;margin:0;counter-reset:s}
+.schritte li{
+  counter-increment:s;position:relative;padding:12px 46px 12px 14px;
+  border:1px solid var(--linie);border-radius:12px;margin:8px 0;background:var(--flaeche);
+}
+.schritte li::before{
+  content:counter(s);position:absolute;inset-inline-start:12px;top:12px;
+  width:24px;height:24px;border-radius:50%;background:var(--mint);color:var(--marke);
+  display:grid;place-items:center;font-size:13px;font-weight:700;
+}
+.sicher{color:var(--rot);font-size:14px;margin:6px 0 0}
+.quelle-klein{color:var(--matt);font-size:12px;margin:4px 0 0}
+
+.isbar{display:grid;gap:8px}
+.isbar > div{border:1px solid var(--linie);border-radius:12px;padding:12px 14px;background:var(--flaeche)}
+.isbar .b{font-size:12px;font-weight:700;color:var(--marke);letter-spacing:.06em}
+
+.doku{background:var(--tiefer);border:1px solid var(--linie);border-radius:12px;padding:14px}
+.doku pre{
+  direction:ltr;text-align:left;white-space:pre-wrap;word-break:break-word;margin:0 0 10px;
+  font:13.5px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--text);
+}
+
+details{border:1px solid var(--linie);border-radius:12px;padding:0;margin:8px 0;background:var(--flaeche)}
+details > summary{padding:12px 14px;cursor:pointer;font-weight:600;list-style:none}
+details > summary::-webkit-details-marker{display:none}
+details > summary::before{content:"＋ ";color:var(--marke)}
+details[open] > summary::before{content:"－ "}
+details > div{padding:0 14px 14px}
+
+.werkzeug{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+button,select{
+  font:inherit;font-size:14px;padding:7px 13px;border-radius:999px;
+  border:1px solid var(--kante);background:var(--flaeche);color:var(--text);cursor:pointer;
+}
+button:hover{background:var(--tiefer)}
+button.haupt{background:var(--marke);color:#fff;border-color:transparent;font-weight:600}
+button[disabled]{opacity:.5;cursor:not-allowed}
+
+.liste{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.liste a{
+  display:block;text-decoration:none;color:inherit;background:var(--flaeche);
+  border:1px solid var(--linie);border-radius:12px;padding:14px;
+}
+.liste a:hover{border-color:var(--marke)}
+.liste .t{font-weight:600;margin-bottom:4px}
+
+.fort{height:6px;background:var(--linie);border-radius:999px;overflow:hidden;margin:8px 0}
+.fort i{display:block;height:100%;background:var(--marke)}
+
+.fuss{color:var(--matt);font-size:12.5px;text-align:center;margin-top:30px;line-height:2}
+
+@media (max-width:620px){
+  .blatt{padding:16px 12px 70px}
+  .karte{padding:14px;border-radius:12px}
+  .kopf-innen{padding:8px 12px;gap:8px}
+  nav{width:auto;margin-inline-start:0;overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px;
+    flex:1 1 100%}
+  /* المبدّل يجاور العلامة على الهاتف فلا يزيد ارتفاعَ الرأس سطراً ثالثاً */
+  #w-sprache{margin-inline-start:auto;order:-1}
+  /* الجداول تصير بطاقات — لا تمدّد أفقيّاً للصفحة */
+  .tabellerei{border:0;overflow:visible}
+  table{min-width:0;display:block}
+  thead{display:none}
+  tbody,tr,td{display:block;width:100%}
+  tr{border:1px solid var(--linie);border-radius:12px;margin:0 0 10px;background:var(--flaeche);overflow:hidden}
+  td{border-bottom:1px solid var(--linie);padding:9px 12px}
+  tr td:last-child{border-bottom:0}
+  td::before{
+    content:attr(data-k);display:block;font-size:11.5px;color:var(--matt);
+    font-weight:600;margin-bottom:2px;
+  }
+  td.n{width:auto}
+  .schritte li{padding:12px 42px 12px 12px}
+}
+
+/* ————— اختبار الوحدة ————— */
+.quizliste{list-style:none;padding:0;margin:0;counter-reset:q}
+.quizliste > li{
+  counter-increment:q;border:1px solid var(--linie);border-radius:12px;
+  padding:14px;margin:10px 0;background:var(--flaeche);
+}
+.quizliste > li.gut{border-color:var(--gut);background:var(--gutflaeche)}
+.quizliste > li.schlecht{border-color:var(--rot);background:var(--rotflaeche)}
+.qtext{font-weight:600;margin-bottom:4px}
+.qtext::before{content:counter(q) ". ";color:var(--matt);font-weight:400}
+.qhinweis{font-size:12.5px;color:var(--matt);margin:0 0 10px}
+.opt{
+  display:flex;gap:9px;align-items:flex-start;padding:9px 11px;margin:6px 0;
+  border:1px solid var(--linie);border-radius:10px;cursor:pointer;background:var(--flaeche);
+}
+.opt:hover{border-color:var(--kante)}
+.opt input{margin:4px 0 0;flex:0 0 auto;accent-color:var(--marke)}
+.opt .otext{flex:1}
+.quiz-fertig .opt{cursor:default}
+.opt.war-richtig{border-color:var(--gut);background:var(--gutflaeche)}
+.opt.war-falsch-gewaehlt{border-color:var(--rot);background:var(--rotflaeche)}
+.opt .warum-opt{
+  display:none;margin-top:6px;padding-top:6px;border-top:1px dashed var(--kante);
+  font-size:13.5px;color:var(--matt);
+}
+.quiz-fertig .opt .warum-opt{display:block}
+.opt .zeichen{font-weight:700;margin-inline-start:6px}
+.opt.war-richtig .zeichen{color:var(--gut)}
+.opt.war-falsch-gewaehlt .zeichen{color:var(--rot)}
+.quiz-erg{border-radius:12px;padding:14px 16px;margin:0 0 14px;border:1px solid var(--kante)}
+.quiz-erg.gut{background:var(--gutflaeche);color:var(--gut)}
+.quiz-erg.schlecht{background:var(--warnflaeche);color:var(--warn)}
+.quiz-erg b{font-size:22px;font-variant-numeric:tabular-nums}
+.quiz-erg ul{margin:8px 0 0;padding-inline-start:20px;font-size:13.5px}
+
+/* ————— بطاقات المفردات ————— */
+.karte-buehne{
+  border:1px solid var(--linie);border-radius:14px;background:var(--tiefer);
+  padding:26px 20px;text-align:center;min-height:190px;
+  display:flex;flex-direction:column;justify-content:center;gap:10px;
+}
+.karte-vorn{font-size:clamp(22px,5vw,30px);font-weight:700;line-height:1.4}
+.karte-vorn.de{direction:ltr;text-align:center}
+.karte-hinten{border-top:1px solid var(--kante);margin-top:6px;padding-top:14px;text-align:start}
+.karte-hinten .reg{
+  display:grid;grid-template-columns:auto 1fr;gap:4px 10px;margin-top:10px;
+  font-size:14px;text-align:start;
+}
+.karte-hinten .reg b{color:var(--marke);font-weight:600;white-space:nowrap}
+.karte-hinten .reg span{direction:ltr;text-align:left}
+.karte-quellen{font-size:12.5px;color:var(--matt);margin-top:10px}
+.boxen{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.boxen div{
+  flex:1 1 70px;text-align:center;border:1px solid var(--linie);border-radius:10px;
+  padding:8px 4px;background:var(--flaeche);
+}
+.boxen b{display:block;font-size:19px;font-variant-numeric:tabular-nums}
+.boxen span{font-size:11.5px;color:var(--matt)}
+.boxen div.neu{background:var(--mint);border-color:transparent}
+.zaehlwerk{color:var(--matt);font-size:13px;text-align:center;margin:10px 0 0}
+
+/* ————— شريطُ وضع النسخة ————— */
+.modusband{
+  border-radius:12px;padding:11px 16px;margin:0 0 16px;font-weight:700;
+  border:1px solid var(--kante);font-size:15px;
+}
+.modusband span{display:block;font-weight:400;font-size:12.5px;margin-top:3px;opacity:.9}
+.modusband.pruefung{background:var(--warnflaeche);color:var(--warn)}
+.modusband.entwicklung{background:var(--tiefer);color:var(--matt);font-size:13px}
+.modusband.entwicklung span{font-size:11.5px}
+
+/* ————— اللغة الثالثة —————
+   العربيّةُ من اليمين والإنجليزيّةُ من اليسار، ولا تُعرضان معاً: المعروضُ
+   ما اختاره المتعلّم. والترجمةُ الغائبةُ تُقال ولا تُملأ بلغةٍ أخرى. */
+.en,.s-en{direction:ltr;text-align:left;unicode-bidi:isolate}
+.s-ar,.s-en{display:inline}
+.en{margin:0;font-family:-apple-system,system-ui,sans-serif}
+body[data-sprache="ar"] .en,body[data-sprache="ar"] .s-en{display:none}
+body[data-sprache="en"] .ar,body[data-sprache="en"] .s-ar{display:none}
+
+/* الألمانيّة: نصّان مختلفان لا نصٌّ واحد.
+   ١) **نصُّ التدريب** ألمانيٌّ أصلاً (`.de`)، وما تحته في `.ar-schalt`
+      ترجمتُه. فمن يقرأ بالألمانيّة لا يحتاج ترجمةً لنصٍّ ألمانيّ:
+      تُخفى كما تُخفى في وضع «مخفيّة».
+   ٢) **الشرحُ التعليميّ** مكتوبٌ بالعربيّة وله مقابلٌ إنجليزيّ
+      (`.s-ar`/`.s-en`) ولا ألمانيَّ له. فيظهر الإنجليزيُّ — رجوعٌ معلنٌ
+      لا فراغ. */
+body[data-sprache="de"] .ar-schalt{display:none}
+body[data-sprache="de"] .s-ar{display:none}
+body[data-sprache="de"] .s-en{display:inline}
+body[data-sprache="de"] li,body[data-sprache="de"] td{text-align:start}
+.fehlt{color:#9a7b3f;font-style:italic}
+body[data-sprache="en"] li,body[data-sprache="en"] td{text-align:start}
+.en-band{background:#fdf6e7;border:1px solid #e8d8ae;border-radius:10px;
+  padding:8px 12px;margin:0 0 12px;font-size:14px;direction:ltr;text-align:left}
+/* عنصرٌ لا ترجمةَ له أصلاً: الشريطُ في أعلى الصفحة يكفي، ولا يُكرَّر
+   التنبيهُ تحت كلّ سطر. أمّا البطاقاتُ فتُخلَط من عناصرَ شتّى، فيبقى فيها. */
+body[data-en="fehlt"] main .fehlt{display:none}
+
+/* ————— مبدّل اللغة في الرأس —————
+   في الرأس لا في شريط أدوات الصفحة، ليبلغه المتعلّم من أيّ صفحة. */
+#w-sprache{
+  margin-inline-start:auto; padding:5px 9px; border-radius:9px;
+  border:1px solid var(--kante); background:var(--flaeche); color:var(--text);
+  font:14px/1.4 -apple-system,system-ui,sans-serif;
+}
+/* صوتُ السطرِ الواحد في الحوار — صغيرٌ لا يزاحم النصّ */
+.satzton{display:block;width:100%;max-width:320px;height:32px;margin:2px 0 8px}
+/* تمرينُ النطق على المصطلح: ثلاثةُ أزرارٍ صغيرةٍ بجانب الكلمة */
+.sprech{display:inline-flex;gap:3px;align-items:center;margin-inline-start:6px;vertical-align:middle}
+.sprech button{font-size:11px;line-height:1;padding:3px 6px;min-width:0;border-radius:6px}
+.sprech button:disabled{opacity:.35}
+
+/* على الشاشة اللمسيّة: زرٌّ ارتفاعُه تسعةَ عشرَ بكسلاً لا يُصاب بالإبهام.
+   وهذه الأزرارُ الثلاثة (اسمع · سجّل · اسمع نفسك) هي تمرينُ النطق على
+   المفردة، فإن لم تُصَب لم يُستعمَل التمرين.
+
+   **أربعةٌ وأربعون بكسلاً مساحةَ لمسٍ بقرار محمد** — وهي عتبةُ إرشادات
+   اللمس المعروفة. والأيقونةُ نفسُها تبقى صغيرةً (١٥ بكسلاً للمِحرف): ما
+   يكبر هو ما تلمسه الإصبع لا ما تراه العين. والفجوةُ ثمانيةٌ فلا تتداخل
+   مساحتان متجاورتان فتُصيب الإصبعُ غيرَ ما قصدت.
+
+   ومظهرُ سطح المكتب كما هو (مؤشّرٌ دقيق، شاشةٌ واسعة): تسعةَ عشرَ بكسلاً
+   كما كان. */
+@media (pointer: coarse), (max-width: 640px) {
+  .sprech button{min-height:44px;min-width:44px;padding:0 10px;font-size:15px;
+    line-height:1;display:inline-flex;align-items:center;justify-content:center}
+  .sprech{gap:8px;flex-wrap:wrap}
+  /* ومبدّلُ اللغة كذلك: هو أوّلُ ما يلمسه من فتح الموقعَ بلغةٍ لا
+     يقرؤها، فلا يجوز أن يكون أصغرَ من أن يُصاب. */
+  #w-sprache{min-height:44px}
+
+  /* وأزرارُ **حلقة الكلام** هي أزرارُ النطق الأصليّة: «اسمع النموذج ·
+     تكلّم · اسمع نفسك · قارن · أعد». قِيست على هاتفٍ عرضُه ٣٧٥ بعد
+     الدمج فكانت ٣٢ بكسلاً — أُصلحت أزرارُ المفردات وحدَها وبقيت هذه.
+     وهي التي يضغطها المتعلّم في كلّ سطرٍ من الحوار. */
+  .schleife button{min-height:44px;min-width:44px;padding:0 12px;
+    display:inline-flex;align-items:center;justify-content:center}
+  .schleife .werkzeug{gap:8px;flex-wrap:wrap}
+
+  /* وأزرارُ التمارين والمراجعة معها: حكمٌ على النفس أو تحقّقٌ من
+     إجابة، وكلُّها ضغطةٌ واحدةٌ على شاشةٍ صغيرة. */
+  .uebung button, .wh-liste button, .werkzeug button{min-height:44px;
+    display:inline-flex;align-items:center;justify-content:center}
+  .o-liste button{min-height:44px;min-width:44px}
+
+  /* والقوائمُ المنسدلة معها: إظهارُ الترجمة، وسرعةُ الفيديو، ووجهُ
+     البطاقة. وحقلُ الفراغ يُكتَب فيه بالإصبع، وعشرون بكسلاً لا تكفي. */
+  .werkzeug select, #blatt select{min-height:44px}
+  .l-ein{min-height:40px;font-size:16px}
+}
+.wortlage{margin-inline-start:4px}
+
+/* ————— حلقةُ الكلام: اسمع، تكلّم، قارن، احكم، أعد ————— */
+.schleife{margin:6px 0 10px;padding:8px 10px;border-inline-start:3px solid #cfe3df;
+  background:#f6fbfa;border-radius:6px}
+.schleife .werkzeug{gap:6px;flex-wrap:wrap;margin:0}
+.schleife button{font-size:.9em;padding:3px 9px}
+.schleife .s-lage{min-height:1em}
+.s-pruefung{margin-top:8px;padding-top:6px;border-top:1px dashed #cfe3df}
+.s-liste{margin:4px 0 8px;padding-inline-start:0;list-style:none}
+.s-liste li{margin:2px 0}
+.s-liste label{display:flex;gap:7px;align-items:flex-start;cursor:pointer;font-size:.95em}
+/* المحاكاة: الوقت والتقييم الذاتيّ */
+#pr-uhr{font-variant-numeric:tabular-nums;font-weight:700;font-size:1.15em}
+.pr-selbst{margin:4px 0 8px;padding-inline-start:0;list-style:none}
+.pr-selbst li{margin:5px 0}
+.pr-selbst label{display:flex;gap:7px;align-items:flex-start;cursor:pointer}
+
+/* المراجعة: ما يعود ولماذا */
+.wh-liste{margin:6px 0 0;padding-inline-start:0;list-style:none}
+.wh-liste li{margin:9px 0;padding:8px 10px;border:1px solid var(--rand);border-radius:6px}
+.wh-kopf{display:flex;gap:7px;align-items:flex-start;flex-wrap:wrap}
+.wh-liste .werkzeug{margin:6px 0 0;gap:6px;flex-wrap:wrap}
+.wh-liste button{font-size:.9em;padding:3px 9px}
+
+/* مهمّةُ النقل: نموذجٌ بالمرجع */
+.t-modell{margin:6px 0 0;padding-inline-start:1.1em}
+.t-modell li{margin:7px 0}
+
+/* التشخيص: مسارٌ مقترَحٌ بعد الإجابة */
+.dg-weg{margin:4px 0 8px;padding-inline-start:1.3em}
+.dg-weg li{margin:4px 0}
+
+/* التمارين: ترتيبُ الخطوات وملءُ الفراغات */
+.uebung{margin:10px 0 0;padding:9px 11px;border-inline-start:3px solid #d9d2ea;
+  background:#faf8ff;border-radius:6px}
+.uebung h3{margin:0 0 3px}
+.uebung .werkzeug{gap:6px;flex-wrap:wrap;margin:6px 0 0}
+.uebung button{font-size:.9em;padding:3px 9px}
+.o-liste{margin:6px 0 0;padding-inline-start:0;list-style:none;counter-reset:o}
+.o-liste li{margin:4px 0;padding:5px 8px;border:1px solid var(--rand);border-radius:5px;
+  background:#fff;counter-increment:o}
+.o-liste li.gut{border-color:#8ec9a8;background:#f3fbf6}
+.o-liste li.schlecht{border-color:#e2b3a8;background:#fdf5f3}
+.o-zeile{display:flex;gap:8px;align-items:flex-start}
+.o-zeile .de{flex:1}
+.o-zeile::before{content:counter(o) "."; font-weight:600; min-width:1.4em}
+.o-knoepfe{display:flex;gap:3px}
+.o-warum{margin:4px 0 0}
+.l-liste{margin:6px 0 0;padding-inline-start:1.2em}
+.l-liste li{margin:7px 0}
+.l-liste li.gut .l-richtig{color:#1f7a4d;font-weight:600}
+.l-liste li.schlecht .l-richtig{color:#a4402c;font-weight:600}
+.l-ein{font-size:.95em;padding:1px 5px;margin:0 3px;border:1px solid var(--rand);
+  border-radius:4px}
+.l-optionen{display:inline-flex;gap:4px;flex-wrap:wrap}
+/* `display` يهزم سمةَ `hidden`: بلا هذا السطر ظهرت الخياراتُ كلُّها من
+   أوّل لحظةٍ وصار «التمرين» قائمةَ أجوبة. رآها الفحصُ بالعين لا الاختبار،
+   لأنّ الاختبار كان يسأل الخاصّيّةَ لا ما يُرى. */
+.l-optionen[hidden]{display:none}
+
+.l-warum{margin:3px 0 0}
+.l-entwurf{margin:1px 0 0;color:#8a6d1f}
+.messung{margin:2px 0 0}
+.messung a,.z-hin a{color:var(--marke)}
+.zielpruefung{margin:4px 0 6px;padding-inline-start:0;list-style:none}
+.zielpruefung li{margin:5px 0}
+.zielpruefung label{display:flex;gap:7px;align-items:flex-start;cursor:pointer}
+.z-hin{margin:1px 0 0;padding-inline-start:22px}
+.z-stand{margin:2px 0 0}
+.s-frage{margin:6px 0 4px;font-weight:600}
+.s-stufen{margin:0 0 4px}
+.s-rat{margin:2px 0 8px;font-size:.95em;color:#25524b;min-height:1em}
+.s-frueher{margin:6px 0 0}
