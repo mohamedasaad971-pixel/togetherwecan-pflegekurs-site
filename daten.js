@@ -8725,7 +8725,8 @@ window.DATEN = {
      "who": "Arzt",
      "de": "Haben Sie sie schon abgenommen?",
      "ar": "أفككتِها فعلاً؟",
-     "en": "You have already taken it off?"
+     "en": "You have already taken it off?",
+     "ton": "medien/p04-arzt-08.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -9500,13 +9501,15 @@ window.DATEN = {
      "ar": "صباح الخير يا سيّدة دمير. — صباح الخير يا سيّدة يلدز. كيف كانت ليلتُك يا سيّدة دمير؟",
      "why": "**المريضةُ تُخاطَب أوّلاً والسؤالُ يُوجَّه إليها هي.** ومن بدأ بالقريب علّم الغرفةَ كلَّها أنّ المريضةَ موضوعُ حديثٍ لا طرفٌ فيه.",
      "en": "Good morning, Frau Demir. — Good morning, Frau Yıldız. How was the night, Frau Demir?",
-     "why_en": "**The patient is addressed first and the question is put to her.** Whoever begins with the relative teaches the whole room that the patient is a topic of conversation and not a party to it."
+     "why_en": "**The patient is addressed first and the question is put to her.** Whoever begins with the relative teaches the whole room that the patient is a topic of conversation and not a party to it.",
+     "ton": "medien/p05-amina-00.mp3"
     },
     {
      "who": "Angehoerige",
      "de": "Sie hat gut geschlafen. Ich füttere sie schon, das geht schneller, sonst wird das Brot kalt.",
      "ar": "نامت جيّداً. وأنا أُطعمها، فهذا أسرع، وإلّا برد الخبز.",
-     "en": "She slept well. And I am feeding her, it goes faster, otherwise the bread gets cold."
+     "en": "She slept well. And I am feeding her, it goes faster, otherwise the bread gets cold.",
+     "ton": "medien/p05-angeh-01.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -9514,13 +9517,15 @@ window.DATEN = {
      "ar": "شكراً لأنّك هنا كلَّ صباح — هذا يعينها كثيراً. سيّدة دمير، **كيف تريدينها اليوم: أن تجرّبي بنفسك، أم تساعدك ابنتُك؟**",
      "why": "الشكرُ أوّلاً فلا تصير الابنةُ خصماً. ثمّ **سؤالٌ باحتمالين لا بخمسة**، موجَّهٌ إلى صاحبة الشأن — وهذا ما يجعل القرارَ في متناول مصابةٍ بالحبسة.",
      "en": "Thank you for being here every morning — that helps her a great deal. Frau Demir, **how would you like it today: to try it yourself, or shall your daughter help?**",
-     "why_en": "The thanks come first, so the daughter does not become an opponent. Then **a question with two possibilities, not five**, put to the person whose business it is — and that is what puts the decision within reach of someone with aphasia."
+     "why_en": "The thanks come first, so the daughter does not become an opponent. Then **a question with two possibilities, not five**, put to the person whose business it is — and that is what puts the decision within reach of someone with aphasia.",
+     "ton": "medien/p05-amina-02.mp3"
     },
     {
      "who": "Patient",
      "de": "Ich… ich will… (Pause) …",
      "ar": "أنا... أريد... (صمت) ...",
-     "en": "I… I want… (pause) …"
+     "en": "I… I want… (pause) …",
+     "ton": "medien/p05-patient-03.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -9534,7 +9539,8 @@ window.DATEN = {
      "who": "Patient",
      "de": "…selbst. Ich will selbst.",
      "ar": "...بنفسي. أريد بنفسي.",
-     "en": "…myself. I want it myself."
+     "en": "…myself. I want it myself.",
+     "ton": "medien/p05-patient-05.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -9542,13 +9548,15 @@ window.DATEN = {
      "ar": "حسناً. نفعلها هكذا: **السيّدة دمير تأكل بنفسها بالأدوات المكيَّفة، وأنتِ تجلسين بجانبها وتناولينها ما لا تبلغه فقط. وإن تعبت بعد عشرين دقيقةً تكملين أنتِ.** أتوافقان — كلتاكما؟",
      "why": "**دورٌ مكتوبٌ لكلٍّ، وحدٌّ زمنيٌّ يمنع الإرهاق، وموافقةُ الطرفين.** وبلا هذا يُعاد التفاوضُ كلَّ صباحٍ ويكسبه الأسرعُ لا الأحقّ.",
      "en": "Good. Then we will do it like this: **Frau Demir eats by herself with the adapted cutlery, you sit beside her and pass her only what she cannot reach. And if she gets tired after twenty minutes, you take over the rest.** Agreed — by both of you?",
-     "why_en": "**A written role for each, a time limit that prevents exhaustion, and the consent of both parties.** Without this it is renegotiated every morning, and the faster person wins rather than the one whose right it is."
+     "why_en": "**A written role for each, a time limit that prevents exhaustion, and the consent of both parties.** Without this it is renegotiated every morning, and the faster person wins rather than the one whose right it is.",
+     "ton": "medien/p05-amina-06.mp3"
     },
     {
      "who": "Angehoerige",
      "de": "Aber sie kleckert. Das ist ihr doch peinlich — deshalb geht sie ja nicht mehr in den Speiseraum.",
      "ar": "لكنّها تُبعثر الطعام. وهذا يُحرجها — ولهذا لم تعد تذهب إلى صالة الطعام.",
-     "en": "But she spills things. It embarrasses her — that is exactly why she no longer goes to the dining room."
+     "en": "But she spills things. It embarrasses her — that is exactly why she no longer goes to the dining room.",
+     "ton": "medien/p05-angeh-07.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -9556,13 +9564,15 @@ window.DATEN = {
      "ar": "هذه نقطةٌ مهمّة، وأظنّها **النقطةَ الحقيقيّة**. سيّدة دمير، أهذا صحيح — أتجدين الصالةَ ثقيلةً عليك؟ … إذن أقترح: هذا الأسبوع هنا في الغرفة مع التدريب. وإن قلتِ إنّ الأمرَ يمضي، جرّبنا الأسبوعَ القادم طاولةً عند النافذة، أنتما وحدَكما.",
      "why": "**الانسحابُ من الصالة ليس عرضاً جانبيّاً بل الموضوع.** والخجلُ يُسمّى ويُعالَج بخطوةٍ صغيرةٍ وموعد، لا بالإقناع ولا بالتجاهل.",
      "en": "That is an important point, and I think it is **the real one**. Frau Demir, is that right — do you find the dining room hard? … Then I suggest: this week here in the room, with practice. And if you say it is going well, next week we try a table by the window, just the two of you.",
-     "why_en": "**The withdrawal from the dining room is not a side issue but the subject.** And the shame is named and treated with a small step and a date, not with persuasion and not by ignoring it."
+     "why_en": "**The withdrawal from the dining room is not a side issue but the subject.** And the shame is named and treated with a small step and a date, not with persuasion and not by ignoring it.",
+     "ton": "medien/p05-amina-08.mp3"
     },
     {
      "who": "Angehoerige",
      "de": "Und nachts? Sie steht allein auf. Kann man da nicht ein Gitter hochmachen, damit sie liegen bleibt?",
      "ar": "وفي الليل؟ تنهض وحدَها. **ألا يمكن رفعُ حاجزٍ حتّى تبقى مستلقية؟**",
-     "en": "And at night? She gets up on her own. **Could a rail not be put up so that she stays lying down?**"
+     "en": "And at night? She gets up on her own. **Could a rail not be put up so that she stays lying down?**",
+     "ton": "medien/p05-angeh-09.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -9570,13 +9580,15 @@ window.DATEN = {
      "ar": "الحاجزُ الذي لا تستطيع فتحَه بنفسها **يحتجزها** — وهذا شيءٌ آخرُ قانوناً غيرُ المساعدة، **ولا نقرّره هنا عند السرير**. وقبله ننظر في الأقلّ تدخّلاً: سريرٌ أخفض، وضوءٌ على الطريق إلى الحمّام، وحصيرة، وأن يأتي أحدٌ إذا نادت. **وأوّلاً أسأل والدتَك ماذا تريد هي.**",
      "why": "**ثلاثةٌ في جواب:** تسميةُ الإجراء بما هو، وردُّ القرار إلى طريقه القانونيّ لا إلى السرير، وتقديمُ البدائل الأقلّ تقييداً — ثمّ إعادةُ السؤال إلى صاحبة الشأن.",
      "en": "A rail she cannot open herself **holds her there** — in law that is something different from help, **and we do not decide it here at the bedside**. Before that we look at what is less intrusive: a lower bed, light on the way to the toilet, a mat, and someone coming when she calls. **And first I ask your mother what she herself wants.**",
-     "why_en": "**Three things in one answer:** naming the measure for what it is, returning the decision to its legal route rather than to the bedside, and offering the less restrictive alternatives — and then handing the question back to the person whose business it is."
+     "why_en": "**Three things in one answer:** naming the measure for what it is, returning the decision to its legal route rather than to the bedside, and offering the less restrictive alternatives — and then handing the question back to the person whose business it is.",
+     "ton": "medien/p05-amina-10.mp3"
     },
     {
      "who": "Patient",
      "de": "Nicht… einsperren. Bitte.",
      "ar": "لا... تحبسوني. أرجوكم.",
-     "en": "Do not… lock me in. Please."
+     "en": "Do not… lock me in. Please.",
+     "ton": "medien/p05-patient-11.mp3"
     }
    ],
    "vokabeln": [
@@ -10368,13 +10380,15 @@ window.DATEN = {
      "ar": "يومٌ طيّب يا سيّد باور، اسمي ليلى آيدن من خدمة التمريض. **أتأذن لي بالدخول؟** — شكراً. وأودّ لاحقاً أن ألقيَ نظرةً قصيرةً على المطبخ والحمّام، **لكن إن وافقتَ أنت فقط**.",
      "why": "**الاستئذانُ مرّتين: في الدخول وفي النظر.** في القسم تدخل الغرفةَ بحكم الوظيفة؛ وفي البيت أنت ضيف، والإذنُ يُطلَب ولا يُفترَض — وهو أوّلُ ما يبني الثقة.",
      "en": "Good day, Herr Bauer, my name is Leyla Aydın from the nursing service. **May I come in?** — Thank you. Later I would like to have a short look at the kitchen and the bathroom, **but only if you agree**.",
-     "why_en": "**Permission asked twice: to come in and to look.** On a ward you enter the room by virtue of the job; at home you are a guest, and permission is asked and not assumed — and that is the first thing that builds trust."
+     "why_en": "**Permission asked twice: to come in and to look.** On a ward you enter the room by virtue of the job; at home you are a guest, and permission is asked and not assumed — and that is the first thing that builds trust.",
+     "ton": "medien/p06-amina-00.mp3"
     },
     {
      "who": "Patient",
      "de": "Kommen Sie rein. Aber ehrlich gesagt brauche ich eigentlich nichts. Meine Tochter hat das alles eingefädelt.",
      "ar": "تفضّلي. لكن بصراحة **لا أحتاج شيئاً**. ابنتي هي التي رتّبت كلَّ هذا.",
-     "en": "Come in. But to be honest I do not really need anything. My daughter arranged all of this."
+     "en": "Come in. But to be honest I do not really need anything. My daughter arranged all of this.",
+     "ton": "medien/p06-patient-01.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -10382,13 +10396,15 @@ window.DATEN = {
      "ar": "قد يكون ذلك صحيحاً. **إذن نفعلها هكذا:** احكِ لي كيف يمضي يومٌ عاديٌّ عندك — من الصباح حين تستيقظ. وأنا أنظر هل ينقص شيءٌ في موضع، **وإن لم ينقص فهذه نتيجةٌ أيضاً**.",
      "why": "**البدايةُ من اليوم لا من النقص.** ومن سُئل «ماذا لم تعد تستطيع؟» دافع عن نفسه؛ ومن حكى يومَه أرى ما لا يقوله. وجملةُ «وإن لم ينقص فهذه نتيجة» تنزع عن الزيارة طابعَ الحكم.",
      "en": "That may well be. **Then let us do it this way:** just tell me what an ordinary day looks like for you — from the morning, when you wake up. I will only look at whether something is missing anywhere, **and if nothing is, that is a result too**.",
-     "why_en": "**Beginning with the day, not with the deficit.** Whoever is asked “what can you no longer do?” defends himself; whoever tells you about his day shows me what he does not say. And the sentence “if nothing is missing, that is a result too” takes the flavour of judgement out of the visit."
+     "why_en": "**Beginning with the day, not with the deficit.** Whoever is asked “what can you no longer do?” defends himself; whoever tells you about his day shows me what he does not say. And the sentence “if nothing is missing, that is a result too” takes the flavour of judgement out of the visit.",
+     "ton": "medien/p06-amina-02.mp3"
     },
     {
      "who": "Patient",
      "de": "Aufstehen geht. Waschen am Waschbecken auch. In die Wanne komme ich nicht mehr rein. Kochen — na ja, Brot und Suppe. Die Katze kriegt ihr Futter, das mache ich noch selbst.",
      "ar": "النهوضُ يمضي. والاغتسالُ عند المغسلة كذلك. أمّا حوضُ الاستحمام فلم أعد أدخله. والطبخ — خبزٌ وحساء. **والقطّةُ تأخذ طعامَها، هذا ما زلتُ أفعله بنفسي.**",
-     "en": "Getting up is all right. Washing at the basin too. I cannot get into the bath any more. Cooking — well, bread and soup. The cat gets her food, that I still do myself."
+     "en": "Getting up is all right. Washing at the basin too. I cannot get into the bath any more. Cooking — well, bread and soup. The cat gets her food, that I still do myself.",
+     "ton": "medien/p06-patient-03.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -10396,13 +10412,15 @@ window.DATEN = {
      "ar": "إذن ما زلتَ تُطعم القطّةَ بنفسك — **سأحتفظ بهذا**. وإذا فكّرتَ في ما قبل الكسر: **ماذا كنتَ تحبّ أن تفعل وتفتقده اليومَ أكثر؟**",
      "why": "**سؤالُ الحياة لا سؤالُ النقص.** وما يفتقده هو ما يحمل التمرينَ أسابيع؛ وما نقترحه نحن يحمل إلى الخميس.",
      "en": "So you still feed the cat yourself — **I will remember that**. And if you think of the time before the fracture: **what did you like doing that you miss most now?**",
-     "why_en": "**A question about his life, not about his deficits.** What he misses is what will carry the exercise for weeks; what we propose carries it as far as Thursday."
+     "why_en": "**A question about his life, not about his deficits.** What he misses is what will carry the exercise for weeks; what we propose carries it as far as Thursday.",
+     "ton": "medien/p06-amina-04.mp3"
     },
     {
      "who": "Patient",
      "de": "Zum Bäcker. Jeden Morgen, dreißig Jahre lang. Die Treppe traue ich mich nicht mehr allein.",
      "ar": "المخبز. كلَّ صباح، ثلاثين سنة. **والدَّرَجُ لم أعد أجرؤ عليه وحدي.**",
-     "en": "The baker's. Every morning, for thirty years. **I no longer dare the stairs on my own.**"
+     "en": "The baker's. Every morning, for thirty years. **I no longer dare the stairs on my own.**",
+     "ton": "medien/p06-patient-05.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -10410,13 +10428,15 @@ window.DATEN = {
      "ar": "إذن نجعله هدفاً: **بعد ثمانية أسابيعَ إلى المخبز وحدَك**. وإليه طريقان — إمّا أن نتمرّن على الدَّرَج ثلاثَ مرّاتٍ أسبوعيّاً معي ومع العلاج الطبيعيّ، وإمّا أن نبدأ داخلَ البيت ونؤجّل الدَّرَج. **أيُّهما يناسبك أكثر؟**",
      "why": "**الهدفُ من كلماته، والطريقان اثنان لا خمسة.** والسؤالُ الأخير يجعله شريكاً في القرار — والخطّةُ التي يختارها تُنفَّذ، والتي تُملى تُوثَّق فقط.",
      "en": "Then we take that as the goal: **in eight weeks, to the baker's on your own**. There are two ways there — either we practise the stairs three times a week with me and with physiotherapy, or we start inside the flat and come to the stairs later. **Which suits you better?**",
-     "why_en": "**The goal in his own words, and two ways, not five.** And the last question makes him a partner in the decision — and the plan he chooses gets carried out, while the one that is dictated only gets documented."
+     "why_en": "**The goal in his own words, and two ways, not five.** And the last question makes him a partner in the decision — and the plan he chooses gets carried out, while the one that is dictated only gets documented.",
+     "ton": "medien/p06-amina-06.mp3"
     },
     {
      "who": "Patient",
      "de": "Die Treppe. Wenn ich die nicht schaffe, nützt der Rest nichts.",
      "ar": "الدَّرَج. **إن لم أقدر عليه فلا ينفع الباقي.**",
-     "en": "The stairs. If I cannot manage those, the rest is no use."
+     "en": "The stairs. If I cannot manage those, the rest is no use.",
+     "ton": "medien/p06-patient-07.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -10424,13 +10444,15 @@ window.DATEN = {
      "ar": "متّفقان. **وسؤالٌ أطرحه عند كلّ شيء:** من يكون هنا حين لا نكون نحن؟ **وكيف يكون الليل** — إذا احتجتَ أن تنهض؟",
      "why": "**السؤالُ الذي يفرّق البيتَ عن المؤسّسة.** في القسم يُفترَض وجودُ أحد، وهنا يجب أن يُسأل صراحةً — وجوابُه يحدّد أيُّ خطّةٍ ممكنةٌ أصلاً.",
      "en": "Agreed. **And one question I have to ask about everything:** who is here when we are not? **And what is the night like** — if you have to get up?",
-     "why_en": "**The question that separates home from an institution.** On a ward the presence of someone is assumed; here it has to be asked explicitly — and the answer decides which plan is possible at all."
+     "why_en": "**The question that separates home from an institution.** On a ward the presence of someone is assumed; here it has to be asked explicitly — and the answer decides which plan is possible at all.",
+     "ton": "medien/p06-amina-08.mp3"
     },
     {
      "who": "Patient",
      "de": "Niemand. Meine Tochter ruft abends um sieben an. Nachts stehe ich einmal auf, das geht schon — die Katze weckt mich sowieso.",
      "ar": "لا أحد. ابنتي تتّصل مساءً في السابعة. وفي الليل أنهض مرّةً، والأمرُ يمضي — **القطّةُ توقظني على أيّ حال**.",
-     "en": "Nobody. My daughter rings in the evening at seven. At night I get up once, and it goes all right — **the cat wakes me anyway**."
+     "en": "Nobody. My daughter rings in the evening at seven. At night I get up once, and it goes all right — **the cat wakes me anyway**.",
+     "ton": "medien/p06-patient-09.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -10438,13 +10460,15 @@ window.DATEN = {
      "ar": "سأكتب هذا الآن على لوحٍ إلكترونيّ. **أتأذن؟** لا يُكتب فيه إلّا ما تحدّثنا فيه هنا — **ويبقى عند الخدمة لا عندي أنا**. وأضعه جانباً لا بيننا؛ وإن كتبتُ وأنت تتكلّم فقُل لي.",
      "why": "**ثلاثةٌ في جملتين:** إذنٌ في استعمال الجهاز، وبيانُ ما يُسجَّل وأين يبقى، **ووعدٌ بألّا تحلّ الشاشةُ محلَّ الوجه**. والجهازُ في بيتِ غيرك يحمل بياناتِ غيرك أيضاً.",
      "en": "I will write this down now, on a tablet. **May I?** Only what we have discussed here goes on it — **and it stays with the service, not with me**. I will put it to one side, not between us; and if I am typing while you are talking, tell me.",
-     "why_en": "**Three things in two sentences:** permission to use the device, a statement of what is recorded and where it stays, **and a promise that the screen will not take the place of the face**. And the device carries other people's data into somebody else's home as well."
+     "why_en": "**Three things in two sentences:** permission to use the device, a statement of what is recorded and where it stays, **and a promise that the screen will not take the place of the face**. And the device carries other people's data into somebody else's home as well.",
+     "ton": "medien/p06-amina-10.mp3"
     },
     {
      "who": "Patient",
      "de": "Schreiben Sie ruhig. Solange Sie mich dabei anschauen.",
      "ar": "اكتبي على راحتك. **ما دمتِ تنظرين إليّ وأنت تكتبين.**",
-     "en": "Write away. As long as you look at me while you do it."
+     "en": "Write away. As long as you look at me while you do it.",
+     "ton": "medien/p06-patient-11.mp3"
     }
    ],
    "vokabeln": [
@@ -11222,13 +11246,15 @@ window.DATEN = {
      "ar": "لحظة. — هذا لا يخصّ السيّدة ريشتر. إنّه في خطّة الغرفة الرابعة والعشرين. **لا أعطي شيئاً قبل أن يتّضح الأمر.**",
      "why": "**الإيقافُ قبل الإعطاء هو كلُّ الحالة.** ومن أعطى ثمّ تحقّق صار الحديثُ عن ضررٍ وقع لا عن ضررٍ مُنع.",
      "en": "One moment. — This does not belong to Frau Richter. It is in the plan for room twenty-four. **I am giving nothing before this is cleared up.**",
-     "why_en": "**Stopping before giving is the whole of this case.** Whoever gives and then checks is talking about a harm that happened rather than a harm prevented."
+     "why_en": "**Stopping before giving is the whole of this case.** Whoever gives and then checks is talking about a harm that happened rather than a harm prevented.",
+     "ton": "medien/p07-amina-00.mp3"
     },
     {
      "who": "Kollege",
      "de": "Lass gut sein, du hast es ja gemerkt. Nimm sie einfach raus, dann ist es gut.",
      "ar": "دعك من هذا، أنت لاحظتَه. أخرجه فقط وينتهي الأمر.",
-     "en": "Leave it, you noticed it. Just take it out and that is that."
+     "en": "Leave it, you noticed it. Just take it out and that is that.",
+     "ton": "medien/p07-kollege-01.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -11236,13 +11262,15 @@ window.DATEN = {
      "ar": "الإخراجُ سأفعله على أيّ حال. **لكنّي سأبلّغ أيضاً.** لا لأنّ أحداً أخطأ، **بل لأنّ الفجوةَ نفسَها ستصيب غيرَنا الأسبوعَ القادم — وقد لا يلاحظها أحد.**",
      "why": "**تعليلُ البلاغ بالمستقبل لا بالماضي.** هذه الجملةُ هي ما يفرّق ثقافةَ التعلّم من ثقافة اللوم، وهي ما يجعل الزميلةَ تسمع بدل أن تدافع.",
      "en": "I will take it out anyway. **But I am also going to report it.** Not because someone made a mistake, **but because the same gap will catch someone else next week — and then perhaps nobody will notice it.**",
-     "why_en": "**Justifying the report by the future, not by the past.** This sentence is what separates a learning culture from a blaming culture, and it is what makes the colleague listen instead of defending herself."
+     "why_en": "**Justifying the report by the future, not by the past.** This sentence is what separates a learning culture from a blaming culture, and it is what makes the colleague listen instead of defending herself.",
+     "ton": "medien/p07-amina-02.mp3"
     },
     {
      "who": "Kollege",
      "de": "Dann kriegt Sabine Ärger. Sie war allein mit zwölf Leuten, sie konnte gar nicht anders.",
      "ar": "عندئذٍ تقع زابينه في مشكلة. كانت وحدَها مع اثني عشر شخصاً، **ولم يكن أمامها خيار**.",
-     "en": "Then Sabine will be in trouble. She was alone with twelve people, **she had no choice**."
+     "en": "Then Sabine will be in trouble. She was alone with twelve people, **she had no choice**.",
+     "ton": "medien/p07-kollege-03.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -11250,7 +11278,8 @@ window.DATEN = {
      "ar": "وهذا بالضبط ما سأكتبه: **وحدَها مع اثني عشر مريضاً، وفحصُ العينين الأربع غيرُ ممكن.** البلاغُ ليس شكوى ضدّ زابينه. **ولو حذفتُ اسمَها وحذفتُ الظروفَ أيضاً لما تغيّر شيء** — وفي المرّة القادمة يقف أحدٌ وحدَه من جديد.",
      "why": "**الظروفُ جزءٌ من البلاغ لا حاشيةٌ فيه.** بلاغٌ يذكر الحدثَ ويسكت عن سببه يُنتج تذكيراً بالانتباه، لا تغييراً في المسار.",
      "en": "That is exactly what I will write: **alone with twelve patients, four-eyes check not possible.** The report is not a complaint against Sabine. **And if I left out her name and left out the conditions as well, nothing would change** — and next time somebody will again be standing there alone.",
-     "why_en": "**The conditions are part of the report, not a footnote to it.** A report that states the event and says nothing about its cause produces a reminder to pay attention, not a change in the process."
+     "why_en": "**The conditions are part of the report, not a footnote to it.** A report that states the event and says nothing about its cause produces a reminder to pay attention, not a change in the process.",
+     "ton": "medien/p07-amina-04.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -11258,13 +11287,15 @@ window.DATEN = {
      "ar": "سيّدة ريشتر، سيتأخّر الأمرُ اليومَ بضعَ دقائق. **وجدتُ عند المراجعة شيئاً غيرَ صحيح، وأنا أوضّحه الآن مع الطبيبة. ولم تأخذي شيئاً بعد، وهذا جيّد.**",
      "why": "**الصدقُ بلا توزيع لوم، والمريضةُ تُخبَر قبل أن تسأل.** وجملةُ «ولم تأخذي شيئاً» تمنع الخوفَ قبل أن ينشأ.",
      "en": "Frau Richter, it will be a few minutes longer today. **While checking I found something that is not right, and I am clearing it up now with the doctor. You have not had anything yet, and that is good.**",
-     "why_en": "**Honesty without apportioning blame, and the patient is told before she asks.** And the sentence “you have not had anything” prevents fear before it arises."
+     "why_en": "**Honesty without apportioning blame, and the patient is told before she asks.** And the sentence “you have not had anything” prevents fear before it arises.",
+     "ton": "medien/p07-amina-05.mp3"
     },
     {
      "who": "Patient",
      "de": "Ist etwas passiert? Habe ich was Falsches bekommen?",
      "ar": "هل حدث شيء؟ أأُعطيتُ شيئاً خاطئاً؟",
-     "en": "Has something happened? Have I been given the wrong thing?"
+     "en": "Has something happened? Have I been given the wrong thing?",
+     "ton": "medien/p07-patient-06.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -11272,7 +11303,8 @@ window.DATEN = {
      "ar": "لا. كان في الكأس شيءٌ ليس لك، **ورأيتُه قبل الإعطاء. لم تأخذيه.** سأُبلغ الطبيبةَ وأكتب ذلك ليعرفه الجميع.",
      "why": "**جوابٌ مباشرٌ بلا تهوينٍ ولا تهويل.** ومن سأل عن سلامته يستحقّ جواباً بنعم أو لا قبل أيّ شرح.",
      "en": "No. There was something in the cup that was not meant for you, **and I saw it before it was given. You did not take it.** I will tell the doctor and write it down so that everybody knows.",
-     "why_en": "**A direct answer, neither minimised nor dramatised.** Whoever asks about their own safety deserves a yes or a no before any explanation."
+     "why_en": "**A direct answer, neither minimised nor dramatised.** Whoever asks about their own safety deserves a yes or a no before any explanation.",
+     "ton": "medien/p07-amina-07.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -11280,13 +11312,15 @@ window.DATEN = {
      "ar": "دكتورة نويمان، وردية ليل الباطنة. عند السيّدة ريشتر، الغرفة ٢٤ب، كان في دواء المساء قرصٌ يخصّ جارتَها بحسب ورقة العلاج. **لم يُعطَ.** ودواؤها هي كاملٌ. أأعطيه كما هو مخطَّط؟",
      "why": "**الوقائعُ أوّلاً، ثمّ «لم يُعطَ»، ثمّ سؤالٌ واحدٌ واضح.** والطبيبةُ في الليل تحتاج أن تعرف في جملتين ما إذا كان عليها أن تتحرّك.",
      "en": "Dr Neumann, night duty, medical ward. With Frau Richter, room twenty-four B, there was a tablet in the evening medication that belongs to her room-mate according to the chart. **Not administered.** Her own evening medication is complete. May I give it as planned?",
-     "why_en": "**The facts first, then “not administered”, then one clear question.** And at night the doctor needs to know in two sentences whether she has to act."
+     "why_en": "**The facts first, then “not administered”, then one clear question.** And at night the doctor needs to know in two sentences whether she has to act.",
+     "ton": "medien/p07-amina-08.mp3"
     },
     {
      "who": "Arzt",
      "de": "Welche Tablette genau, und hat die Nachbarin ihre bekommen?",
      "ar": "أيُّ قرصٍ بالضبط، وهل أخذت الجارةُ قرصَها؟",
-     "en": "Which tablet exactly, and has the neighbour had hers?"
+     "en": "Which tablet exactly, and has the neighbour had hers?",
+     "ton": "medien/p07-arzt-09.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -11294,7 +11328,8 @@ window.DATEN = {
      "ar": "سأقرؤه عليك. — **ودواءُ الجارة سأراجعه بعد قليل؛ وهي لم تأخذ شيئاً حتّى الآن.**",
      "why": "**السؤالُ الثاني يفتح الحالةَ على مريضٍ ثانٍ.** وخطأُ التحضير نادراً ما يكون منفرداً: من وجد قرصاً في غير موضعه يفحص الموضعَ الذي جاء منه.",
      "en": "I will read it out to you. — **And I will check the neighbour's medication next; so far she has had nothing.**",
-     "why_en": "**The second question opens the case onto a second patient.** And a dispensing error is rarely single: whoever finds a tablet out of place checks the place it came from."
+     "why_en": "**The second question opens the case onto a second patient.** And a dispensing error is rarely single: whoever finds a tablet out of place checks the place it came from.",
+     "ton": "medien/p07-amina-10.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -11302,7 +11337,8 @@ window.DATEN = {
      "ar": "في مناقشة الحالة أودّ أن يُثبَّت شيءٌ واحد: **فحصُ العينين الأربع مكتوبٌ في المعيار، وغيرُ ممكنٍ في ورديةِ عصرٍ بشخصٍ واحد.** فإمّا أن نغيّر التغطيةَ عند التحضير، وإمّا أن نغيّر المعيار. **وكلاهما خيرٌ من أن نوقّع عليه ولا نفعله.**",
      "why": "**هذه الجملةُ هي ثمرةُ البلاغ كلِّه.** والخيارُ الثالث — التوقيعُ بلا فعل — هو ما يجعل المعيارَ ورقاً ويجعل التفتيشَ مسرحيّة.",
      "en": "In the case discussion I would like one thing put on record: **the four-eyes check is in the standard, and it cannot be done on a late shift with one person.** So either we change the staffing when medication is dispensed, or we change the standard. **Both are better than going on signing for it without doing it.**",
-     "why_en": "**This sentence is the fruit of the whole report.** And the third option — signing without doing — is what makes the standard a piece of paper and the inspection a performance."
+     "why_en": "**This sentence is the fruit of the whole report.** And the third option — signing without doing — is what makes the standard a piece of paper and the inspection a performance.",
+     "ton": "medien/p07-amina-11.mp3"
     }
    ],
    "vokabeln": [
@@ -12048,13 +12084,15 @@ window.DATEN = {
      "ar": "صباح الخير يا سيّدة آدم. عندي اليومَ اثنتان وعشرون دقيقة، **وألاحظ أنّنا صرنا نحتاج وقتاً أطولَ من قبل. قولي لي: ما أهمُّ شيءٍ عندك هذا الصباح؟**",
      "why": "**الوقتُ يُعلَن ولا يُخفى، والأولويّةُ تُسأل لا تُفترَض.** ومن رتّب الأولويّاتِ وحدَه اختار عن المريضة وهو يظنّ أنّه يخدمها.",
      "en": "Good morning, Frau Adam. I have twenty-two minutes scheduled today, **and I notice that we now need longer than we used to. Tell me: what matters most to you this morning?**",
-     "why_en": "**The time is stated and not hidden, and the priority is asked about rather than assumed.** Whoever sets the priorities alone has chosen on the patient's behalf while thinking he is serving her."
+     "why_en": "**The time is stated and not hidden, and the priority is asked about rather than assumed.** Whoever sets the priorities alone has chosen on the patient's behalf while thinking he is serving her.",
+     "ton": "medien/p08-amina-00.mp3"
     },
     {
      "who": "Patient",
      "de": "Die Strümpfe. Ohne die schwellen die Beine bis Mittag. Waschen kann ich zur Not selbst am Waschbecken.",
      "ar": "الجوارب. بدونها تتورّم ساقاي حتّى الظهر. **أمّا الاغتسال فأستطيعه عند المغسلة عند الضرورة.**",
-     "en": "The stockings. Without them my legs swell up by midday. **Washing I can manage myself at the basin if I have to.**"
+     "en": "The stockings. Without them my legs swell up by midday. **Washing I can manage myself at the basin if I have to.**",
+     "ton": "medien/p08-patient-01.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -12062,13 +12100,15 @@ window.DATEN = {
      "ar": "حسناً. نعمل اليومَ الجواربَ على مهلٍ والعنايةَ بقدر ما يتّسع الوقت — **وأكتب بالضبط ما فعلناه، لا أكثر.**",
      "why": "**الجملةُ الأخيرة هي الحدّ.** الأولويّةُ مساحةٌ مشروعة، والكتابةُ مرآةٌ لما جرى — ومن خلط بينهما عبر من الترتيب إلى التزوير.",
      "en": "Good. Then today we do the stockings unhurriedly and the personal care as far as the time goes — **and I will write down exactly what we did, no more.**",
-     "why_en": "**The last sentence is the limit.** Prioritising is legitimate room for manoeuvre, and the record is a mirror of what happened — and whoever confuses the two has crossed from prioritising into falsification."
+     "why_en": "**The last sentence is the limit.** Prioritising is legitimate room for manoeuvre, and the record is a mirror of what happened — and whoever confuses the two has crossed from prioritising into falsification.",
+     "ton": "medien/p08-amina-02.mp3"
     },
     {
      "who": "Patient",
      "de": "Aber dann bekommen Sie doch weniger bezahlt. Schreiben Sie ruhig alles, ich sage nichts.",
      "ar": "لكنّك ستأخذين أجراً أقلّ. **اكتبي كلَّ شيء، ولن أقول أنا شيئاً.**",
-     "en": "But then you will be paid less. **Write everything down, I will not say anything.**"
+     "en": "But then you will be paid less. **Write everything down, I will not say anything.**",
+     "ton": "medien/p08-patient-03.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -12076,7 +12116,8 @@ window.DATEN = {
      "ar": "لا يجوز لي، ولا أريده أيضاً. **التوثيقُ يمثّل ما كان** — وإلّا لم يعرف أحدٌ بعد أربعة أسابيعَ أنّ الوقتَ لم يعد يكفي. **وهذا بالذات ما ينفعنا: أن يكون مكتوباً.**",
      "why": "**رفضٌ بلا وعظ، وتعليلٌ بالمصلحة لا بالقاعدة.** والمريضةُ تعرض حسنَ نيّةٍ فتُشرَح لها الفائدةُ العمليّة للصدق، لا يُقال لها «هذا مخالفة».",
      "en": "I am not allowed to, and I do not want to either. **The documentation shows what was** — otherwise in four weeks nobody will know that the time is no longer enough. **And that is exactly what helps us: that it is written down.**",
-     "why_en": "**A refusal without moralising, and a justification by interest rather than by rule.** The patient is offering her good will, so the practical benefit of honesty is explained to her; she is not told “that is a breach”."
+     "why_en": "**A refusal without moralising, and a justification by interest rather than by rule.** The patient is offering her good will, so the practical benefit of honesty is explained to her; she is not told “that is a breach”.",
+     "ton": "medien/p08-amina-04.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -12084,13 +12125,15 @@ window.DATEN = {
      "ar": "سيّدة آدم، منذ العدوى صرتِ تحتاجين مساعدةً في أشياءَ أكثرَ من قبل. **ولهذا طريق: تقييمٌ جديد.** وإن قُدّرت الحاجةُ أعلى استحققتِ وقتاً أكثر — **وعندها لا يوازن أحدٌ بين الجوارب والاغتسال.**",
      "why": "**الحقُّ لا يسقط بجهل صاحبه به.** والدلالةُ على الطريق من التمريض لا من الإدارة، وهي هنا الحلُّ الوحيد الذي يرفع الضيقَ بدل أن يوزّعه.",
      "en": "Frau Adam, since your infection you have needed help with more things than before. **There is a route for that: a new assessment.** And if the need is graded higher you are entitled to more time — **and then nobody has to weigh up the stockings against the washing.**",
-     "why_en": "**A right does not lapse because its holder does not know about it.** And the pointing-out comes from nursing, not from administration, and here it is the only solution that lifts the shortage instead of redistributing it."
+     "why_en": "**A right does not lapse because its holder does not know about it.** And the pointing-out comes from nursing, not from administration, and here it is the only solution that lifts the shortage instead of redistributing it.",
+     "ton": "medien/p08-amina-05.mp3"
     },
     {
      "who": "Patient",
      "de": "Ich will keinen Ärger machen. Und ich weiß nicht, wie das geht.",
      "ar": "لا أريد أن أسبّب إزعاجاً. ولا أعرف كيف يتمّ ذلك.",
-     "en": "I do not want to cause trouble. And I do not know how it is done."
+     "en": "I do not want to cause trouble. And I do not know how it is done.",
+     "ton": "medien/p08-patient-06.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -12098,13 +12141,15 @@ window.DATEN = {
      "ar": "ليس إزعاجاً، **بل حقُّك** — والطلبُ يمرّ عبر صندوق الرعاية لا عبري أنا. وأنا أكتب اليومَ ما لاحظتُه، ومنذ متى، **وكم يستغرق فعلاً**. **وهذا التوثيقُ بالذات هو ما يُحسَب عند التقييم.** وابنُك يستطيع الاتّصال، وسأترك لك الرقم.",
      "why": "**ثلاثةٌ في جواب:** أنّه حقٌّ لا شكوى، وأنّ الطريقَ إداريٌّ لا شخصيّ، **وأنّ توثيقي اليوميّ هو ما يُثبته**. وهذا ما يحوّل التوثيقَ من عبءٍ إلى أداةٍ في يد المريضة.",
      "en": "It is not trouble, **it is your right** — and the application goes through the care insurance fund, not through me. And today I am writing down what I have observed, since when, **and how long it actually takes**. **And this documentation is exactly what counts at the assessment.** Your son can ring, and I will leave you the number.",
-     "why_en": "**Three things in one answer:** that it is a right and not a complaint, that the route is administrative and not personal, **and that my daily documentation is what proves it**. And that turns the documentation from a burden into an instrument in the patient's hand."
+     "why_en": "**Three things in one answer:** that it is a right and not a complaint, that the route is administrative and not personal, **and that my daily documentation is what proves it**. And that turns the documentation from a burden into an instrument in the patient's hand.",
+     "ton": "medien/p08-amina-07.mp3"
     },
     {
      "who": "Kollege",
      "de": "Du bist schon wieder über der Zeit. Die Vier-Uhr-Tour kippt uns sonst.",
      "ar": "تأخّرتِ عن الوقت من جديد. **وإلّا انهارت جولةُ الرابعة علينا.**",
-     "en": "You are over time again. **Otherwise the four o'clock round collapses on us.**"
+     "en": "You are over time again. **Otherwise the four o'clock round collapses on us.**",
+     "ton": "medien/p08-kollege-08.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -12112,7 +12157,8 @@ window.DATEN = {
      "ar": "أعرف، أنا قادمة. **وقد سجّلتُ لثلاث زياراتٍ كم تستغرق فعلاً — منذ أربعة أسابيع.** وسآخذها غداً إلى اجتماع الفريق: **لا «وقتُنا قليل»، بل ثلاثُ سلاسلَ زمنيّةٍ واقتراحان.**",
      "why": "**الشكوى تُقابَل برأي، والبيانُ يُقابَل بقرار.** ومن عرف أنّ الضيقَ بنيويٌّ لا فرديّ عرف أنّ أداتَه القياسُ لا التذمّر.",
      "en": "I know, I am coming. **And I have recorded for three visits how long they actually take — for four weeks now.** And I will bring that to the team meeting tomorrow: **not “we have too little time”, but three time series and two proposals.**",
-     "why_en": "**A complaint is met with an opinion, and data are met with a decision.** And whoever knows that the shortage is structural rather than individual knows that measurement, not grumbling, is his instrument."
+     "why_en": "**A complaint is met with an opinion, and data are met with a decision.** And whoever knows that the shortage is structural rather than individual knows that measurement, not grumbling, is his instrument.",
+     "ton": "medien/p08-amina-09.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -12120,7 +12166,8 @@ window.DATEN = {
      "ar": "وشيءٌ آخر: لاحظتُ أنّنا نفتح عندها في كلّ مرّةٍ عبوةَ شاشٍ جديدة ونرمي نصفَها. **وهناك حجمٌ أصغر.** هذا يوفّر مالاً ونفايةً — **ولا يوفّر دقيقةً واحدةً من وقت الإنسان.**",
      "why": "**الجملةُ الأخيرة هي المعيار.** التوفيرُ فضيلةٌ حين لا يكلّف شيئاً هو للمريض؛ ومن وفّر من الوقت مع الإنسان وفّر في الموضع الوحيد الذي يقع فيه التمريض.",
      "en": "And one more thing: I have noticed that with her we open a new packet of gauze every time and throw half of it away. **There is a smaller pack size.** That saves money and waste — **and not one minute of the time with the person.**",
-     "why_en": "**The last sentence is the criterion.** Saving is a virtue when it costs nothing that belongs to the patient; and whoever saves out of the time with the person saves in the only place where nursing happens."
+     "why_en": "**The last sentence is the criterion.** Saving is a virtue when it costs nothing that belongs to the patient; and whoever saves out of the time with the person saves in the only place where nursing happens.",
+     "ton": "medien/p08-amina-10.mp3"
     }
    ],
    "vokabeln": [
@@ -12888,13 +12935,15 @@ window.DATEN = {
      "ar": "صباح الخير يا سيّد فوغت. — (تقف بحيث يرى وجهَها) صباح الخير. أنا سميرة، وأنا معك اليوم.",
      "why": "**تكرارُ التحيّة بعد تغيير الموضع ليس أدباً زائداً:** أوّلُ تحيّةٍ قيلت وهو لا يراها. والبدءُ بالاسم يعطي الغريبةَ وجهاً.",
      "en": "Good morning, Herr Vogt. — (steps so that he can see her face) Good morning. I am Samira, and I am here for you today.",
-     "why_en": "**Repeating the greeting after changing position is not extra politeness:** the first greeting was said while he could not see it. And beginning with a name gives a stranger a face."
+     "why_en": "**Repeating the greeting after changing position is not extra politeness:** the first greeting was said while he could not see it. And beginning with a name gives a stranger a face.",
+     "ton": "medien/p09-amina-00.mp3"
     },
     {
      "who": "Patient",
      "de": "Nein. Nicht Sie.",
      "ar": "لا. لا أنتِ.",
-     "en": "No. Not you."
+     "en": "No. Not you.",
+     "ton": "medien/p09-patient-01.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -12902,13 +12951,15 @@ window.DATEN = {
      "ar": "حسناً، لن أبدأ. — **أودّ أن أفهم ما وراء ذلك. أهو الاغتسالُ نفسُه، أم أنا؟**",
      "why": "**التراجعُ الفوريّ عن الفعل، والسؤالُ عن السبب.** والسؤالُ يعرض احتمالين فيسهل الجواب، **ولا يطالبه بتبرير**. ولو دافعت هنا لانتهى الحوار.",
      "en": "All right, I will not start. — **I would like to understand what is behind it. Is it the washing, or is it me?**",
-     "why_en": "**An immediate step back from the action, and a question about the reason.** And the question offers two possibilities, so it is easy to answer, **and it does not demand a justification from him**. Had I defended myself here the conversation would have ended."
+     "why_en": "**An immediate step back from the action, and a question about the reason.** And the question offers two possibilities, so it is easy to answer, **and it does not demand a justification from him**. Had I defended myself here the conversation would have ended.",
+     "ton": "medien/p09-amina-02.mp3"
     },
     {
      "who": "Patient",
      "de": "Ich verstehe Sie schlecht. Und ich will nicht, dass eine fremde Frau … lassen Sie es einfach.",
      "ar": "أنا لا أفهمك جيّداً. ولا أريد لامرأةٍ غريبةٍ أن... اتركي الأمر.",
-     "en": "I do not understand you well. And I do not want a strange woman to … just leave it."
+     "en": "I do not understand you well. And I do not want a strange woman to … just leave it.",
+     "ton": "medien/p09-patient-03.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -12916,13 +12967,15 @@ window.DATEN = {
      "ar": "هذان أمران، **وكلاهما أستطيع تغييرَه**. أمّا السمع: سمّاعتُك في الدرج — أأناولك إيّاها؟ **وأمّا الآخر: لستَ مضطرّاً أن أغسلك أنا. سنجد طريقاً يناسبك.**",
      "why": "**فصلُ الحاجز عن الخجل في جملةٍ واحدة، وحلٌّ لكلٍّ منهما.** ولاحظ أنّ الشقَّ الثاني لم يُسأل عن سببه: الخجلُ لا يُستجوَب، يُعالَج.",
      "en": "Those are two things, **and I can change both of them**. As to the hearing: your hearing aid is in the drawer — shall I give it to you? **And as to the other: you do not have to be washed by me. We will find a way that works for you.**",
-     "why_en": "**Separating the barrier from the shame in one sentence, and a solution for each.** And note that the second part was not asked about: shame is not interrogated, it is dealt with."
+     "why_en": "**Separating the barrier from the shame in one sentence, and a solution for each.** And note that the second part was not asked about: shame is not interrogated, it is dealt with.",
+     "ton": "medien/p09-amina-04.mp3"
     },
     {
      "who": "Patient",
      "de": "Und ehrlich gesagt — bei Ihrem Akzent weiß man ja nie, ob Sie's richtig verstanden haben.",
      "ar": "وبصراحة — **بلكنتك هذه لا يعرف المرءُ أبداً هل فهمتِ صواباً.**",
-     "en": "And to be honest — **with that accent of yours one never knows whether you have understood correctly.**"
+     "en": "And to be honest — **with that accent of yours one never knows whether you have understood correctly.**",
+     "ton": "medien/p09-patient-05.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -12930,13 +12983,15 @@ window.DATEN = {
      "ar": "(صمتٌ قصير) سيّد فوغت، **هذه الجملةُ تؤلمني، وأقول لك ذلك لأنّي لا أريد أن أتظاهر بأنّي لم أسمعها**. أنا ممرّضةٌ مختصّةٌ مُجازة وأعمل هنا منذ ستّ سنوات. **وأبقى ممرّضتَك اليوم — ولا يغيّر ذلك شيئاً ممّا ستحصل عليه منّي.**",
      "why": "**ثلاثةٌ في جواب:** الحدُّ يُسمّى («تؤلمني») بلا هجومٍ مضادّ ولا اعتذار؛ والكفاءةُ تُذكر مرّةً واحدةً بلا دفاعٍ مطوَّل؛ **والرعايةُ تُضمَن صراحةً** فلا يظنّ أنّ العقابَ آتٍ. والصمتُ القصيرُ قبلها مقصود: هو ما يمنع ردّاً بالمثل.",
      "en": "(a short pause) Herr Vogt, **that sentence hurts me, and I am telling you so because I do not want to pretend I did not hear it**. I am a qualified registered nurse and I have worked here for six years. **And I remain your nurse today — it changes nothing about what you get from me.**",
-     "why_en": "**Three things in one answer:** the limit is named (“it hurts me”) with no counter-attack and no apology; the qualification is mentioned once without a long defence; **and the care is guaranteed explicitly**, so that he does not think punishment is coming. And the short pause before it is deliberate: it is what prevents a reply in kind."
+     "why_en": "**Three things in one answer:** the limit is named (“it hurts me”) with no counter-attack and no apology; the qualification is mentioned once without a long defence; **and the care is guaranteed explicitly**, so that he does not think punishment is coming. And the short pause before it is deliberate: it is what prevents a reply in kind.",
+     "ton": "medien/p09-amina-06.mp3"
     },
     {
      "who": "Patient",
      "de": "… Das habe ich nicht so gemeint. Meine Frau hat das immer gemacht. Seit sie tot ist, komme ich damit nicht zurecht.",
      "ar": "... لم أقصد ذلك. **زوجتي كانت تفعل هذا دائماً. ومنذ ماتت لا أتدبّر الأمر.**",
-     "en": "… I did not mean it like that. **My wife always did this. Since she died I cannot manage it.**"
+     "en": "… I did not mean it like that. **My wife always did this. Since she died I cannot manage it.**",
+     "ton": "medien/p09-patient-07.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -12944,13 +12999,15 @@ window.DATEN = {
      "ar": "شكراً لأنّك قلتَ لي ذلك. **إذن نفعلها هكذا:** إمّا أن تغتسل عند المغسلة بنفسك، وأنا أُحضّر كلَّ شيءٍ وأبقى خارجَ الستارة إن احتجتَ شيئاً. **وإمّا أن أسأل هل عند زميلٍ وقتٌ اليوم. وكلاهما مقبول — أيُّهما تفضّل؟**",
      "why": "**خياران لا خمسة، وكلاهما يحفظ له ماءَ الوجه.** والخجلُ يُخفَّف بالسيطرة لا بالإقناع: من اختار لم يعد مكشوفاً أمام قرار غيره.",
      "en": "Thank you for telling me. **Then let us do it this way:** either you wash yourself at the basin, and I get everything ready and stay outside the curtain in case you need anything. **Or I ask whether a male colleague has time today. Both are fine — which would you prefer?**",
-     "why_en": "**Two options, not five, and both let him keep his dignity.** And shame is eased by control rather than by persuasion: a man who has chosen is no longer exposed to somebody else's decision."
+     "why_en": "**Two options, not five, and both let him keep his dignity.** And shame is eased by control rather than by persuasion: a man who has chosen is no longer exposed to somebody else's decision.",
+     "ton": "medien/p09-amina-08.mp3"
     },
     {
      "who": "Patient",
      "de": "Am Waschbecken. Aber bleiben Sie in der Nähe. Ich bin unsicher auf den Beinen.",
      "ar": "عند المغسلة. لكن ابقي قريبة. **ساقاي غيرُ ثابتتين.**",
-     "en": "At the basin. But stay nearby. **I am not steady on my legs.**"
+     "en": "At the basin. But stay nearby. **I am not steady on my legs.**",
+     "ton": "medien/p09-patient-09.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -12958,7 +13015,8 @@ window.DATEN = {
      "ar": "سيّدة بيرغمان، باختصارٍ عن الغرفة التاسعة: وجدنا حلّاً للعناية بالجسم، وانتهى ذلك. **لكنّ السيّد فوغت قال جملةً عن أصلي. ولا أقول لك ذلك ليقع في مشكلة — أقوله لأنّي لا أريد أن أكتمه، ولأنّه قد يصيب من تأتي بعدي.**",
      "why": "**الإبلاغُ يُعلَّل بالحماية لا بالشكوى.** وهذا ما يجعله فعلاً مهنيّاً لا خصومةً مع مريض. والجملةُ الأولى تفصل ما حُلّ عمّا لم يُحلّ.",
      "en": "Frau Bergmann, briefly about room nine: we have found a solution for the personal care, that is settled. **But Herr Vogt made a remark about where I come from. I am not telling you so that he gets into trouble — I am telling you because I do not want to keep it to myself, and because it may hit the next person too.**",
-     "why_en": "**The report is justified by protection, not by complaint.** And that is what makes it a professional act rather than a quarrel with a patient. And the first sentence separates what has been solved from what has not."
+     "why_en": "**The report is justified by protection, not by complaint.** And that is what makes it a professional act rather than a quarrel with a patient. And the first sentence separates what has been solved from what has not.",
+     "ton": "medien/p09-amina-10.mp3"
     },
     {
      "who": "Kollege",
@@ -12966,7 +13024,8 @@ window.DATEN = {
      "ar": "جيّدٌ أنّك قلتِ. **لستِ ملزَمةً أن تقبلي هذا.** سأدوّنه، وأكلّمه أنا لاحقاً، وننظر في توزيع الغد هل نحلّها على نحوٍ آخر — **بلا أن يبدو ذلك عقاباً لك.**",
      "why": "**جوابُ المؤسّسة هو الجزءُ الذي يُنسى في التعليم.** والممرّضةُ التي تُبلغ ولا يتحرّك أحدٌ لا تُبلغ مرّةً ثانية. ولاحظ الجملةَ الأخيرة: **إعادةُ التوزيع لا تُنفَّذ بحيث تبدو عقوبةً للمُبلِّغة.**",
      "en": "Good that you say so. **You do not have to put up with that.** I will make a note of it, I will speak to him myself later, and we will look at tomorrow's allocation to see whether we solve it differently — **without it looking like a punishment for you.**",
-     "why_en": "**The institution's answer is the part that is forgotten in teaching.** A nurse who reports and sees nobody act does not report a second time. And note the last sentence: **a reallocation is not carried out in a way that looks like a penalty for the person who reported.**"
+     "why_en": "**The institution's answer is the part that is forgotten in teaching.** A nurse who reports and sees nobody act does not report a second time. And note the last sentence: **a reallocation is not carried out in a way that looks like a penalty for the person who reported.**",
+     "ton": "medien/p09-kollege-11.mp3"
     }
    ],
    "vokabeln": [
@@ -13716,7 +13775,8 @@ window.DATEN = {
      "ar": "صباح الخير يا سيّدة ليندنر. — **القهوةُ كما تحبّينها: سكّرٌ كثير.** (تضعها في متناولها، وتجلس، وتنتظر)",
      "why": "**العادةُ تُحفَظ حتّى حين لا يبقى كلام.** وسكّرُ القهوة ليس تفصيلاً: هو آخرُ ما يُعرَف به أنّها هي. والجلوسُ والانتظارُ يجعلان العرضَ عرضاً لا إجراء.",
      "en": "Good morning, Frau Lindner. — **The coffee the way you like it: plenty of sugar.** (puts it within reach, sits down, waits)",
-     "why_en": "**The habit is preserved even when no speech is left.** And the sugar in the coffee is not a detail: it is the last thing by which she is known to be herself. And sitting down and waiting make the offer an offer rather than a procedure."
+     "why_en": "**The habit is preserved even when no speech is left.** And the sugar in the coffee is not a detail: it is the last thing by which she is known to be herself. And sitting down and waiting make the offer an offer rather than a procedure.",
+     "ton": "medien/p10-amina-00.mp3"
     },
     {
      "who": "Patient",
@@ -13730,13 +13790,15 @@ window.DATEN = {
      "ar": "حسناً. أتركها هنا وأعود بعد قليل. — (تسجّل: رُفض الفطور، ٧:٤٠، بلا علاماتِ اضطراب)",
      "why": "**قبولُ الرفض وتسجيلُه ملاحظةً لا حكماً.** «رُفض» واقعة، و«رفضت التعاون» حكم. وجملةُ «بلا علامات اضطراب» هي ما يُبنى عليه لاحقاً.",
      "en": "All right. Then I will leave it here and come back later. — (notes: breakfast refused, 07:40, no signs of distress)",
-     "why_en": "**Accepting the refusal and recording it as an observation, not as a judgement.** “Refused” is a fact; “refused to cooperate” is a judgement. And the phrase “no signs of distress” is what will be built on later."
+     "why_en": "**Accepting the refusal and recording it as an observation, not as a judgement.** “Refused” is a fact; “refused to cooperate” is a judgement. And the phrase “no signs of distress” is what will be built on later.",
+     "ton": "medien/p10-amina-02.mp3"
     },
     {
      "who": "Angehoerige",
      "de": "Sie verhungert. Drei Kilo in drei Wochen! Machen Sie endlich eine Magensonde, ich habe die Vollmacht.",
      "ar": "**إنّها تموت جوعاً.** ثلاثةُ كيلوغراماتٍ في ثلاثة أسابيع! ضعوا أنبوبَ معدةٍ أخيراً، **أنا عندي التوكيل**.",
-     "en": "**She is starving to death.** Three kilos in three weeks! Put in a feeding tube at last, **I have the proxy**."
+     "en": "**She is starving to death.** Three kilos in three weeks! Put in a feeding tube at last, **I have the proxy**.",
+     "ton": "medien/p10-angeh-03.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -13744,13 +13806,15 @@ window.DATEN = {
      "ar": "**أرى كم يثقل هذا عليك** — تأتي كلَّ يوم، ويرى ذلك كلُّ من هنا. **وأمّا الأنبوب فتقرّره الطبيبةُ معك، لا أنا.** لكنّي أستطيع أن أقول لك بالضبط ما نرصده منذ ثلاثة أسابيع، **وهذا من صميم هذا القرار**.",
      "why": "**الخوفُ يُسمّى أوّلاً**، فالأبُ الخائفُ لا يسمع حجّةً قبل أن يشعر أنّه رُئي. **ثمّ يُوضَّح الدور:** لا أقرّر ولا أُنكر، **بل أُدخل ما أراه**. ولو بدأتُ بالجدال في الأنبوب لصار الأمرُ خصومة.",
      "en": "**I can see how much this weighs on you** — you come every day, everyone here sees that. **And the tube is decided by the doctor with you, not by me.** But I can tell you exactly what we have been observing for three weeks, **and that belongs in this decision**.",
-     "why_en": "**The fear is named first**, because a frightened son hears no argument before he feels he has been seen. **Then the role is clarified:** I do not decide and I do not refuse, **I bring in what I see**. And had I begun by arguing about the tube it would have become a quarrel."
+     "why_en": "**The fear is named first**, because a frightened son hears no argument before he feels he has been seen. **Then the role is clarified:** I do not decide and I do not refuse, **I bring in what I see**. And had I begun by arguing about the tube it would have become a quarrel.",
+     "ton": "medien/p10-amina-04.mp3"
     },
     {
      "who": "Angehoerige",
      "de": "Ich kann sie doch nicht einfach sterben lassen. Was soll ich denn meinem Bruder sagen?",
      "ar": "**لا أستطيع أن أتركها تموت هكذا.** وماذا أقول لأخي؟",
-     "en": "**I cannot just let her die.** And what am I supposed to tell my brother?"
+     "en": "**I cannot just let her die.** And what am I supposed to tell my brother?",
+     "ton": "medien/p10-angeh-05.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -13758,13 +13822,15 @@ window.DATEN = {
      "ar": "أعرف. — **سيّد ليندنر، عندك توكيل، ومعناه أنّك تتكلّم باسمها هي.** لا ما تحتمله أنت، **بل ما كانت هي تريده**. **وفي هذا أنت تعرفها أكثرَ منّا جميعاً:** أقالت يوماً شيئاً عن موقفٍ كهذا؟",
      "why": "**أدقُّ جملةٍ في الحالة، وهي تصحيحٌ لا اتّهام.** الوكالةُ تمثيلٌ لإرادتها لا تفويضٌ لرغبته — **ويُقال ذلك بصيغةٍ تُكرمه: أنت أعرفُنا بها.** وبهذا يتحوّل من خصمٍ إلى مصدرٍ للمعلومة الحاسمة.",
      "en": "I know. — **Herr Lindner, you hold a proxy, and that means: you speak for her.** Not what you can bear, **but what she would have wanted**. **And in that you know her better than all of us:** did she ever say anything about a situation like this?",
-     "why_en": "**The most precise sentence in the case, and it is a correction, not an accusation.** The proxy is a representation of her will, not a mandate for his wish — **and it is said in a form that honours him: you know her best of us.** And with that he turns from an opponent into the source of the decisive information."
+     "why_en": "**The most precise sentence in the case, and it is a correction, not an accusation.** The proxy is a representation of her will, not a mandate for his wish — **and it is said in a form that honours him: you know her best of us.** And with that he turns from an opponent into the source of the decisive information.",
+     "ton": "medien/p10-amina-06.mp3"
     },
     {
      "who": "Angehoerige",
      "de": "(schweigt) … Sie hat mal gesagt, als ihre Schwester im Krankenhaus lag: „An Schläuchen will ich nicht hängen.“ Aber das ist zehn Jahre her.",
      "ar": "(يصمت) ... **قالت مرّةً حين كانت أختُها في المستشفى: «لا أريد أن أُعلَّق بأنابيب.» لكنّ ذلك قبل عشر سنوات.**",
-     "en": "(is silent) … **She once said, when her sister was in hospital: “I do not want to be hooked up to tubes.” But that was ten years ago.**"
+     "en": "(is silent) … **She once said, when her sister was in hospital: “I do not want to be hooked up to tubes.” But that was ten years ago.**",
+     "ton": "medien/p10-angeh-07.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -13772,7 +13838,8 @@ window.DATEN = {
      "ar": "**هذا مهمّ، ولا تقلّ قيمتُه لأنّه قبل عشر سنوات.** أتأذن أن أكتبه هكذا، **بكلماتك وبسياقه**؟ فيكون يومَ الخميس على طاولة مناقشة الحالة — مع التوجيه المسبق ومع ما نرصده نحن.",
      "why": "**الجملةُ تُوثَّق بنصّها وبسياقها لا بخلاصتها.** والسياقُ — «حين كانت أختُها في المستشفى» — هو ما يمنحها وزناً. والاستئذانُ يُبقي الابنَ شريكاً لا مصدراً يُستخرَج منه.",
      "en": "**That is important, and it is worth no less because it was ten years ago.** May I write it down like that, **in your words and with the context**? Then on Thursday it will be on the table at the case discussion — together with the directive and with what we observe.",
-     "why_en": "**The sentence is documented in its own wording and with its context, not as a summary.** And the context — “when her sister was in hospital” — is what gives it weight. And asking permission keeps the son a partner rather than a source to be mined."
+     "why_en": "**The sentence is documented in its own wording and with its context, not as a summary.** And the context — “when her sister was in hospital” — is what gives it weight. And asking permission keeps the son a partner rather than a source to be mined.",
+     "ton": "medien/p10-amina-08.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -13780,13 +13847,15 @@ window.DATEN = {
      "ar": "أمّا الرصد: **في ثلاثة أسابيعَ رفضت الفطورَ ثماني عشرةَ مرّةً وأخذت شيئاً أربعَ مرّات.** وبعد الظهر تأكل كلَّ يومٍ تقريباً حلوى أو لبناً، نصفَ كأسٍ في المتوسّط، **وأحسنُه بين الثالثة والرابعة، جالسةً، بلا استعجال، وغالباً مع السيّدة سوبوتكا.** **ولا نرى علاماتِ جوعٍ أو عطش** — لا اضطراب، ولا محاولةَ إمساك، ولا جفافَ أغشيةٍ مع العناية بالفم المنتظمة. **وهي تدفع الملعقةَ إن قُرّبت من شفتيها.**",
      "why": "**هذا هو إسهامُ التمريض كلُّه في جملةٍ واحدة:** أرقامٌ على مدى أسابيع، **وظرفٌ ينجح** (الوقتُ والوضعيّةُ والشخص)، **وغيابُ علاماتٍ يُسأل عنها**، وسلوكٌ يتكرّر. ولا أحدَ في الغرفة يملك هذا غيرُك.",
      "en": "As to the observation: **in three weeks she refused breakfast eighteen times and took something four times.** In the afternoon she eats a pudding or a yoghurt almost every day, half a pot on average, **and it is best between three and four, sitting up, unhurried, and usually with Frau Sobotka.** **And we see no signs of hunger or thirst** — no restlessness, no reaching out, no dry mucous membranes with regular mouth care. **And she pushes the spoon away if it is held to her lips.**",
-     "why_en": "**This is the whole nursing contribution in a single passage:** figures over weeks, **a set of conditions that works** (the time, the position, the person), **the absence of signs that will be asked about**, and a behaviour that recurs. And nobody else in the room has this."
+     "why_en": "**This is the whole nursing contribution in a single passage:** figures over weeks, **a set of conditions that works** (the time, the position, the person), **the absence of signs that will be asked about**, and a behaviour that recurs. And nobody else in the room has this.",
+     "ton": "medien/p10-amina-09.mp3"
     },
     {
      "who": "Arzt",
      "de": "Danke. Nimmt sie über den Tag genug Flüssigkeit?",
      "ar": "شكراً. **أتأخذ سوائلَ كافيةً على مدى اليوم؟**",
-     "en": "Thank you. **Is she taking enough fluid over the day?**"
+     "en": "Thank you. **Is she taking enough fluid over the day?**",
+     "ton": "medien/p10-arzt-10.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -13794,7 +13863,8 @@ window.DATEN = {
      "ar": "في المتوسّط من ستّمئةٍ إلى ثمانمئة مليلتر، **موثَّقةً منذ سبعة عشر يوماً**. وأكثرُ ما تشرب قهوةً بسكّرٍ، باردة، **من فنجانها هي**. والماءَ ترفضه دائماً تقريباً.",
      "why": "**التفصيلُ الأخير ليس طرافة:** «من فنجانها هي» معلومةٌ تُغيّر تدبيراً — ومن حذفها بوصفها تفصيلاً حذف ما ينفع فعلاً.",
      "en": "On average six hundred to eight hundred millilitres, **documented for seventeen days**. She drinks coffee with sugar most of all, cold, **from her own cup**. Water she almost always refuses.",
-     "why_en": "**The last detail is not a charming aside:** “from her own cup” is a piece of information that changes what we do — and whoever cut it as a detail cut the part that actually helps."
+     "why_en": "**The last detail is not a charming aside:** “from her own cup” is a piece of information that changes what we do — and whoever cut it as a detail cut the part that actually helps.",
+     "ton": "medien/p10-amina-11.mp3"
     }
    ],
    "vokabeln": [
@@ -14542,13 +14612,15 @@ window.DATEN = {
      "ar": "سيّد دوريان، **قبل أن أشرح أيَّ شيء**: ما الذي تعرفه عن القلم — **وما الذي تريد أن تعرفه أوّلاً**؟",
      "why": "**السؤالُ قبل الشرح** يوفّر نصفَ الكلام ويكشف الثغرةَ في موضعها. **ومن بدأ بالشرح علّم ما يعرفه المريضُ وترك ما يجهله.**",
      "en": "Herr Doryan, **before I explain anything**: what do you already know about the pen — **and what would you like to know first**?",
-     "why_en": "**The question before the explanation** saves half the talking and uncovers the gap where it actually is. **Whoever begins by explaining teaches what the patient already knows and leaves out what he does not.**"
+     "why_en": "**The question before the explanation** saves half the talking and uncovers the gap where it actually is. **Whoever begins by explaining teaches what the patient already knows and leaves out what he does not.**",
+     "ton": "medien/p11-amina-00.mp3"
     },
     {
      "who": "Patient",
      "de": "Das mit dem Drehen habe ich gesehen. Was mich interessiert: Muss ich das morgens machen, bevor ich rausgehe? Ich fahre um sieben zu meinem Bruder.",
      "ar": "رأيتُ مسألةَ اللفّ. **والذي يهمّني: أعليَّ أن أفعلها صباحاً قبل أن أخرج؟ أنا أذهب في السابعة إلى أخي.**",
-     "en": "I have seen the turning part. **What interests me is: do I have to do it in the morning before I go out? I drive over to my brother at seven.**"
+     "en": "I have seen the turning part. **What interests me is: do I have to do it in the morning before I go out? I drive over to my brother at seven.**",
+     "ton": "medien/p11-patient-01.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -14556,13 +14628,15 @@ window.DATEN = {
      "ar": "**فلنبدأ بها إذاً، فهي سؤالُك.** — (ثلاثُ نقاطٍ ببطء) **الأولى: الوقتُ معلَّقٌ بفطورك لا بالساعة.** **والثانية: إن كنتَ خارجاً فالسكّرُ في جيب معطفك لا في المطبخ.** **والثالثة: إن ارتجفتَ أو تصبّبتَ عرقاً أو اضطربتَ اضطراباً غريباً، فكُل أوّلاً واسأل بعدُ.** — **هذه الثلاث. وما سواها يحتمل التأجيل.**",
      "why": "**ثلاثُ نقاطٍ تبقى، وعشرٌ لا تبقى.** وبدأتُ بسؤاله هو لا بترتيب المعيار، **والأهمُّ قيل أوّلاً لا أخيراً**. وكلُّ نقطةٍ **فعلٌ يفعله** لا معلومةٌ يحفظها.",
      "en": "**Then let us begin with that, because it is your question.** — (three points, slowly) **First: the timing hangs on your breakfast, not on the clock.** **Second: if you are out, the glucose goes in your coat pocket, not in the kitchen.** **Third: if you get shaky, sweaty or oddly restless, eat first and ask afterwards.** — **Those are the three. Everything else can wait.**",
-     "why_en": "**Three points stay, ten do not.** And I began with his question rather than with the order of the standard, **and the most important came first, not last**. And every point is **an action he performs**, not a piece of information he memorises."
+     "why_en": "**Three points stay, ten do not.** And I began with his question rather than with the order of the standard, **and the most important came first, not last**. And every point is **an action he performs**, not a piece of information he memorises.",
+     "ton": "medien/p11-amina-02.mp3"
     },
     {
      "who": "Patient",
      "de": "Alles klar. Habe ich verstanden.",
      "ar": "واضح. **فهمت.**",
-     "en": "Clear. **Understood.**"
+     "en": "Clear. **Understood.**",
+     "ton": "medien/p11-patient-03.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -14570,13 +14644,15 @@ window.DATEN = {
      "ar": "**فقل لي بكلماتك**: تستيقظ غداً في بيتك — **ماذا تفعل، بالترتيب**؟",
      "why": "**«هل فهمت؟» يقول لها كلُّ أحدٍ نعم.** والإعادةُ بكلماته هي الفحص، **وصيغةُ «تستيقظ غداً في بيتك» تنقله من الغرفة إلى مطبخه**، وهناك تظهر الثغرة.",
      "en": "**Then tell me in your own words**: you wake up tomorrow at home — **what do you do, step by step**?",
-     "why_en": "**Everybody says yes to “have you understood?”** And repeating it in his own words is the check, **and the form “you wake up tomorrow at home” moves him out of the room and into his kitchen**, and that is where the gap appears."
+     "why_en": "**Everybody says yes to “have you understood?”** And repeating it in his own words is the check, **and the form “you wake up tomorrow at home” moves him out of the room and into his kitchen**, and that is where the gap appears.",
+     "ton": "medien/p11-amina-04.mp3"
     },
     {
      "who": "Patient",
      "de": "(zögert) … Ich nehme den Pen, drehe das ein, und dann spritze ich. In den Bauch.",
      "ar": "(يتردّد) ... **آخذ القلم، وألفّ، ثمّ أحقن. في البطن.**",
-     "en": "(hesitates) … **I take the pen, dial it, and then I inject. In the stomach.**"
+     "en": "(hesitates) … **I take the pen, dial it, and then I inject. In the stomach.**",
+     "ton": "medien/p11-patient-05.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -14584,13 +14660,15 @@ window.DATEN = {
      "ar": "حسن. **فافعلها مرّةً، هنا، بقلمك أنت** — **وأنا أنظر ولا أقول شيئاً**.",
      "why": "**هنا يتحوّل الإعلامُ إلى تدريب.** والصمتُ مقصود: **ما إن تُصحّح في أثناء الأداء حتّى يصير الأداءُ أداءَك أنت.** وبقلمه هو لا بقلم تدريب.",
      "en": "Good. **Then do it once, here, with your own pen** — **and I will just watch and say nothing**.",
-     "why_en": "**This is where information turns into training.** And the silence is deliberate: **the moment you correct during the performance, the performance becomes yours.** And with his own pen, not a practice one."
+     "why_en": "**This is where information turns into training.** And the silence is deliberate: **the moment you correct during the performance, the performance becomes yours.** And with his own pen, not a practice one.",
+     "ton": "medien/p11-amina-06.mp3"
     },
     {
      "who": "Patient",
      "de": "(nimmt den Pen, dreht, hält ihn nah ans Gesicht, dreht zurück, dreht wieder) … Machen Sie das mal, ich habe heute keine Brille dabei.",
      "ar": "(يأخذ القلمَ، يلفّ، **يقرّبه من وجهه**، يعيد اللفّ، يلفّ ثانيةً) ... **افعليها أنتِ، **لم أُحضر نظّارتي اليوم**.**",
-     "en": "(takes the pen, dials, **holds it close to his face**, dials back, dials again) … **You do it, I have not got my glasses with me today.**"
+     "en": "(takes the pen, dials, **holds it close to his face**, dials back, dials again) … **You do it, I have not got my glasses with me today.**",
+     "ton": "medien/p11-patient-07.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -14598,13 +14676,15 @@ window.DATEN = {
      "ar": "(لا تفعلها) سيّد دوريان — **أتأذن أن أسأل: أترى الأرقامَ على القرص؟**",
      "why": "**الامتناعُ عن الفعل هو القرار الصحيح.** ولو أخذتُ القلمَ لانتهت الحصّةُ بنجاحٍ ظاهرٍ وعجزٍ حقيقيّ. **والسؤالُ عن البصر لا عن الاستعداد: الإخفاقُ له سببٌ يُبحَث قبل أن يُنسَب إلى الإرادة.**",
      "en": "(does not do it) Herr Doryan — **may I ask: can you see the numbers on the dial?**",
-     "why_en": "**Not doing it is the right decision.** Had I taken the pen, the session would have ended in an apparent success and a real incapacity. **And the question is about his sight, not about his willingness: a failure has a reason, and it is looked for before it is attributed to the will.**"
+     "why_en": "**Not doing it is the right decision.** Had I taken the pen, the session would have ended in an apparent success and a real incapacity. **And the question is about his sight, not about his willingness: a failure has a reason, and it is looked for before it is attributed to the will.**",
+     "ton": "medien/p11-amina-08.mp3"
     },
     {
      "who": "Patient",
      "de": "(nach einer Pause) Die kleinen nicht. Ich sehe, dass da was steht. Zu Hause mache ich das nach Gefühl, beim Klicken.",
      "ar": "(بعد صمت) **الصغيرةَ لا.** أرى أنّ هناك شيئاً مكتوباً. **وفي البيت أفعلها بالإحساس، مع الطقطقة.**",
-     "en": "(after a pause) **Not the small ones.** I can see that something is written there. **At home I do it by feel, with the clicks.**"
+     "en": "(after a pause) **Not the small ones.** I can see that something is written there. **At home I do it by feel, with the clicks.**",
+     "ton": "medien/p11-patient-09.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -14612,13 +14692,15 @@ window.DATEN = {
      "ar": "**شكراً لأنّك قلتها.** **ليس هذا إخفاقاً، بل معلومةٌ كنّا نحتاجها** — **وهي تغيّر كلَّ شيء: لستَ أنت المشكلة، بل حجمُ الأرقام.** **وهناك أقلامٌ بشاشةٍ أكبرُ وأخرى تعدّ بصوتٍ مسموع.** أعرض هذا اليومَ على الطبيبة وعلى مرشدة السكّريّ، السيّدة إيفيتش، **وأعود إليك بجواب، لا بكُتيّب**.",
      "why": "**يُسمّى الأمرُ معلومةً لا عجزاً**، فالرجلُ أخفاه حياءً وسيعود يخفيه. **والإحالةُ باسمٍ وموعد**: «أعرضه على الطبيبة وعلى السيّدة إيفيتش وأعود» — لا «اسأل الطبيب». **وحجمُ الأرقام ليس من اختصاصي طبّيّاً، لكنّ نقلَ الملاحظة اختصاصي.**",
      "en": "**Thank you for saying so.** **This is not a failure, it is information we needed** — **and it changes everything: you are not the problem, the size of the numbers is.** **There are pens with a larger display and pens that count out loud.** I will put this to the doctor today and to the diabetes nurse, Frau Ivic, **and I will come back to you with an answer, not with a leaflet**.",
-     "why_en": "**It is named as information and not as incapacity**, because the man hid it out of embarrassment and will hide it again. **And the referral is by name and with a time**: “I will put it to the doctor and to Frau Ivic and come back” — not “ask the doctor”. **And the size of the numbers is not medically my field, but passing on the observation is.**"
+     "why_en": "**It is named as information and not as incapacity**, because the man hid it out of embarrassment and will hide it again. **And the referral is by name and with a time**: “I will put it to the doctor and to Frau Ivic and come back” — not “ask the doctor”. **And the size of the numbers is not medically my field, but passing on the observation is.**",
+     "ton": "medien/p11-amina-10.mp3"
     },
     {
      "who": "Angehoerige",
      "de": "Ich mache das einfach. Ich habe das bei meiner Mutter jahrelang gemacht, das ist kein Problem für mich.",
      "ar": "**أنا أفعلها ببساطة.** فعلتُها لأمّي سنواتٍ، **وليست مشكلةً عندي**.",
-     "en": "**I will just do it.** I did it for my mother for years, **it is no trouble for me**."
+     "en": "**I will just do it.** I did it for my mother for years, **it is no trouble for me**.",
+     "ton": "medien/p11-angeh-11.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -14626,13 +14708,15 @@ window.DATEN = {
      "ar": "**أصدّقك فوراً، ووجودُك خير.** — **سيّد دوريان، هذا قرارُك أنت لا قراري**: أتريد أن تفعلها بنفسك **إن وجدنا قلماً تقرأ أرقامَه**؟ **أم تريد أن تتولّاها زوجتُك؟** **كلاهما مقبول، وكلاهما نستطيع الإعداد له.**",
      "why": "**الزوجةُ تُشكَر ولا تُزاح**، والقرارُ يُعاد إلى صاحبه صريحاً — **وقد كان على وشك أن يُقرَّر عنه وهو حاضر**. **وعرضُ الطريقين بلا ترجيحٍ** هو الإرشاد: **لا يُقال له أيُّهما الصواب.**",
      "en": "**I believe you at once, and it is good that you are here.** — **Herr Doryan, this is your decision, not mine**: would you like to do it yourself **if we find a pen whose numbers you can read**? **Or would you like your wife to take it over?** **Both are fine, and we can prepare for either.**",
-     "why_en": "**The wife is thanked and not pushed aside**, and the decision is handed back to the man explicitly — **and it was about to be taken for him while he sat there**. **And offering the two routes without steering him** is what advising means: **he is not told which one is right.**"
+     "why_en": "**The wife is thanked and not pushed aside**, and the decision is handed back to the man explicitly — **and it was about to be taken for him while he sat there**. **And offering the two routes without steering him** is what advising means: **he is not told which one is right.**",
+     "ton": "medien/p11-amina-12.mp3"
     },
     {
      "who": "Patient",
      "de": "Ich will es selbst machen. Solange ich es sehe.",
      "ar": "**أريد أن أفعلها بنفسي. ما دمتُ أراها.**",
-     "en": "**I want to do it myself. As long as I can see it.**"
+     "en": "**I want to do it myself. As long as I can see it.**",
+     "ton": "medien/p11-patient-13.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -14640,13 +14724,15 @@ window.DATEN = {
      "ar": "**فنفعل هكذا:** أعرض أمرَ القلم اليوم، **وغداً نتدرّب مرّتين — مرّةً قبل الظهر ومرّةً في السادسة والنصف صباحاً**، ليكون الوقتُ هو الوقتَ الذي يعنيك. **وزوجتُك تحضر المرّةَ الثانية، لا لتفعلها، بل لتعرف كيف تُفعَل إن مرضتَ يوماً.**",
      "why": "**الموعدُ الثاني يُحدَّد قبل انتهاء الأوّل**، وفي الوقت الحقيقيّ لا في وقت القسم. **وللزوجة دورٌ مسمّى** — حاضرةٌ ومتعلّمةٌ لا بديلة — فلا تُقصى ولا تُلغى إرادتُه.",
      "en": "**Then we do it like this:** I will raise the pen today, **and tomorrow we practise twice — once in the morning and once at half past six**, so that it is the time that counts for you. **And your wife will be there the second time, not to do it, but to know how it is done if you are ever ill.**",
-     "why_en": "**The second appointment is fixed before the first one ends**, and at the real time rather than the ward's time. **And the wife has a named part** — present and learning, not a substitute — so she is neither excluded nor is his will cancelled."
+     "why_en": "**The second appointment is fixed before the first one ends**, and at the real time rather than the ward's time. **And the wife has a named part** — present and learning, not a substitute — so she is neither excluded nor is his will cancelled.",
+     "ton": "medien/p11-amina-14.mp3"
     },
     {
      "who": "Kollege",
      "de": "Ich komme morgen um zehn dazu. Bringt er seinen eigenen Pen mit nach Hause oder bekommt er einen neuen?",
      "ar": "آتي غداً في العاشرة. **أيأخذ قلمَه هذا إلى البيت أم يُعطى جديداً؟**",
-     "en": "I will join at ten tomorrow. **Does he take this pen home or does he get a new one?**"
+     "en": "I will join at ten tomorrow. **Does he take this pen home or does he get a new one?**",
+     "ton": "medien/p11-kollege-15.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -14654,7 +14740,8 @@ window.DATEN = {
      "ar": "تحسمه الطبيبةُ اليوم. **وأيّاً كان ما يأخذه: يُتدرَّب بالجهاز الذي سيذهب معه إلى البيت بعينه.**",
      "why": "**التدرّبُ على جهازٍ غيرِ الذي سيستعمله تدريبٌ على شيءٍ آخر** — تختلف الشاشةُ والطقطقةُ ومقدارُ القوّة.",
      "en": "The doctor will settle that today. **And whatever he gets: the practice is with exactly the device that goes home with him.**",
-     "why_en": "**Practising on a device other than the one he will use is practising on something else** — the display, the clicks and the force required all differ."
+     "why_en": "**Practising on a device other than the one he will use is practising on something else** — the display, the clicks and the force required all differ.",
+     "ton": "medien/p11-amina-16.mp3"
     }
    ],
    "vokabeln": [
@@ -15424,13 +15511,15 @@ window.DATEN = {
      "ar": "دقيقةٌ واحدة، ثلاثتُنا. — **السيّدة تايشرت هي غيرُ المستقرّة اليوم**: تنفّسٌ أسرع، وأكسجةٌ واحدٌ وتسعون. **تبقى عندي كاملةً، لا أُقسّمها.** **سيّدة أدلر، لك الغرفُ من واحدٍ إلى خمسة: العنايةُ الأساسيّة والفطور.** **سيّد بوهم، تأتي معي، وفي التاسعة تغيّر ضِمادَ السيّدة نوفاك وأنا واقفةٌ إلى جانبك.** **وحقنةُ السيّد كبير أفعلها أنا.** **وفي الثامنة والنصف نلتقي هنا وننظر أما زال الأمرُ صحيحاً.**",
      "why": "**أربعةُ أشياءَ في دقيقة:** من غيرُ المستقرّ اليومَ ولماذا، **وما الذي لا يُقسَّم**، **وما الذي لا يُفوَّض وقيل صراحةً أنّي أفعله** — فلا يأخذه أحدٌ من تلقائه — **ونقطةُ التقاءٍ بساعةٍ محدَّدة**. **والتوزيعُ هنا تقديرُ موقفٍ لا قائمةَ غرف.**",
      "en": "All three of you, one minute. — **Frau Teichert is the unstable one today**: faster breathing, saturation ninety-one. **She stays entirely with me, I am not splitting her.** **Frau Adler, rooms one to five are yours: basic care and the breakfasts.** **Herr Böhm, you come with me, and at nine you change Frau Nowak's dressing with me standing beside you.** **And Herr Kabir's injection I do myself.** **And at half past eight we meet here and see whether it still holds.**",
-     "why_en": "**Four things in a minute:** who is unstable today and why, **what is not split**, **what is not delegated, said explicitly so that nobody takes it on themselves**, **and a meeting point at a fixed hour**. **And the allocation here is an assessment of the situation, not a list of rooms.**"
+     "why_en": "**Four things in a minute:** who is unstable today and why, **what is not split**, **what is not delegated, said explicitly so that nobody takes it on themselves**, **and a meeting point at a fixed hour**. **And the allocation here is an assessment of the situation, not a list of rooms.**",
+     "ton": "medien/p12-amina-00.mp3"
     },
     {
      "who": "Kollege",
      "de": "(Frau Adler) Die Spritze bei Herrn Kabir mache ich mit, das habe ich hier fünfzehn Jahre gemacht.",
      "ar": "(السيّدة أدلر) **حقنةُ السيّد كبير آخذها معي، فعلتُها هنا خمس عشرة سنة.**",
-     "en": "(Frau Adler) **I will take Herr Kabir's injection with mine, I have done it here for fifteen years.**"
+     "en": "(Frau Adler) **I will take Herr Kabir's injection with mine, I have done it here for fifteen years.**",
+     "ton": "medien/p12-kollege-01.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -15438,13 +15527,15 @@ window.DATEN = {
      "ar": "لا، تبقى عندي. — **ليس لأنّي لا أراك قادرة: بمعيار المؤسّسة هي محصورةٌ بالممرّض المؤهَّل، وخبرتُك لا تغيّر ذلك، لأنّ القاعدةَ معلَّقةٌ بالمؤهّل لا بالخبرة.**",
      "why": "**«لا» تُقال أوّلاً وصريحةً، ثمّ يُفصَل المستويان:** التقديرُ صادق، **والتعليلُ مُسنَدٌ إلى القاعدة لا إلى قدرتها**. **ومن علّل بقدرة الشخص جعل القاعدةَ حكماً عليه.**",
      "en": "No, that one stays with me. — **Not because I do not think you capable: by the institution's standard it is reserved for the registered nurse, and your experience does not change that, because the rule hangs on the qualification and not on the experience.**",
-     "why_en": "**The “no” is said first and plainly, and then the two levels are separated:** the appreciation is genuine, **and the reason is grounded in the rule and not in her ability**. **Whoever grounds it in the person's ability turns the rule into a judgement on them.**"
+     "why_en": "**The “no” is said first and plainly, and then the two levels are separated:** the appreciation is genuine, **and the reason is grounded in the rule and not in her ability**. **Whoever grounds it in the person's ability turns the rule into a judgement on them.**",
+     "ton": "medien/p12-amina-02.mp3"
     },
     {
      "who": "Kollege",
      "de": "(Frau Adler) Fünfzehn Jahre. Und jetzt darf ich Betten machen.",
      "ar": "(السيّدة أدلر) **خمس عشرة سنة. والآنَ يجوز لي ترتيبُ الأسرّة.**",
-     "en": "(Frau Adler) **Fifteen years. And now I am allowed to make beds.**"
+     "en": "(Frau Adler) **Fifteen years. And now I am allowed to make beds.**",
+     "ton": "medien/p12-kollege-03.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -15452,7 +15543,8 @@ window.DATEN = {
      "ar": "**هذه تؤلم، وهي مقولةٌ بحقّ.** — **سيّدة أدلر، الغرفُ من واحدٍ إلى خمسة لم أعطِكِ إيّاها لأنّه لم يبقَ غيرُها، بل لأنّ السيّدة بيرنس لا تقبل أحداً سواك، وأنتِ تُحسنين ذلك منذ سنين. ليست مهمّةً فائضة.** **وعندك ما أحتاجه اليوم: أنتِ ترين تغيّرَ السيّدة تايشرت قبلي. فإن لاحظتِ عليها أيَّ شيء فتعالَي إليّ فوراً، ولو لم تستطيعي تسميتَه.**",
      "why": "**الاعترافُ بوقع الجملة قبل الردّ عليها.** ثمّ **تقديرٌ محدّدٌ بواقعة** لا مجاملةً عامّة — «السيّدة بيرنس لا تقبل أحداً سواك» — **وإسنادُ دورٍ حقيقيٍّ لا تعويضيّ**: الملاحظةُ المبكّرة. **ومن يُسنَد إليه دورٌ يبقى في الفريق؛ ومن يُهدَّأ وحدَه ينسحب.**",
      "en": "**That stings, and it is fairly said.** — **Frau Adler, I did not give you rooms one to five because there was nothing else left, but because Frau Behrens lets nobody else near her and you have managed that for years. It is not a leftover job.** **And you have something I need today: you see a change in Frau Teichert before I do. If anything at all strikes you about her, come to me at once, even if you cannot put a name to it.**",
-     "why_en": "**Acknowledging the force of what she said before answering it.** Then **an appreciation tied to a specific fact** rather than a general compliment — “Frau Behrens lets nobody else near her” — **and a real role rather than a consolation one**: early observation. **Whoever is given a role stays in the team; whoever is merely soothed withdraws.**"
+     "why_en": "**Acknowledging the force of what she said before answering it.** Then **an appreciation tied to a specific fact** rather than a general compliment — “Frau Behrens lets nobody else near her” — **and a real role rather than a consolation one**: early observation. **Whoever is given a role stays in the team; whoever is merely soothed withdraws.**",
+     "ton": "medien/p12-amina-04.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -15460,13 +15552,15 @@ window.DATEN = {
      "ar": "سيّد بوهم، **قبل أن تأتي معي: ما أوّلُ ما تفعله عند السيّدة تايشرت؟**",
      "why": "**سؤالٌ يعلّم ويكشف المستوى معاً.** وأرخصُ من شرحٍ لا أعرف ما ينقص منه.",
      "en": "Herr Böhm, **before you come with me: what would you do first with Frau Teichert?**",
-     "why_en": "**A question that teaches and reveals the level at once.** And cheaper than an explanation whose gaps I do not know."
+     "why_en": "**A question that teaches and reveals the level at once.** And cheaper than an explanation whose gaps I do not know.",
+     "ton": "medien/p12-amina-05.mp3"
     },
     {
      "who": "Kollege",
      "de": "(Herr Böhm) Sättigung messen und den Arzt rufen?",
      "ar": "(السيّد بوهم) **أقيس الأكسجة وأتّصل بالطبيب؟**",
-     "en": "(Herr Böhm) **Measure the saturation and call the doctor?**"
+     "en": "(Herr Böhm) **Measure the saturation and call the doctor?**",
+     "ton": "medien/p12-kollege-06.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -15474,13 +15568,15 @@ window.DATEN = {
      "ar": "**كلاهما صواب، وينقص قبلَهما واحد:** أن تُجلسها ورأسُها مرتفع، **وأن تكلّمها وأنت تعدّ**. **والرقمُ وحدَه يقول قليلاً، والرقمُ مع الصورة يقول كثيراً.** — **افعلها الآن عندها، وأنا حاضرةٌ ولا أتكلّم، ثمّ نتحدّث فيما رأيت.**",
      "why": "**إرشادٌ زميليٌّ لا امتحان:** يُقال ما صحّ أوّلاً، ثمّ يُضاف الناقص. **والمسؤوليّةُ متدرّجة: يفعلها وأنا أنظر وأصمت** — فلو صحّحتُ في أثنائها لصار الأداءُ أدائي.",
      "en": "**Both right, and one thing is missing before them:** sitting her up with her upper body raised, **and talking to her while you count**. **The number alone says little; the number with the picture says a great deal.** — **Do that with her now, I will be there and say nothing, and afterwards we will talk about what you saw.**",
-     "why_en": "**Collegial guidance, not an examination:** what was right is said first, then what was missing is added. **And the responsibility is graded: he does it while I watch and stay silent** — because if I corrected him during it, the performance would become mine."
+     "why_en": "**Collegial guidance, not an examination:** what was right is said first, then what was missing is added. **And the responsibility is graded: he does it while I watch and stay silent** — because if I corrected him during it, the performance would become mine.",
+     "ton": "medien/p12-amina-07.mp3"
     },
     {
      "who": "Kollege",
      "de": "(Herr Böhm, später) Den Verband bei Frau Nowak kann ich auch allein machen. Ich habe zweimal zugeschaut, Sie haben doch genug zu tun.",
      "ar": "(السيّد بوهم، بعد حين) **ضِمادُ السيّدة نوفاك أستطيعه وحدي. شاهدتُه مرّتين، وعندك ما يكفي من العمل.**",
-     "en": "(Herr Böhm, later) **I can do Frau Nowak's dressing on my own too. I have watched twice, and you have plenty to do.**"
+     "en": "(Herr Böhm, later) **I can do Frau Nowak's dressing on my own too. I have watched twice, and you have plenty to do.**",
+     "ton": "medien/p12-kollege-08.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -15488,13 +15584,15 @@ window.DATEN = {
      "ar": "**مشاهدةٌ مرّتين ليست مرتبة، والوقتُ ليس حجّة.** **تفعله أنت وأنا واقفةٌ إلى جانبك، ولا أتدخّل إلّا عند الحاجة** — **وإن لم يمضِ اليومَ فغداً في التاسعة، فيكون في الخطّة لا في الفراغ بين المهامّ**. **ولا «نادني إن احتجت»: في المرّة الأولى لا يُهاتَف.**",
      "why": "**قاعدتان تُقالان صريحتين:** المرتبةُ تحدّدها ما أظهره لا رغبتُه ولا الوقت، **والإتاحةُ ليست حضوراً**. **والبديلُ موعدٌ بساعة** — لا وعدٌ مفتوحٌ لا يقع.",
      "en": "**Watching twice is not a stage, and time is not the argument.** **You do it and I stand beside you, and I only step in if it is necessary** — **and if that does not work today, we do it tomorrow at nine, so it is in the plan and not in the gaps between tasks**. **And not “call me if anything happens”: the first time, there is no telephoning.**",
-     "why_en": "**Two rules said plainly:** the stage is set by what he has shown, not by his wish and not by the time, **and being available is not being present**. **And the alternative is an appointment with an hour** — not an open promise that never happens."
+     "why_en": "**Two rules said plainly:** the stage is set by what he has shown, not by his wish and not by the time, **and being available is not being present**. **And the alternative is an appointment with an hour** — not an open promise that never happens.",
+     "ton": "medien/p12-amina-09.mp3"
     },
     {
      "who": "Patient",
      "de": "(Frau Teichert, kurzatmig) Es ist … so eng. Und immer laufen alle.",
      "ar": "(السيّدة تايشرت، بنفَسٍ قصير) **إنّه ... ضيّق. والجميعُ يركضون دائماً.**",
-     "en": "(Frau Teichert, short of breath) **It is … so tight. And everybody is always running.**"
+     "en": "(Frau Teichert, short of breath) **It is … so tight. And everybody is always running.**",
+     "ton": "medien/p12-patient-10.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -15502,7 +15600,8 @@ window.DATEN = {
      "ar": "**أبقى معك الآن يا سيّدة تايشرت.** أرفع لك الجلسة، **ونتنفّس مرّةً معاً ببطء. ولا أخرج حتّى يتحسّن هذا.**",
      "why": "**في أثناء كلّ هذا التنظيم هناك امرأةٌ تختنق.** **والتوزيعُ الذي لا يبقي أحداً عندها توزيعٌ فاشلٌ مهما كان مرتّباً** — وهي قالت الملاحظةَ الأدقّ عن الوردية: «الجميعُ يركضون».",
      "en": "**I am staying with you now, Frau Teichert.** I will sit you up higher, **and we will breathe slowly together once. And I am not going out until this is better.**",
-     "why_en": "**In the middle of all this organising there is a woman who cannot breathe.** **And an allocation that leaves nobody with her is a failed allocation however tidy it is** — and she made the sharpest observation about the shift: “everybody is running”."
+     "why_en": "**In the middle of all this organising there is a woman who cannot breathe.** **And an allocation that leaves nobody with her is a failed allocation however tidy it is** — and she made the sharpest observation about the shift: “everybody is running”.",
+     "ton": "medien/p12-amina-11.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -15510,7 +15609,8 @@ window.DATEN = {
      "ar": "(بعد حين، إلى المسؤولة) **لا أرفع هذا شكوى بل حالَ عمل: اليومُ رابعُ ورديةٍ صباحيّةٍ في ثلاثة أسابيعَ بممرّضٍ مؤهَّلٍ واحدٍ لأربعةَ عشرَ مقيماً — الثاني والتاسع والحادي عشر واليوم.** **ولم أفوّض حقنةَ السيّد كبير، وأجّلتُ التدريبَ العمليَّ للسيّد بوهم. وكلاهما صواب، وكلاهما يسقط في يومٍ ما.** **وأحضرتُ التواريخ.**",
      "why": "**البنيويُّ يُرفَع بأمثلةٍ وتواريخ لا بانطباع**، **ويُعرَض مشكلةَ عملٍ لا شكوى من إنسان**. **وقولُ «كلاهما صواب وكلاهما يسقط في يومٍ ما» هو الجملةُ التي تجعل الإدارةَ تسمع**: لا تتّهم أحداً، وتسمّي الخطرَ القادم.",
      "en": "(later, to the manager) **I am not reporting this as a complaint but as a state of affairs: today was the fourth early shift in three weeks with one registered nurse for fourteen residents — the 2nd, the 9th, the 11th and today.** **And I did not hand over Herr Kabir's injection, and I postponed Herr Böhm's practical training. Both were right, and both will fail on some day.** **And I have brought the dates.**",
-     "why_en": "**What is structural is raised with examples and dates rather than with an impression**, **and it is presented as a work problem and not as a complaint about a person**. **And saying “both were right and both will fail some day” is the sentence that makes the management listen**: it accuses nobody and it names the danger that is coming."
+     "why_en": "**What is structural is raised with examples and dates rather than with an impression**, **and it is presented as a work problem and not as a complaint about a person**. **And saying “both were right and both will fail some day” is the sentence that makes the management listen**: it accuses nobody and it names the danger that is coming.",
+     "ton": "medien/p12-amina-12.mp3"
     }
    ],
    "vokabeln": [
@@ -16307,7 +16407,8 @@ window.DATEN = {
      "who": "Patient",
      "de": "Es ist nicht wie sonst. Sonst zieht es. Jetzt ist es … tief. Und ich habe Angst, dass es die ganze Nacht so bleibt.",
      "ar": "**ليس كالمعتاد.** المعتادُ شدٌّ. **أمّا الآن فهو ... عميق.** **وأخاف أن يبقى هكذا الليلَ كلَّه.**",
-     "en": "**It is not like usual.** Usually it pulls. **Now it is … deep.** **And I am afraid it will stay like this all night.**"
+     "en": "**It is not like usual.** Usually it pulls. **Now it is … deep.** **And I am afraid it will stay like this all night.**",
+     "ton": "medien/p13-patient-00.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -16315,13 +16416,15 @@ window.DATEN = {
      "ar": "**فلنبقَ عنده أوّلاً.** — **كم شدّتُه من صفرٍ إلى عشرة، وأين بالضبط؟** **وهل هو موجودٌ وأنتِ ساكنة، أم يأتي مع الحركة؟**",
      "why": "**قبل أيّ تدبيرٍ يُقاس** — الشدّةُ والموضعُ والسكونُ والحركة. **ومن أعطى قبل أن يقيس لن يعرف أنجَح أم لا.** **وجملةُ «نبقى عنده» تردّ على خوفها من أن تُترَك، وهو نصفُ الألم.**",
      "en": "**Then let us stay with that first.** — **How strong is it from nought to ten, and where exactly?** **And is it there when you lie still, or does it come with movement?**",
-     "why_en": "**Before any measure it is assessed** — the intensity, the site, at rest and on movement. **Whoever gives before measuring will not know whether it worked.** **And the sentence “let us stay with that” answers her fear of being left, and that is half the pain.**"
+     "why_en": "**Before any measure it is assessed** — the intensity, the site, at rest and on movement. **Whoever gives before measuring will not know whether it worked.** **And the sentence “let us stay with that” answers her fear of being left, and that is half the pain.**",
+     "ton": "medien/p13-amina-01.mp3"
     },
     {
      "who": "Patient",
      "de": "Acht. Hier, unten links. Auch wenn ich still liege.",
      "ar": "**ثمانية. هنا، أسفلَ اليسار. وأنا ساكنةٌ أيضاً.**",
-     "en": "**Eight. Here, lower left. Even when I lie still.**"
+     "en": "**Eight. Here, lower left. Even when I lie still.**",
+     "ton": "medien/p13-patient-02.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -16329,19 +16432,22 @@ window.DATEN = {
      "ar": "**ثمانيةٌ في السكون، والنوعُ تغيّر** — **أكتبها هكذا بالضبط، وأتّصل بالطبيبة بها الآن لا عند الجولة.** **وأعطيك ما هو مأمورٌ به لمثل هذه الحال**، وأغيّر وضعيّتَك، **وأعود بعد عشرين دقيقةً وأقيس ثانيةً. وإن لم يتحسّن أبلّغ مرّةً أخرى.**",
      "why": "**تغيُّرُ نوع الألم لا مجرّدُ شدّته هو ما يُبلَّغ**، **والوقتُ صريح: الآن لا عند الجولة.** **وإعلانُ موعد إعادة القياس مسبقاً هو ما يجعل الأثرَ مفحوصاً لا مفترَضاً** — **وألمٌ يبقى بلا كفايةٍ رغم الأمر يُبلَّغ ثانيةً، وليس قدراً**.",
      "en": "**Eight at rest, and the character has changed** — **I am writing it down exactly like that, and I am ringing the doctor with it now, not at the round.** **I will give you what is ordered for such cases**, I will change your position, **and I will come back in twenty minutes and measure again. And if it is no better then, I will report again.**",
-     "why_en": "**A change in the character of the pain, not merely its intensity, is what gets reported**, **and the time is explicit: now, not at the round.** **And announcing the time of the recheck in advance is what makes the effect something checked rather than assumed** — **and pain that stays inadequately relieved despite the order is reported again, and is not fate**."
+     "why_en": "**A change in the character of the pain, not merely its intensity, is what gets reported**, **and the time is explicit: now, not at the round.** **And announcing the time of the recheck in advance is what makes the effect something checked rather than assumed** — **and pain that stays inadequately relieved despite the order is reported again, and is not fate**.",
+     "ton": "medien/p13-amina-03.mp3"
     },
     {
      "who": "Pflegekraft",
      "de": "(zwanzig Minuten später) Wie ist es jetzt?",
      "ar": "(بعد عشرين دقيقة) **كيف هو الآن؟**",
-     "en": "(twenty minutes later) **How is it now?**"
+     "en": "(twenty minutes later) **How is it now?**",
+     "ton": "medien/p13-amina-04.mp3"
     },
     {
      "who": "Patient",
      "de": "Fünf. Erträglich. Bleiben Sie noch einen Moment? Ich mag es nicht, wenn die Tür zu ist.",
      "ar": "**خمسة. محتمَل.** **أتبقين لحظةً؟ لا أحبّ أن يكون البابُ مغلقاً.**",
-     "en": "**Five. Bearable.** **Will you stay a moment? I do not like the door being shut.**"
+     "en": "**Five. Bearable.** **Will you stay a moment? I do not like the door being shut.**",
+     "ton": "medien/p13-patient-05.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -16349,13 +16455,15 @@ window.DATEN = {
      "ar": "**البابُ يبقى مفتوحاً، وأجلس دقيقتين.** — **سيّدة سركيس، أقول لك صريحاً ما أراه: منذ أمسِ تغيّر غيرُ قليل** — لم تعودي تنهضين، وتشربين قليلاً، وتنامين أكثر، **والآن الألمُ مختلف**. **ولا أعرف كيف يمضي الأمر، ولا أقول لك ما لا أعرفه.** **لكنّي أريد أن تسمعيه أنتِ وأسرتُك منّا، لا أن تستنتجوه وحدَكم.**",
      "why": "**تحوُّلُ المسار يُسمّى حين يتحوّل**، **بوصفٍ لا بتنبّؤ**: خمسُ ملاحظاتٍ يراها الجميع ولا يجمعها أحد. **وتدهورٌ لا يقوله أحدٌ يؤخّر القراراتِ حتّى تفوت** — ولهذه المرأة قراراتٌ تخصّها هي.",
      "en": "**The door stays open, and I will sit down for two minutes.** — **Frau Sarkis, I will tell you plainly what I see: since yesterday a good deal has changed** — you no longer get up, you drink little, you sleep more, **and now the pain is different**. **I do not know how it will go on, and I will not tell you anything I do not know.** **But I want you and your family to hear it from us rather than work it out for yourselves.**",
-     "why_en": "**The turn in the course is named when it turns**, **as a description and not as a prediction**: five observations that everybody sees and nobody puts together. **And a deterioration that nobody says out loud delays decisions until it is too late** — and this woman has decisions that are hers."
+     "why_en": "**The turn in the course is named when it turns**, **as a description and not as a prediction**: five observations that everybody sees and nobody puts together. **And a deterioration that nobody says out loud delays decisions until it is too late** — and this woman has decisions that are hers.",
+     "ton": "medien/p13-amina-06.mp3"
     },
     {
      "who": "Angehoerige",
      "de": "(die Tochter, im Flur) Ich weiß nicht, was ich machen soll. Morgen habe ich Aufsicht bei einer Prüfung. Wenn ich fahre und es passiert … Wie lange ist das noch?",
      "ar": "(الابنة، في الممرّ) **لا أدري ماذا أفعل. غداً عندي مراقبةُ امتحان. وإن ذهبتُ ووقع الأمرُ ...** **كم بقي من الوقت؟**",
-     "en": "(the daughter, in the corridor) **I do not know what to do. Tomorrow I am invigilating an exam. And if I go and it happens …** **How long is left?**"
+     "en": "(the daughter, in the corridor) **I do not know what to do. Tomorrow I am invigilating an exam. And if I go and it happens …** **How long is left?**",
+     "ton": "medien/p13-angeh-07.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -16363,13 +16471,15 @@ window.DATEN = {
      "ar": "**لا أعرف، ولا يعرف أحدٌ بدقّة** — **وأُوثر ألّا أقول شيئاً على أن أقول ما تعتمدين عليه ثمّ لا يصحّ**. **أمّا ما أراه فأقوله:** **والدتُك تغيّرت في يومين تغيّراً بيّناً**: لا تنهض، ولا تكاد تشرب، وتنام كثيراً. **وهذه علاماتٌ نراها في هذه المرحلة.** **قد تكون أيّاماً، وقد يمضي الأمرُ أسرع.** — **وإن سألتِني ما الذي كنتُ سأفكّر فيه مكانَك: لا أن تكوني في الغرفة في اللحظة الصحيحة، بل أن تكوني عندها الليلةَ ما دامت تعرفك.**",
      "why": "**ثلاثُ حركات:** يُقال ما لا يُعرَف **صراحةً وبسببه**، **ثمّ يُعطى ما يُعرَف** — العلاماتُ موصوفةً لا مؤوَّلة — **ثمّ يُعاد السؤالُ إلى ما تستطيع أن تقرّره فعلاً**. **والابنةُ لم تكن تسأل عن رقم، بل عن كيف تتصرّف الليلة.**",
      "en": "**I do not know, and nobody knows exactly** — **and I would rather tell you nothing than tell you something you rely on that then turns out to be wrong**. **What I do see, I will tell you:** **your mother has changed markedly in two days**: she does not get up, hardly drinks, sleeps a lot. **These are signs we see in this phase.** **It may be days, it may go faster.** — **And if you ask me what I would be thinking about in your place: not whether you are in the room at the right moment, but whether you were with her tonight while she still knows you.**",
-     "why_en": "**Three moves:** what is not known is said **plainly and with its reason**, **then what is known is given** — the signs described, not interpreted — **then the question is handed back to what she can actually decide**. **And the daughter was not asking for a number, but for how to act tonight.**"
+     "why_en": "**Three moves:** what is not known is said **plainly and with its reason**, **then what is known is given** — the signs described, not interpreted — **then the question is handed back to what she can actually decide**. **And the daughter was not asking for a number, but for how to act tonight.**",
+     "ton": "medien/p13-amina-08.mp3"
     },
     {
      "who": "Angehoerige",
      "de": "(der Ehemann, leise) Ich halte das nicht mehr lange durch. Und ich schäme mich, das zu sagen.",
      "ar": "(الزوج، بصوتٍ خافت) **لم أعد أحتمل طويلاً. وأخجل أن أقول هذا.**",
-     "en": "(the husband, quietly) **I cannot keep this up much longer. And I am ashamed to say it.**"
+     "en": "(the husband, quietly) **I cannot keep this up much longer. And I am ashamed to say it.**",
+     "ton": "medien/p13-angeh-09.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -16377,13 +16487,15 @@ window.DATEN = {
      "ar": "**لا تخجل من هذا، ولستَ أوّلَ من يقوله.** **ثمانيةُ أشهرٍ وكلَّ ليلةٍ تقريباً — لا يحتمل هذا أحدٌ بلا ضرر.** **الليلةَ نحن هنا وابنتُك حاضرة. اذهب إلى البيت، ونَم، وعُد في السادسة. وإن تغيّر شيءٌ اتّصلتُ بك في أيّ ساعة** — **وهذا وعدٌ لا عبارةُ مجاملة**.",
      "why": "**التخفيفُ يُقال ملموساً**: اذهب، ونَم، وعُد في السادسة، وسأتّصل. **و«اعتنِ بنفسك» لا يُنفَّذ.** **والخجلُ يُنزَع أوّلاً وإلّا رُفض العرضُ حفظاً لماء الوجه.** **ومن يمرّض منذ ثمانية أشهرٍ صار هو نفسُه في خطر.**",
      "en": "**You do not have to be ashamed of that, and you are not the first to say it.** **Eight months, almost every night — nobody bears that without harm.** **Tonight we are here and your daughter is here. Go home, sleep, and come back at six. And if anything changes I will ring you, whatever the hour** — **and that is a promise, not a turn of phrase**.",
-     "why_en": "**The relief is offered in concrete terms**: go, sleep, come back at six, and I will ring. **And “look after yourself” cannot be carried out.** **And the shame is removed first, otherwise the offer is refused to save face.** **And a man who has been nursing for eight months is himself now at risk.**"
+     "why_en": "**The relief is offered in concrete terms**: go, sleep, come back at six, and I will ring. **And “look after yourself” cannot be carried out.** **And the shame is removed first, otherwise the offer is refused to save face.** **And a man who has been nursing for eight months is himself now at risk.**",
+     "ton": "medien/p13-amina-10.mp3"
     },
     {
      "who": "Kollege",
      "de": "Soll ich die Nachtwerte wie üblich messen? Blutdruck, Puls, Sättigung, alle vier Stunden?",
      "ar": "**أأقيس قيمَ الليل كالمعتاد؟ الضغطُ والنبضُ والأكسجةُ كلَّ أربع ساعات؟**",
-     "en": "**Shall I take the night observations as usual? Blood pressure, pulse, saturation, every four hours?**"
+     "en": "**Shall I take the night observations as usual? Blood pressure, pulse, saturation, every four hours?**",
+     "ton": "medien/p13-kollege-11.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -16391,13 +16503,15 @@ window.DATEN = {
      "ar": "**لا. لا نقيس إلّا ما يغيّر قراراً.** **والذي تحتاجه الآن: عنايةٌ بالفم على فتراتٍ قصيرة، ووضعيّةٌ لا تؤلم، وضوءٌ خافت، وأحدٌ في الغرفة.** **ولا نوقظها للقياس بعد الآن** — **وهذا مكتوبٌ في التسليم لئلّا تبدأه الوردية الصباحيّة من جديد**.",
      "why": "**«لا نقيس إلّا ما يغيّر قراراً» هي القاعدةُ كلُّها في هذه المرحلة.** **وإيقاظُ محتضِرةٍ لقياسٍ لا يترتّب عليه شيءٌ ضررٌ بلا فائدة.** **والقرارُ يُكتب في التسليم**، وإلّا أعادته الوردية التالية بحسن نيّة.",
      "en": "**No. We only measure what changes a decision.** **What she needs now is mouth care at short intervals, a position that does not hurt, dimmed light, and somebody in the room.** **We do not wake her for measurements any more** — **and that is written in the handover, so that the early shift does not start it again**.",
-     "why_en": "**“We only measure what changes a decision” is the whole rule in this phase.** **And waking a dying woman for a measurement that leads to nothing is harm with no benefit.** **And the decision is written into the handover**, otherwise the next shift restores it in good faith."
+     "why_en": "**“We only measure what changes a decision” is the whole rule in this phase.** **And waking a dying woman for a measurement that leads to nothing is harm with no benefit.** **And the decision is written into the handover**, otherwise the next shift restores it in good faith.",
+     "ton": "medien/p13-amina-12.mp3"
     },
     {
      "who": "Angehoerige",
      "de": "(die Tochter) Man hat uns vor Monaten Palliativversorgung angeboten. Wir haben abgelehnt — das hieß für uns: aufgeben.",
      "ar": "(الابنة) **عُرضت علينا الرعايةُ التلطيفيّةُ قبل شهور. ورفضنا — كانت تعني عندنا: الاستسلام.**",
-     "en": "(the daughter) **We were offered palliative care months ago. And we refused — for us it meant: giving up.**"
+     "en": "(the daughter) **We were offered palliative care months ago. And we refused — for us it meant: giving up.**",
+     "ton": "medien/p13-angeh-13.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -16405,13 +16519,15 @@ window.DATEN = {
      "ar": "**نسمع هذا كثيراً، وهو سببُ تأخّر كثيرين.** **التلطيفيُّ لا يعني أن لا شيءَ يُفعَل — يعني أنّ الثقلَ على الأعراض: الألمُ وضيقُ النفَس والغثيانُ والقلق.** **ومعها مرافقةٌ لكم، وإرشاد، ومن ينسّق بين المعنيّين.** **وهي موجودةٌ في البيت وهنا وفي دار الاحتضار؛ وما يمكن في حالتكم يتوقّف على شروطٍ لا أقدّرها وحدي.** **أُبلغ فريقَ الرعاية التلطيفيّة صباحاً أنّ عندكم أسئلة، والأخصّائيّةُ الاجتماعيّة اسمُها السيّدة كيرتيس — أكتب لك الاسم.**",
      "why": "**يُصحَّح سوءُ الفهم أوّلاً ثمّ تُذكَر المحاور**، **ولا يُوعَد بشيءٍ يتوقّف على موافقةٍ وتوفّر**. **والإحالةُ باسمٍ مكتوبٍ وموعدٍ صباحيّ** — لا «اسألوا الأخصّائيّة».",
      "en": "**We hear that often, and it is why many come too late.** **Palliative does not mean that nothing is done any more — it means the weight is on the symptoms: pain, breathlessness, nausea, anxiety.** **And with it support for you, advice, and somebody who coordinates between everyone involved.** **It exists at home, here, and in a hospice; what is possible in your case depends on conditions I do not judge on my own.** **I will tell the palliative team in the morning that you have questions, and the social worker is called Frau Kertész — I will write the name down for you.**",
-     "why_en": "**The misunderstanding is corrected first and then the components are named**, **and nothing is promised that depends on an approval and on availability**. **And the referral is by a written name and with a morning appointment** — not “ask the social worker”."
+     "why_en": "**The misunderstanding is corrected first and then the components are named**, **and nothing is promised that depends on an approval and on availability**. **And the referral is by a written name and with a morning appointment** — not “ask the social worker”.",
+     "ton": "medien/p13-amina-14.mp3"
     },
     {
      "who": "Angehoerige",
      "de": "(die Tochter, nach einer Weile) Darf ich hier schlafen? Und … darf ich mit ihr reden, wenn sie schläft?",
      "ar": "(الابنة، بعد حين) **أيجوز أن أنام هنا؟ و... أيجوز أن أكلّمها وهي نائمة؟**",
-     "en": "(the daughter, after a while) **May I sleep here? And … may I talk to her while she is asleep?**"
+     "en": "(the daughter, after a while) **May I sleep here? And … may I talk to her while she is asleep?**",
+     "ton": "medien/p13-angeh-15.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -16419,7 +16535,8 @@ window.DATEN = {
      "ar": "**نعم للاثنين.** أُحضر لك غطاءً ومقعداً يُمال إلى الخلف. **وكلّميها — لا نعرف يقيناً ماذا تسمع، ولا ضررَ في ذلك على أحد.** **وإن أردتِ أن تفعلي شيئاً: ترطيبُ الشفتين. أُريك مرّةً، ثمّ تفعلينها متى شئتِ.**",
      "why": "**الإذنُ يُعطى صريحاً** — كثيرون يظنّون أنّ الكلامَ مع نائمٍ عبث، والبقاءَ ممنوع. **والعملُ الصغيرُ يُسنَد إلى من يريده**: من له عملٌ يبقى، ومن يقف عاجزاً ينسحب ثمّ يندم.",
      "en": "**Yes to both.** I will bring you a blanket and a chair that reclines. **And talk to her — we do not know for certain what she hears, and it harms nobody.** **And if you want to do something: keep her lips moist. I will show you once, and then you can do it whenever you like.**",
-     "why_en": "**Permission is given explicitly** — many believe that talking to someone asleep is pointless and that staying is not allowed. **And a small task is given to whoever wants one**: whoever has something to do stays, and whoever stands there helpless withdraws and then regrets it."
+     "why_en": "**Permission is given explicitly** — many believe that talking to someone asleep is pointless and that staying is not allowed. **And a small task is given to whoever wants one**: whoever has something to do stays, and whoever stands there helpless withdraws and then regrets it.",
+     "ton": "medien/p13-amina-16.mp3"
     }
    ],
    "vokabeln": [
@@ -17227,13 +17344,15 @@ window.DATEN = {
      "ar": "صباح الخير يا سيّد مالك. — **وزنتُك اليومَ: ثمانيةٌ وخمسون. وفي تشرينَ الأوّل كانت اثنين وستّين.** **أربعةُ كيلوغرامات، وأريد أن أفهم من أين جاءت.**",
      "why": "**الرقمُ يُقال مع مقارنته**، لا وحدَه. **ومن قال «الوزنُ ٥٨» سجّل؛ ومن قال «٥٨ بعد ٦٢» فتح تحقيقاً.** والكلامُ معه هو لا عن رأسه.",
      "en": "Good morning, Herr Malick. — **I weighed you today: fifty-eight. In October it was sixty-two.** **That is four kilos, and I want to understand where they have gone.**",
-     "why_en": "**The number is said with its comparison**, not on its own. **Whoever says “weight 58” has recorded; whoever says “58 after 62” has opened an enquiry.** And the talking is with him, not over his head."
+     "why_en": "**The number is said with its comparison**, not on its own. **Whoever says “weight 58” has recorded; whoever says “58 after 62” has opened an enquiry.** And the talking is with him, not over his head.",
+     "ton": "medien/p14-amina-00.mp3"
     },
     {
      "who": "Angehoerige",
      "de": "(Frau Malick) Er isst doch normal. Jeden Mittag einen Teller, ich sehe es ja.",
      "ar": "(السيّدة مالك) **لكنّه يأكل طبيعيّاً. كلَّ ظهرٍ صحن، وأنا أراه.**",
-     "en": "(Frau Malick) **But he eats normally. A plateful every lunchtime, I see it myself.**"
+     "en": "(Frau Malick) **But he eats normally. A plateful every lunchtime, I see it myself.**",
+     "ton": "medien/p14-angeh-01.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -17241,7 +17360,8 @@ window.DATEN = {
      "ar": "**أصدّقك.** **ومع ذلك الوزنُ يهبط — ولا يعني هذا أنّ أحداً يخطئ، بل أنّ صورتَنا ناقصة.** **أتأذنين أن أسجّل ثلاثةَ أيّامٍ ماذا يأكل ويشرب فعلاً ومتى؟** **لا للمراقبة، بل لأنّي بغير ذلك أُخمّن.**",
      "why": "**التناقضُ يُسمّى ولا يُحسَم**: بيانٌ يقول شيئاً وقولٌ يقول غيرَه، **وهذا أهمُّ ما وُجد اليوم**. **والصياغةُ تنزع عنها التهمة سلفاً** — فمن شعر بالاتّهام دافع، ومن شعر بالشراكة سجّل.",
      "en": "**I believe you.** **And the weight is falling all the same — that does not mean anybody is doing something wrong, it means our picture is incomplete.** **May I write down for three days what and when he actually eats and drinks?** **Not to check up on anyone, but because otherwise I am guessing.**",
-     "why_en": "**The contradiction is named and not resolved**: the data say one thing and the words another, **and that is the most important thing found today**. **And the wording takes the accusation away in advance** — whoever feels accused defends themselves, and whoever feels a partner keeps the record."
+     "why_en": "**The contradiction is named and not resolved**: the data say one thing and the words another, **and that is the most important thing found today**. **And the wording takes the accusation away in advance** — whoever feels accused defends themselves, and whoever feels a partner keeps the record.",
+     "ton": "medien/p14-amina-02.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -17249,13 +17369,15 @@ window.DATEN = {
      "ar": "سيّد مالك، وأمرٌ آخر: **تجلس كثيراً في العتمة، وتتكلّم أقلَّ من عادتك. منذ متى تقريباً؟** **وأيُّهما جاء أوّلاً: قلّةُ الأكل أم الانكفاء؟**",
      "why": "**ترتيبُ الزمن هو المفتاح.** **ولا يُقال «نفسيّ» ولا «جسديّ»: يُجمَع الاثنان ويُسجَّل أيُّهما سبق** — فالانكفاءُ بعد نقص السوائل غيرُ الانكفاء بعد فقدٍ أو ألم.",
      "en": "Herr Malick, one more thing: **you sit a lot in the dark, and you say less than you used to. Since roughly when?** **And which came first: eating less, or withdrawing?**",
-     "why_en": "**The order in time is the key.** **And neither “psychological” nor “physical” is said: the two are gathered and which came first is recorded** — because withdrawal after poor fluid intake is not the same as withdrawal after a loss or after pain."
+     "why_en": "**The order in time is the key.** **And neither “psychological” nor “physical” is said: the two are gathered and which came first is recorded** — because withdrawal after poor fluid intake is not the same as withdrawal after a loss or after pain.",
+     "ton": "medien/p14-amina-03.mp3"
     },
     {
      "who": "Patient",
      "de": "(leise) Erst … das andere. Das Essen ist mir egal geworden. Meine Schwester ist im November gestorben. Und ich falle ihnen zur Last, das sehe ich doch.",
      "ar": "(بصوتٍ خافت) **أوّلاً ... الآخر. صار الأكلُ لا يعنيني.** **أختي ماتت في تشرينَ الثاني.** **وأنا ثقلٌ عليهم، أرى ذلك.**",
-     "en": "(quietly) **First … the other. Eating stopped mattering to me.** **My sister died in November.** **And I am a burden to them, I can see that.**"
+     "en": "(quietly) **First … the other. Eating stopped mattering to me.** **My sister died in November.** **And I am a burden to them, I can see that.**",
+     "ton": "medien/p14-patient-04.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -17263,13 +17385,15 @@ window.DATEN = {
      "ar": "**شكراً لأنّك قلتَ لي هذا. أكتبه هكذا، بكلماتك.** — **والآن أسأل شيئاً أسأله كلَّ من أرى عنده كدمات:** **هذه على العضدين — أرى عدّةً، مختلفةَ العمر. أتستطيع أن تقول لي كيف حدثت؟**",
      "why": "**السؤالُ يُطبَّع** — «أسأله كلَّ من أرى عنده كدمات» — **فلا يقع على الأسرة بوصفه تهمة، ولا على الرجل بوصفه فضيحة**. **ووصفُ الملاحظة يسبق السؤال**: عدّةٌ، ومختلفةُ العمر. **وهذه هي «النمطُ» لا العلامةُ المفردة.**",
      "en": "**Thank you for telling me. I will write it down like that, in your words.** — **And now I am going to ask something I ask everybody in whom I see bruises:** **these on your upper arms — I can see several, of different ages. Can you tell me how they came about?**",
-     "why_en": "**The question is normalised** — “I ask everybody in whom I see bruises” — **so that it does not land on the family as an accusation, nor on the man as a disgrace**. **And the description of the observation precedes the question**: several, of different ages. **And that is the “pattern”, not the single sign.**"
+     "why_en": "**The question is normalised** — “I ask everybody in whom I see bruises” — **so that it does not land on the family as an accusation, nor on the man as a disgrace**. **And the description of the observation precedes the question**: several, of different ages. **And that is the “pattern”, not the single sign.**",
+     "ton": "medien/p14-amina-05.mp3"
     },
     {
      "who": "Patient",
      "de": "Ich bin gefallen.",
      "ar": "**سقطتُ.**",
-     "en": "**I fell.**"
+     "en": "**I fell.**",
+     "ton": "medien/p14-patient-06.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -17277,7 +17401,8 @@ window.DATEN = {
      "ar": "(تكتب نصَّ قوله، ولا تُلحّ، وتعود إلى الغسل) — **حسناً. أكتب بالضبط ما قلتَه.**",
      "why": "**لا إلحاحَ ولا أسئلةَ موحِيَة.** **الإلحاحُ في هذه اللحظة يُغلق البابَ شهوراً**، **والجملةُ المكتوبةُ بنصّها أثمنُ من جملةٍ انتُزعت**. والوصفُ يبقى وصفاً.",
      "en": "(writes down his words verbatim, does not press, turns back to the washing) — **All right. I am writing down exactly what you said.**",
-     "why_en": "**No pressing and no leading questions.** **Pressing at this moment closes the door for months**, **and a sentence written in its own words is worth more than one extracted**. And the description stays a description."
+     "why_en": "**No pressing and no leading questions.** **Pressing at this moment closes the door for months**, **and a sentence written in its own words is worth more than one extracted**. And the description stays a description.",
+     "ton": "medien/p14-amina-07.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -17285,7 +17410,8 @@ window.DATEN = {
      "ar": "(إلى السيّدة مالك) **أريد تغييرَ شيئين لا خمسة.** **الأوّل الشرب:** سيّد مالك، **ما أحبُّ ما تشرب؟** — شايٌ بليمونٍ دافئ. **حسنٌ: فلا أضع في الغرفة بعد اليومَ ما لا يحبّه.** **إبريقٌ في العاشرة وإبريقٌ في الثالثة، في الكأس ذي المقبض الذي تستطيع يدُه إمساكَه، والكمّيّةُ يسجّلها أحد.** **الهدف: لترٌ ونصف في اليوم، وننظر فيه الخميسَ القادم.**",
      "why": "**أربعةُ أجزاءِ التدبير الوقائيّ في جملةٍ واحدة:** خطرٌ مسمّى، وهدفٌ يُفحَص، **وفعلٌ بوقتٍ ومسؤول**، **وتاريخُ مراجعة**. **والمشروبُ والكأسُ والساعةُ مأخوذةٌ من حياته هو** — ولهذا ينجح.",
      "en": "(to Frau Malick) **I would like to change two things, not five.** **First the drinking:** Herr Malick, **what do you most like to drink?** — Tea with lemon, warm. **Good: then I will stop putting anything in the room that he does not like.** **A pot at ten and a pot at three, in the cup with the handle that his hand can hold, and somebody writes down the amount.** **The target: one and a half litres a day, and we look at it next Thursday.**",
-     "why_en": "**The four parts of a preventive measure in one passage:** a named risk, a target that can be checked, **an action with a time and a person responsible**, **and a review date**. **And the drink, the cup and the hour are taken from his own life** — which is why it works."
+     "why_en": "**The four parts of a preventive measure in one passage:** a named risk, a target that can be checked, **an action with a time and a person responsible**, **and a review date**. **And the drink, the cup and the hour are taken from his own life** — which is why it works.",
+     "ton": "medien/p14-amina-08.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -17293,7 +17419,8 @@ window.DATEN = {
      "ar": "**والثاني الفم:** **إن قلّ الشربُ جفّ الفم، والفمُ الجافُّ يجعل الأكلَ ثقيلاً — فيدور الأمرُ في حلقة.** **أُريك العنايةَ بالفم مرّةً، هنا، بما عندك أنتِ. ثمّ تفعلينها وأنا أنظر.**",
      "why": "**الحلقةُ تُشرَح لأنّها تُقنع**، **والمهارةُ تُظهَر في بيتها بأدواتها ثمّ تؤدّيها هي** — لا شرحاً ولا كُتيّباً.",
      "en": "**Second the mouth:** **if he drinks little the mouth dries out, and a dry mouth makes eating unpleasant — so it goes round in a circle.** **I will show you the mouth care once, here, with what you have. Then you do it, and I will watch.**",
-     "why_en": "**The circle is explained because it convinces**, **and the skill is shown in her own home with her own things and then she performs it** — not an explanation and not a leaflet."
+     "why_en": "**The circle is explained because it convinces**, **and the skill is shown in her own home with her own things and then she performs it** — not an explanation and not a leaflet.",
+     "ton": "medien/p14-amina-09.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -17301,13 +17428,15 @@ window.DATEN = {
      "ar": "سيّدة مالك — **وكيف حالُك أنتِ؟ لا أسأل مجاملة.** **تفعلين هذا منذ أربعة أشهرٍ وحدَك تقريباً، ومعه طفلان وعمل.**",
      "why": "**سؤالٌ يُطرَح بوصفه جمعَ بيانات، ويُقال ذلك صراحةً** — وإلّا رُدَّ عليه بالمجاملة المعتادة. **وحالُ من تمرّض جزءٌ من حال المريض**.",
      "en": "Frau Malick — **and how are you? I am not asking out of politeness.** **You have been doing this almost alone for four months, with two children and a job as well.**",
-     "why_en": "**A question asked as data-gathering, and it is said to be that** — otherwise it is answered with the usual politeness. **And the state of the person who nurses is part of the state of the patient.**"
+     "why_en": "**A question asked as data-gathering, and it is said to be that** — otherwise it is answered with the usual politeness. **And the state of the person who nurses is part of the state of the patient.**",
+     "ton": "medien/p14-amina-10.mp3"
     },
     {
      "who": "Angehoerige",
      "de": "(nach einer Pause) Es geht schon. … Ehrlich? Ich schlafe schlecht, mein Rücken macht nicht mehr mit, und manchmal werde ich laut. Beim Umsetzen packe ich ihn fester, als ich möchte. Ich schäme mich, das zu sagen.",
      "ar": "(بعد صمت) **الأمرُ يمضي. ... بصراحة؟** **أنام بصعوبة، وظهري لم يعد يحتمل، وأحياناً أرفع صوتي.** **وعند النقل أُمسكه أقوى ممّا أريد.** **وأخجل أن أقول هذا.**",
-     "en": "(after a pause) **It is going all right. … Honestly?** **I sleep badly, my back cannot take it any more, and sometimes I raise my voice.** **During transfers I grip him harder than I want to.** **And I am ashamed to say it.**"
+     "en": "(after a pause) **It is going all right. … Honestly?** **I sleep badly, my back cannot take it any more, and sometimes I raise my voice.** **During transfers I grip him harder than I want to.** **And I am ashamed to say it.**",
+     "ton": "medien/p14-angeh-11.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -17315,13 +17444,15 @@ window.DATEN = {
      "ar": "**قولُك هذا عكسُ ما يُخجَل منه.** — **وأقول لك صريحاً ما سيجري الآن: أكتب ما رأيتُه، والبقعَ أيضاً، وأعرضه غداً على مسؤولة الخدمة — هذا هو المسارُ عندنا، ولا أفعله من وراء ظهرك، ولذلك أقوله لك الآن.** **وأسأل جهةَ الإرشاد عن التخفيف: رعايةٌ نهاريّة، أو رعايةٌ قصيرة، أو تدريبٌ على النقل ليحتمله ظهرُك.**",
      "why": "**الشفافيّةُ في البلاغ هي الفرق بين حمايةٍ وكمين**: يُقال ما سيُكتب ولمن ومتى، **بلا وعدِ كتمانٍ لا يمكن الوفاءُ به**. **والبلاغُ والتخفيفُ يُقالان معاً** — لأنّ هذه الحالَ في الغالب إنهاكٌ لا قسوة، **والعلاجُ حمايةٌ وعونٌ لا اتّهام**.",
      "en": "**Your saying it is the opposite of what one is ashamed of.** — **And I will tell you honestly what happens now: I write down what I have seen, including the marks, and I will discuss it tomorrow with my nursing service manager — that is our procedure, and I am not doing it behind your back, which is why I am telling you now.** **And at the same time I will ask the advice centre about relief: day care, short-term care, or training in transfers so that your back can bear it.**",
-     "why_en": "**Transparency about the report is the difference between protection and an ambush**: what will be written, to whom and when is said, **without a promise of confidentiality that cannot be kept**. **And the report and the relief are said together** — because such a situation is usually exhaustion rather than cruelty, **and the remedy is protection and help, not accusation**."
+     "why_en": "**Transparency about the report is the difference between protection and an ambush**: what will be written, to whom and when is said, **without a promise of confidentiality that cannot be kept**. **And the report and the relief are said together** — because such a situation is usually exhaustion rather than cruelty, **and the remedy is protection and help, not accusation**.",
+     "ton": "medien/p14-amina-12.mp3"
     },
     {
      "who": "Kollege",
      "de": "(am Telefon, Pflegedienstleitung) Du sagst, der Gewichtsverlust könnte auch an der Schluckstörung nach dem Schlaganfall liegen. Hast du dazu was gefunden?",
      "ar": "(في الهاتف، مسؤولة الخدمة) **تقولين إنّ نقصَ الوزن قد يكون من اضطراب البلع بعد السكتة أيضاً. أوجدتِ شيئاً في ذلك؟**",
-     "en": "(on the telephone, nursing service manager) **You say the weight loss could also be due to the swallowing disorder after the stroke. Have you found anything on that?**"
+     "en": "(on the telephone, nursing service manager) **You say the weight loss could also be due to the swallowing disorder after the stroke. Have you found anything on that?**",
+     "ton": "medien/p14-kollege-13.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -17329,7 +17460,8 @@ window.DATEN = {
      "ar": "**لا، ولا أعرف هذا يقيناً كافياً.** **أنظر في معيار المؤسّسة في هذا الباب وفي المعيار المهنيّ المعنيّ، وأسأل غداً أخصّائيّةَ النطق التي تتابعه.** **وما أعرفه يقيناً أكتبه؛ وما أظنّه لا أكتبه موجوداً.**",
      "why": "**«لا أعرف» تُقال أمام المسؤولة لا تُواري**، **ومعها ترتيبُ البحث**: معيارُ المؤسّسة، ثمّ المعيارُ المهنيّ، ثمّ أهلُ الاختصاص. **والفصلُ بين ما يُعرَف وما يُظَنّ هو ما يمنع أن يصير ظنٌّ تشخيصاً في ملفّ.**",
      "en": "**No, and I do not know it well enough.** **I will look at the institution's standard on the subject and at the relevant professional standard, and tomorrow I will ask the speech therapist who treats him.** **What I know for certain I write down; what I suspect I do not write down as a finding.**",
-     "why_en": "**“I do not know” is said to the manager rather than covered over**, **and with it the order of searching**: the institution's standard, then the professional standard, then the specialists. **And separating what is known from what is suspected is what stops a suspicion becoming a diagnosis in a file.**"
+     "why_en": "**“I do not know” is said to the manager rather than covered over**, **and with it the order of searching**: the institution's standard, then the professional standard, then the specialists. **And separating what is known from what is suspected is what stops a suspicion becoming a diagnosis in a file.**",
+     "ton": "medien/p14-amina-14.mp3"
     }
    ],
    "vokabeln": [
@@ -18109,7 +18241,8 @@ window.DATEN = {
      "who": "Kollege",
      "de": "Der Demirci wieder. Ich habe ihn dreimal zum Singen geholt, er will nicht. Ich schreibe „lehnt ab“, so wie immer.",
      "ar": "**دميرجي مرّةً أخرى.** دعوتُه ثلاثَ مرّاتٍ إلى الغناء ولا يريد. **أكتب «يرفض» كالعادة.**",
-     "en": "**Demirci again.** I have fetched him for the singing three times and he does not want to. **I will write “refuses”, as always.**"
+     "en": "**Demirci again.** I have fetched him for the singing three times and he does not want to. **I will write “refuses”, as always.**",
+     "ton": "medien/p15-kollege-00.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -18117,7 +18250,8 @@ window.DATEN = {
      "ar": "**قبل أن نكتبها مرّةً رابعة:** **عرضنا عليه الشيءَ نفسَه ثلاثَ مرّاتٍ في الساعة نفسِها.** **ورجلٌ ساق أربعين سنةً في ورديّة الليل ليس في العاشرة صباحاً على حاله.** **و«يرفض» تقول حتّى الآن عنّا أكثرَ ممّا تقول عنه.**",
      "why": "**«يرفض كلَّ شيء» فرضيّةٌ لا ملاحظة**، **وتصير بعد أربع مرّاتٍ في الملفّ حقيقةً لا يراجعها أحد**. **والنبرةُ مع الزميل وصفٌ للمنهج لا لومٌ لشخصه.**",
      "en": "**Before we write it a fourth time:** **we have offered him the same thing three times, at the same hour.** **And a man who worked forty years of night shifts is not himself at ten in the morning.** **And “refuses” so far says more about us than about him.**",
-     "why_en": "**“He refuses everything” is a hypothesis, not an observation**, **and after four entries in the file it becomes a fact nobody reviews**. **And the tone with the colleague describes the method rather than blaming him.**"
+     "why_en": "**“He refuses everything” is a hypothesis, not an observation**, **and after four entries in the file it becomes a fact nobody reviews**. **And the tone with the colleague describes the method rather than blaming him.**",
+     "ton": "medien/p15-amina-01.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -18125,13 +18259,15 @@ window.DATEN = {
      "ar": "سيّد دميرجي، **أريد أن أسأل شيئين أو ثلاثةً فاتَنا سؤالُها.** **وأوّلُها ما كان ينبغي أن نسأله ولم نسأل:** **تلك السجّادةُ والطعامُ بلا لحم خنزير — افترضنا ذلك افتراضاً. أهو صوابٌ عندك، أم نغيّره؟**",
      "why": "**الافتراضُ يُسمّى ويُصحَّح في الحال، ولا يُترَك ليُكتشَف.** **والسؤالُ يُعرَض تصحيحاً لخطئنا لا اختباراً لدينه** — **فلا يُحرَج في أن يقول لا**.",
      "en": "Herr Demirci, **I would like to ask two or three things we have failed to ask.** **And the first is something we should have asked and did not:** **that rug there and the food without pork — we assumed it. Is that right for you, or shall we change it?**",
-     "why_en": "**The assumption is named and corrected at once, rather than left to be discovered.** **And the question is presented as a correction of our mistake, not as a test of his religion** — **so he is not embarrassed to say no**."
+     "why_en": "**The assumption is named and corrected at once, rather than left to be discovered.** **And the question is presented as a correction of our mistake, not as a test of his religion** — **so he is not embarrassed to say no**.",
+     "ton": "medien/p15-amina-02.mp3"
     },
     {
      "who": "Patient",
      "de": "(lacht kurz) Das Tuch können Sie mitnehmen. Ich bin in der Moschee das letzte Mal bei der Hochzeit meines Sohnes gewesen, neunzehnhundertneunundachtzig. Schweinefleisch esse ich trotzdem nicht, das ist mir von zu Hause geblieben. Und Tee, richtigen — nicht den Beutel.",
      "ar": "(يضحك قليلاً) **السجّادةُ خذيها.** **آخرُ مرّةٍ دخلتُ فيها مسجداً كانت في عُرس ابني، سنةَ تسعٍ وثمانين.** **ولحمَ الخنزير لا آكله مع ذلك، بقيت هذه من البيت.** **وشايٌ، شايٌ حقيقيّ — لا كيس.**",
-     "en": "(laughs briefly) **You can take the rug away.** **The last time I was in a mosque was at my son's wedding, in nineteen eighty-nine.** **I do not eat pork all the same, that has stayed with me from home.** **And tea, real tea — not the bag.**"
+     "en": "(laughs briefly) **You can take the rug away.** **The last time I was in a mosque was at my son's wedding, in nineteen eighty-nine.** **I do not eat pork all the same, that has stayed with me from home.** **And tea, real tea — not the bag.**",
+     "ton": "medien/p15-patient-03.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -18139,13 +18275,15 @@ window.DATEN = {
      "ar": "**سُجِّل الاثنان.** — **والثانية: كيف كان يومُك المعتاد حين كنتَ تعمل؟** **ولا أسأل عن الماضي: أسأل لأنّ مجرى يومنا هنا ليس مجراك، كما يبدو.**",
      "why": "**سؤالُ السِّيرة يُعلَّل بغرضه** — فلا يُقرأ فضولاً ولا استمارة. **وإيقاعُ اليوم عبر عقودٍ أنفعُ من قائمة هوايات.**",
      "en": "**Both noted.** — **And the second: what did an ordinary day look like for you when you were still working?** **I am not asking about the past: I am asking because our daily rhythm here is evidently not yours.**",
-     "why_en": "**The life-history question is given its purpose** — so it is not read as curiosity or as a form. **And the rhythm of a day over decades is more use than a list of hobbies.**"
+     "why_en": "**The life-history question is given its purpose** — so it is not read as curiosity or as a form. **And the rhythm of a day over decades is more use than a list of hobbies.**",
+     "ton": "medien/p15-amina-04.mp3"
     },
     {
      "who": "Patient",
      "de": "Ich bin um zwei nachts zur Halle, um zehn zurück, geschlafen bis vier. Abends war ich wach. Und donnerstags — vierzig Jahre lang, auch nach der Rente — Karten bei Milan, im Vereinsheim hinter dem Bahnhof. Skat. Da war ich gut.",
      "ar": "**كنتُ أذهب في الثانية ليلاً إلى الورشة، وأعود في العاشرة، وأنام حتّى الرابعة. وكنتُ في المساء صاحياً.** **وأيّامَ الخميس — أربعين سنةً، وبعد التقاعد أيضاً — ورقٌ عند ميلان، في نادي السكك خلف المحطّة. سْكات. وكنتُ فيه ماهراً.**",
-     "en": "**I went to the workshop at two in the morning, came back at ten, slept until four. In the evening I was awake.** **And on Thursdays — for forty years, and after retirement too — cards at Milan's, in the railway club behind the station. Skat. I was good at it.**"
+     "en": "**I went to the workshop at two in the morning, came back at ten, slept until four. In the evening I was awake.** **And on Thursdays — for forty years, and after retirement too — cards at Milan's, in the railway club behind the station. Skat. I was good at it.**",
+     "ton": "medien/p15-patient-05.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -18153,13 +18291,15 @@ window.DATEN = {
      "ar": "**وذاك الخميس — منذ متى انقطع؟**",
      "why": "**سؤالُ التاريخ لا سؤالُ الشعور.** **والفقدُ الذي له تاريخٌ يمكن تدبيرُه؛ والحزنُ العامُّ لا يُعطي تدبيراً.**",
      "en": "**And that Thursday — since when has it stopped?**",
-     "why_en": "**A question about a date, not about a feeling.** **A loss that has a date can be managed; a general sadness gives you no measure.**"
+     "why_en": "**A question about a date, not about a feeling.** **A loss that has a date can be managed; a general sadness gives you no measure.**",
+     "ton": "medien/p15-amina-06.mp3"
     },
     {
      "who": "Patient",
      "de": "Seit dem Sturz. Milan war einmal hier, aber er hat nicht gewusst, wohin mit sich. Man sitzt hier ja nur.",
      "ar": "**منذ السقوط.** **جاء ميلان مرّةً، لكنّه لم يدرِ ماذا يصنع بنفسه. فهنا لا يُفعَل غيرُ الجلوس.**",
-     "en": "**Since the fall.** **Milan came once, but he did not know what to do with himself. All you do here is sit.**"
+     "en": "**Since the fall.** **Milan came once, but he did not know what to do with himself. All you do here is sit.**",
+     "ton": "medien/p15-patient-07.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -18167,13 +18307,15 @@ window.DATEN = {
      "ar": "**فلنبنِ شيئين لا خمسة.** **الأوّل: أيّامَ الخميس من الخامسة عصراً الغرفةُ الصغيرة بجانب قاعة الطعام، بطاولةٍ وضوء** — **وأكتب إلى ميلان أنّه يستطيع أن يأتي، بالورق وبلا غرض**. **والثاني: تقول إنّك كنتَ ماهراً. وعندنا هنا ثلاثةٌ يبحثون عن سْكات ولا يجدون أحداً. أتعلّمهم؟** **لا أن تلعب معهم — أن تعلّمهم.**",
      "why": "**اثنان لا خمسة، ولكلٍّ يومٌ وساعةٌ ومكان.** **والثاني هو الأهمّ: دورٌ لا مهمّة** — **يُطلَب منه ما يتقنه، فينتقل من مرعيٍّ إلى نافع**. **والوقتُ مأخوذٌ من إيقاعه هو: خامسةَ عصراً لا عاشرةَ صباحاً.**",
      "en": "**Then let us build two things, not five.** **First: on Thursdays from five o'clock, the small room next to the dining hall, with a table and light** — **and I will write to Milan that he can come, with cards and with no purpose**. **Second: you say you were good. We have three people here looking for Skat and finding nobody. Would you teach them?** **Not play with them — teach them.**",
-     "why_en": "**Two, not five, and each with a day, an hour and a place.** **And the second is the more important: a role, not an activity** — **he is asked for what he is good at, and moves from being looked after to being of use**. **And the time is taken from his own rhythm: five in the afternoon, not ten in the morning.**"
+     "why_en": "**Two, not five, and each with a day, an hour and a place.** **And the second is the more important: a role, not an activity** — **he is asked for what he is good at, and moves from being looked after to being of use**. **And the time is taken from his own rhythm: five in the afternoon, not ten in the morning.**",
+     "ton": "medien/p15-amina-08.mp3"
     },
     {
      "who": "Patient",
      "de": "(schweigt) … Drei? Können die was?",
      "ar": "(يصمت) ... **ثلاثة؟ أيعرفون شيئاً؟**",
-     "en": "(is silent) … **Three? Do they know anything?**"
+     "en": "(is silent) … **Three? Do they know anything?**",
+     "ton": "medien/p15-patient-09.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -18181,13 +18323,15 @@ window.DATEN = {
      "ar": "**واحدٌ يقول إنّه لعبها صبيّاً. والآخران لا شيء. وتلك مشكلتُك أنت لا مشكلتي.**",
      "why": "**جملةٌ صغيرةٌ تقلب الوضع**: **لا تُعرَض عليه رعايةٌ بل تُسنَد إليه مسؤوليّة**. **والمزاحُ فيها يسمح له بالقبول بلا أن يبدو محتاجاً.**",
      "en": "**One says he played it as a boy. The other two, nothing at all. That would be your problem, not mine.**",
-     "why_en": "**A small sentence that turns the situation round**: **he is not offered care, he is given a responsibility**. **And the joke in it lets him accept without appearing to be in need.**"
+     "why_en": "**A small sentence that turns the situation round**: **he is not offered care, he is given a responsibility**. **And the joke in it lets him accept without appearing to be in need.**",
+     "ton": "medien/p15-amina-10.mp3"
     },
     {
      "who": "Angehoerige",
      "de": "(der Sohn, am Telefon) Ich komme alle zwei Wochen, weiter schaffe ich es nicht. Meinen Sie, ein Ehrenamtlicher wäre etwas? Mein Vater sagt ja immer, er braucht niemanden.",
      "ar": "(الابن، في الهاتف) **آتي كلَّ أسبوعين، ولا أستطيع أكثر.** **أترين متطوّعاً ينفع؟ فأبي يقول دائماً إنّه لا يحتاج أحداً.**",
-     "en": "(the son, on the telephone) **I come every two weeks, I cannot manage more.** **Do you think a volunteer would be something? My father always says he needs nobody.**"
+     "en": "(the son, on the telephone) **I come every two weeks, I cannot manage more.** **Do you think a volunteer would be something? My father always says he needs nobody.**",
+     "ton": "medien/p15-angeh-11.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -18195,13 +18339,15 @@ window.DATEN = {
      "ar": "**لا يحتاج زائراً، وهو على حقّ في ذلك.** **نحن نبحث عمّن يمشي معه إلى الأشجار خلف الموقف ولا يريد منه شيئاً** — **امرأةٌ من حلقة المتطوّعين، السيّدة هوفمان، تحبّ المشيَ وتتكلّم قليلاً**. **وأُعرّفها بالمهمّة: لا تدفع، ولا ترفع، ولا تُطعم ولا تسقي، ولا تمسّ المشّاية؛ وإن لاحظت شيئاً قالته لي لا للأسرة.** **وإن لم يوافق الأمرُ أحدَهما انتهى بلا تفسير.**",
      "why": "**الفرقُ بين «زائر» و«من يمشي بلا غرض» هو ما يجعله يقبل.** **والتعريفُ بالمهمّة يُذكَر فيه ما لا يُفعَل صراحةً وأوّلاً**، **ومسارُ الملاحظة إلى شخصٍ مسمًّى** — **وحقُّ الإنهاء للطرفين يمنع أن يصير التطوّعُ واجباً على أحدهما**.",
      "en": "**He does not need a visitor, and he is right about that.** **What we are looking for is somebody who walks with him to the trees behind the car park and wants nothing from him** — **a woman from the volunteer circle, Frau Hoffmann, who likes walking and says little**. **And I will brief her: she does not push, she does not lift, she does not give food or drink, she does not touch the walking frame; and if she notices anything she tells me, not the family.** **And if it does not suit either of them, it stops, with no explanation.**",
-     "why_en": "**The difference between a “visitor” and “somebody who walks with no purpose” is what makes him accept.** **And in the briefing what is not done is stated explicitly and first**, **and the route for an observation goes to a named person** — **and the right of either side to end it keeps volunteering from becoming a duty for one of them**."
+     "why_en": "**The difference between a “visitor” and “somebody who walks with no purpose” is what makes him accept.** **And in the briefing what is not done is stated explicitly and first**, **and the route for an observation goes to a named person** — **and the right of either side to end it keeps volunteering from becoming a duty for one of them**.",
+     "ton": "medien/p15-amina-12.mp3"
     },
     {
      "who": "Kollege",
      "de": "Und was schreibe ich jetzt statt „lehnt ab“?",
      "ar": "**وماذا أكتب الآن بدل «يرفض»؟**",
-     "en": "**And what do I write now instead of “refuses”?**"
+     "en": "**And what do I write now instead of “refuses”?**",
+     "ton": "medien/p15-kollege-13.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -18209,7 +18355,8 @@ window.DATEN = {
      "ar": "**ما جمعناه، بمصدره وتاريخه**: إيقاعُ ليل، وسْكات عند ميلان أيّامَ الخميس انقطع منذ السقوط، وشايٌ سائبٌ لا كيس، ولا لحمَ خنزير، **ولا مسجدَ — قال هذا هو بنفسه في الرابع عشر من نيسان**. **ومعها العرضان بساعتهما ومسؤولهما، ومتى ننظر أثمرا أم لا.** **وجملةٌ أكرهُ كتابتَها وموضعُها هنا: العروضُ السابقة كانت خارج إيقاع يومه.**",
      "why": "**التوثيقُ يحمل المصدرَ والتاريخ، والأثرَ بموعده** — **والجملةُ الأخيرة تصحّح الملفَّ نفسَه**: من قرأ «يرفض» أربعَ مرّاتٍ يبني عليها، **وتصحيحُها مكتوباً أنفعُ من حذفها**.",
      "en": "**What we have gathered, with its source and its date**: a night rhythm, Skat at Milan's on Thursdays, stopped since the fall, loose-leaf tea, no pork, mosque no — **he said that himself, on 14 April**. **And with it the two offers with their hour and the person responsible, and when we look at whether they held.** **And a sentence I dislike writing and that belongs here: the previous offers lay outside his daily rhythm.**",
-     "why_en": "**The documentation carries the source and the date, and the effect with its appointment** — **and the last sentence corrects the file itself**: whoever reads “refuses” four times builds on it, **and correcting it in writing is more use than deleting it**."
+     "why_en": "**The documentation carries the source and the date, and the effect with its appointment** — **and the last sentence corrects the file itself**: whoever reads “refuses” four times builds on it, **and correcting it in writing is more use than deleting it**.",
+     "ton": "medien/p15-amina-14.mp3"
     }
    ],
    "vokabeln": [
@@ -19042,7 +19189,8 @@ window.DATEN = {
      "who": "Patient",
      "de": "(um zwei Uhr, wach) Müssen Sie das wirklich? Ich habe mich vor zehn Minuten selber gedreht.",
      "ar": "(في الثانية، وهي صاحية) **أعليك أن تفعلها حقّاً؟ قلّبتُ نفسي قبل عشر دقائق.**",
-     "en": "(at two o'clock, awake) **Do you really have to? I turned myself over ten minutes ago.**"
+     "en": "(at two o'clock, awake) **Do you really have to? I turned myself over ten minutes ago.**",
+     "ton": "medien/p16-patient-00.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -19050,13 +19198,15 @@ window.DATEN = {
      "ar": "**الليلةَ عليّ أن أزعجك، وأقول لك صريحاً لماذا: هكذا هو المقرَّر عندنا، ولا أغيّره وحدي في الثانية ليلاً.** **لكنّي لا أعرف على أيّ شيءٍ تقوم هذه القاعدةُ في حالتك أنتِ، وأريد أن أعرف. وأسأل هذا الصباحَ في جولة الجودة.**",
      "why": "**الحدُّ والصدقُ معاً:** **لا تُغيَّر الممارسةُ من طرفٍ واحدٍ في الليل**، **ولا يُدَّعى أمامها أنّ لها أساساً معروفاً**. **ووعدُ السؤال في وقتٍ محدّدٍ يجعل الجوابَ التزاماً لا مواساة.**",
      "en": "**Tonight I still have to disturb you, and I will tell you honestly why: that is how it is laid down with us, and I am not changing it on my own at two in the morning.** **But I do not know what this rule rests on in your case, and I want to find out. This morning I will ask it at the quality round.**",
-     "why_en": "**The limit and the honesty together:** **the practice is not changed unilaterally at night**, **and it is not claimed in front of her that it has a known basis**. **And the promise to ask at a fixed time makes the answer a commitment rather than a consolation.**"
+     "why_en": "**The limit and the honesty together:** **the practice is not changed unilaterally at night**, **and it is not claimed in front of her that it has a known basis**. **And the promise to ask at a fixed time makes the answer a commitment rather than a consolation.**",
+     "ton": "medien/p16-amina-01.mp3"
     },
     {
      "who": "Patient",
      "de": "Fragen Sie ruhig. Ich schlafe dann bis vier nicht mehr ein, das wissen die oben nicht.",
      "ar": "**اسأل على راحتك. وأنا لا ينعقد لي نومٌ بعدها حتّى الرابعة، ولا يعرف ذلك من في الأعلى.**",
-     "en": "**Ask away. I do not get back to sleep until four afterwards, and they upstairs do not know that.**"
+     "en": "**Ask away. I do not get back to sleep until four afterwards, and they upstairs do not know that.**",
+     "ton": "medien/p16-patient-02.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -19064,13 +19214,15 @@ window.DATEN = {
      "ar": "(تسجّل) **أكتب هذا بتاريخه — لا شكوى، بل لأنّه المعلومةُ الناقصةُ في الأعلى.**",
      "why": "**ملاحظةُ الليل هي الدليلُ الوحيدُ الذي لا يملكه غيرُ من كان هناك.** **وبلا تاريخٍ ونصٍّ تبقى انطباعاً يُردّ عليه بانطباع.**",
      "en": "(makes a note) **I am writing that down, with the date — not as a complaint, but because it is the information that is missing upstairs.**",
-     "why_en": "**The night observation is the only evidence nobody has except whoever was there.** **And without a date and the exact words it stays an impression that is answered with an impression.**"
+     "why_en": "**The night observation is the only evidence nobody has except whoever was there.** **And without a date and the exact words it stays an impression that is answered with an impression.**",
+     "ton": "medien/p16-amina-03.mp3"
     },
     {
      "who": "Kollege",
      "de": "(morgens) Lass es doch. Das machen wir hier seit zwölf Jahren so, und es hat noch nie jemand einen Dekubitus bekommen.",
      "ar": "(صباحاً) **دعك من هذا. نفعلها هنا منذ اثنتي عشرةَ سنة، ولم تُصب قرحةُ فراشٍ أحداً قطّ.**",
-     "en": "(in the morning) **Let it be. We have done it this way for twelve years, and nobody has ever got a pressure ulcer.**"
+     "en": "(in the morning) **Let it be. We have done it this way for twelve years, and nobody has ever got a pressure ulcer.**",
+     "ton": "medien/p16-kollege-04.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -19078,13 +19230,15 @@ window.DATEN = {
      "ar": "**قد يصحّ الأمران ولا يثبتان شيئاً** — **فلعلّه من التقليب، ولعلّه لأنّ أكثرَ من هنا يتحرّكون**. **ولا أهاجم أحداً. أسأل فقط: على أيّ شيءٍ يقوم، ومتى نُظر فيه آخرَ مرّة؟** **وإن كان الجوابُ حسناً فقد تعلّمتُ شيئاً.**",
      "why": "**السؤالُ يُوجَّه إلى الممارسة لا إلى الزميل**، **ويُعلَن استعدادُ الخطأ** — وهو ما يجعل الجوابَ ممكناً بلا أن يخسر أحدٌ ماءَ وجهه.",
      "en": "**Both may be true and still prove nothing** — **perhaps it is the turning, and perhaps it is that most people here are mobile**. **And I am not attacking anybody. I am only asking: what does it rest on, and when was it last looked at?** **And if the answer is a good one, I will have learnt something.**",
-     "why_en": "**The question is aimed at the practice and not at the colleague**, **and a readiness to be wrong is declared** — which is what makes an answer possible without anybody losing face."
+     "why_en": "**The question is aimed at the practice and not at the colleague**, **and a readiness to be wrong is declared** — which is what makes an answer possible without anybody losing face.",
+     "ton": "medien/p16-amina-05.mp3"
     },
     {
      "who": "Kollege",
      "de": "(Qualitätsbeauftragte, in der Runde) Sie haben das auf die Tagesordnung setzen lassen. Was genau ist Ihr Punkt?",
      "ar": "(مسؤولةُ الجودة، في الجولة) **أدرجتَ هذا في جدول الأعمال. ما نقطتُك بالضبط؟**",
-     "en": "(the quality officer, in the round) **You had this put on the agenda. What exactly is your point?**"
+     "en": "(the quality officer, in the round) **You had this put on the agenda. What exactly is your point?**",
+     "ton": "medien/p16-kollege-06.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -19092,13 +19246,15 @@ window.DATEN = {
      "ar": "**ثلاثةٌ بإيجاز.** **الأولى الملاحظة:** **السيّدة كرول تتحرّك، وتنقلب وحدَها، وجلدُها سليم** — **وبعد تقليب الثانية تبقى صاحيةً حتّى الرابعة في ستٍّ من ثماني ليالٍ؛ سجّلتُها منذ الأوّل من الشهر**. **والثانية السؤال: على أيّ شيءٍ يقوم الفاصلُ الثابتُ للجميع؟** **نظرتُ في معيار المؤسّسة، ففيه فاصلٌ بلا ربطٍ بتقديرٍ فرديّ**. **والثالثة ما وجدتُه: المعيارُ المهنيُّ المعنيّ — بحسب قراءتي — يطلب تقديراً فرديّاً للخطر وفواصلَ تُشتقّ منه، لا فاصلاً ثابتاً للجميع.** **وأنا هنا منذ خمسة أشهرٍ ولا أريد أن أقلب شيئاً؛ وأطلب أن ينظر أحدٌ معي هل قرأتُ قراءةً صحيحة.**",
      "why": "**بنيةُ العرض هي الرسالة**: **ملاحظةٌ بأرقامٍ وتواريخ**، ثمّ **سؤالٌ عن الأساس**, ثمّ **ما وُجد مع التحفّظ «بحسب قراءتي»**, **ثمّ طلبُ فحصٍ مشترك**. **ومن جاء بحكمٍ نهائيٍّ في شهره الخامس خسر الملفَّ كلَّه ولو كان على حقّ.**",
      "en": "**Three things, briefly.** **First the observation:** **Frau Kroll is mobile, turns herself, skin intact** — **and after the two o'clock turn she was awake until four on six nights out of eight; I have been recording it since the first of the month**. **Second the question: what does the fixed interval for everybody rest on?** **I have looked in the institution's standard, and it gives an interval with no reference to any assessment.** **Third, what I found: the relevant professional standard — as far as I have read it — requires an individual assessment of the risk and intervals derived from that, not a fixed interval for everyone.** **I have been here five months and I do not want to overturn anything; I am asking that somebody look at it with me to see whether I have read it correctly.**",
-     "why_en": "**The structure of the presentation is the message**: **an observation with figures and dates**, then **a question about the basis**, then **what was found, with the reservation “as far as I have read it”**, **then a request for a joint check**. **And whoever arrives with a final verdict in their fifth month has lost the whole case even if they are right.**"
+     "why_en": "**The structure of the presentation is the message**: **an observation with figures and dates**, then **a question about the basis**, then **what was found, with the reservation “as far as I have read it”**, **then a request for a joint check**. **And whoever arrives with a final verdict in their fifth month has lost the whole case even if they are right.**",
+     "ton": "medien/p16-amina-07.mp3"
     },
     {
      "who": "Kollege",
      "de": "(Pflegedienstleitung) Und wenn der Standard das sagt — was hieße das praktisch bei vierzig Bewohnern?",
      "ar": "(مسؤولةُ الخدمة) **وإن قال المعيارُ ذلك — ماذا يعني عمليّاً مع أربعين مقيماً؟**",
-     "en": "(the service manager) **And if the standard says that — what would it mean in practice with forty residents?**"
+     "en": "(the service manager) **And if the standard says that — what would it mean in practice with forty residents?**",
+     "ton": "medien/p16-kollege-08.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -19106,13 +19262,15 @@ window.DATEN = {
      "ar": "**أن نقدّر أكثرَ وأن نوقظ جزافاً أقلّ.** **ولا أعرف أيوفّر ذلك وقتاً في المحصّلة أم يكلّفه — ذاك يُجرَّب لا يُدَّعى.** **والذي أعرفه: أنّ التدبير الحاليَّ يكلّف السيّدةَ كرول ساعتين من النوم كلَّ ليلة، ولسوء النوم عواقبُه أيضاً.** **ولا أقترح معياراً للمؤسّسة، فليس ذلك من اختصاصي. أقترح أن يُجرَّب الأمرُ أربعةَ أسابيعَ على ثلاثِ مقيماتٍ سليماتِ الجلد جيّداتِ الحركة، ثمّ نَنظر.**",
      "why": "**«لا أعرف» تُقال في جولة الجودة لا تُواري**، **والاقتراحُ يبقى داخل الاختصاص: تجربةٌ محدودةٌ بمدّةٍ وعددٍ لا قلبُ معيار**. **وذكرُ الكلفة الأخرى — ساعتا نومٍ كلَّ ليلة — يمنع أن يُقرأ الأمرُ ترفاً.**",
      "en": "**That we assess more and wake people wholesale less.** **I do not know whether that saves time on balance or costs it — that would have to be tried out, not asserted.** **What I do know: the present arrangement costs Frau Kroll two hours of sleep every night, and poor sleep has consequences too.** **I am not proposing an institutional standard, that is not my remit. I am proposing that we do it differently for four weeks with three residents who have intact skin and good mobility, and then look.**",
-     "why_en": "**“I do not know” is said in the quality round rather than covered over**, **and the proposal stays inside the remit: a trial limited by time and number, not the overturning of a standard**. **And naming the other cost — two hours of sleep every night — stops it being read as a luxury.**"
+     "why_en": "**“I do not know” is said in the quality round rather than covered over**, **and the proposal stays inside the remit: a trial limited by time and number, not the overturning of a standard**. **And naming the other cost — two hours of sleep every night — stops it being read as a luxury.**",
+     "ton": "medien/p16-amina-09.mp3"
     },
     {
      "who": "Kollege",
      "de": "(Wohnbereichsleitung) Sie sehen müde aus, nebenbei. Läuft es?",
      "ar": "(رئيسةُ الجناح) **تبدو متعباً، بالمناسبة. أتمضي الأمور؟**",
-     "en": "(the wing manager) **You look tired, by the way. Are things going all right?**"
+     "en": "(the wing manager) **You look tired, by the way. Are things going all right?**",
+     "ton": "medien/p16-kollege-10.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -19120,13 +19278,15 @@ window.DATEN = {
      "ar": "**بصراحة: لا تمضي جيّداً.** **منذ ثلاثة أسابيعَ لا ينعقد لي نومٌ قبل ورديّات الليل، وتقصر نبرتي، وأؤجّل حديثاً يجب أن أجريه.** **وأقول هذا الآن لأنّي أُوثر قولَه الآن على قوله بعد أربعة أسابيع.** **وعلى التحديد: أحتاج في الأسابيع الأربعة القادمة شخصاً ثانياً في قبول الليل، وأريد إدماجاً في توثيق الجروح — فأنا فيه بطيء، وهو يأخذ أكثرَ وقتي.**",
      "why": "**العلاماتُ تُسمّى سلوكاً لا شعوراً** — نبرةٌ، وتأجيل، ونومٌ لا ينعقد — **والطلبُ محدّدٌ بمدّةٍ وشيءٍ ومن**. **وهو في الموضعين معاً: موضعُ العمل وملفُّ الكفاءة.** **و«لستُ بخير» كانت ستُنتج تعاطفاً لا تدبيراً.**",
      "en": "**Honestly: not well.** **For three weeks I have slept badly before night shifts, my tone has grown shorter, and I have been putting off a conversation I ought to have.** **I am saying it now because I would rather say it now than in four weeks.** **Specifically: over the next four weeks I need a second person for the night admissions, and I would like an induction in wound documentation — I am slow at it, and it costs me most of my time.**",
-     "why_en": "**The signs are named as behaviour rather than as feelings** — a tone, a postponement, sleep that will not come — **and the request is specific as to duration, thing and person**. **And it is in both places at once: the workplace and the competence file.** **And “I am not well” would have produced sympathy rather than a measure.**"
+     "why_en": "**The signs are named as behaviour rather than as feelings** — a tone, a postponement, sleep that will not come — **and the request is specific as to duration, thing and person**. **And it is in both places at once: the workplace and the competence file.** **And “I am not well” would have produced sympathy rather than a measure.**",
+     "ton": "medien/p16-amina-11.mp3"
     },
     {
      "who": "Kollege",
      "de": "(Qualitätsbeauftragte) Letzte Frage, die kommt in der Prüfung auch: Warum ist das überhaupt Ihre Baustelle? Das Intervall steht im Standard, den hat die Leitung erlassen.",
      "ar": "(مسؤولةُ الجودة) **سؤالٌ أخير، ويأتي في الامتحان أيضاً: ولماذا هذا شأنُك أصلاً؟ الفاصلُ في المعيار، والمعيارُ أصدرته الإدارة.**",
-     "en": "(the quality officer) **A last question, and it comes up in the examination too: why is this your business at all? The interval is in the standard, and the management issued it.**"
+     "en": "(the quality officer) **A last question, and it comes up in the examination too: why is this your business at all? The interval is in the standard, and the management issued it.**",
+     "ton": "medien/p16-kollege-12.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -19134,7 +19294,8 @@ window.DATEN = {
      "ar": "**لأنّ تقديرَ الحاجة إلى التمريض، وتوجيهَ عمليّة التمريض، والحكمَ على جودتها مهامٌّ محصورةٌ بمهنة التمريض.** **فإن قدّرتُ أنّ السيّدة كرول تنقلب وحدَها وأنّ جلدَها سليم، فالاستنتاجُ من ذلك اختصاصي — لا رأيي الخاصّ.** **ولا أقرّر معيارَ المؤسّسة، لكنّ الحكمَ أيوافق هذه المقيمةَ أم لا لا يستطيع أحدٌ أن يأخذه عنّي. وإن لم أفعله أنا لم يفعله أحد.**",
      "why": "**هذا جوابُ الموقع لا جوابُ الشجاعة**: **يُسمّي المحصورَ ثلاثةً، ثمّ يفصل بين ما ليس له — إصدارُ المعيار — وما لا يملكه غيرُه — الحكمُ على موافقته لهذه الحالة**. **وهي الصيغةُ نفسُها التي يُطلَب بها في الامتحان الشفهيّ أن يصف الممتحَنُ دورَه.**",
      "en": "**Because assessing the need for nursing care, steering the nursing process and judging its quality are reserved to the nursing profession.** **So if I assess that Frau Kroll turns herself and that her skin is intact, then what follows from that is my field — not my private opinion.** **I do not decide the institution's standard, but the judgement of whether it fits this resident is one nobody can take off me. And if I do not make it, nobody does.**",
-     "why_en": "**This is the answer of the position, not the answer of courage**: **it names the three reserved tasks, then separates what is not his — issuing the standard — from what nobody else holds — the judgement of whether it fits this case**. **And it is the same form in which the oral examination asks a candidate to describe their role.**"
+     "why_en": "**This is the answer of the position, not the answer of courage**: **it names the three reserved tasks, then separates what is not his — issuing the standard — from what nobody else holds — the judgement of whether it fits this case**. **And it is the same form in which the oral examination asks a candidate to describe their role.**",
+     "ton": "medien/p16-amina-13.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -19142,13 +19303,15 @@ window.DATEN = {
      "ar": "**وأحمل معي أمراً أكبرَ من السيّدة كرول: عندنا يسقط الناسُ ليلاً بين الثانية والرابعة أكثرَ من غيرها.** **وليس عندي إلى الآن غيرُ انطباعٍ وثماني ليالٍ.** **فإن سجّلنا هذا ثلاثةَ أشهرٍ تسجيلاً نظيفاً صار عندنا سؤالٌ يمكن أن يُعرَض على من يستطيع الإجابة.**",
      "why": "**من الممارسة يُصنَع سؤال**، **والفرقُ بين الانطباع والسؤال هو المنهجُ والمدّة**. **وهذا هو الباب الذي يدخل منه التمريضُ إلى البحث بدل أن يُبحَث عنه.**",
      "en": "**And I am taking away one thing bigger than Frau Kroll: with us people fall above all at night, between two and four.** **So far I have only a feeling and eight nights.** **If we record it cleanly for three months, we have a question that can be put to somebody who can answer it.**",
-     "why_en": "**Out of practice a question is made**, **and the difference between an impression and a question is the method and the duration**. **And this is the door through which nursing enters research instead of being researched.**"
+     "why_en": "**Out of practice a question is made**, **and the difference between an impression and a question is the method and the duration**. **And this is the door through which nursing enters research instead of being researched.**",
+     "ton": "medien/p16-amina-14.mp3"
     },
     {
      "who": "Kollege",
      "de": "(Pflegedienstleitung) Gut. Vier Wochen Erprobung bei drei Bewohnerinnen, Sie legen die Kriterien vor, die Qualitätsbeauftragte prüft den Standard gegen den Fachstandard. Und was ist mit Ihrem Pflegeverständnis — Sie kommen ja aus einem anderen System. Hat sich das hier verändert?",
      "ar": "(مسؤولةُ الخدمة) **حسن. أربعةُ أسابيعِ تجربةٍ على ثلاثِ مقيمات، وأنت تقدّم المعايير، ومسؤولةُ الجودة تقابل معيارَ المؤسّسة بالمعيار المهنيّ.** **وماذا عن فهمك للتمريض — أنت جئتَ من نظامٍ آخر. أتغيّر عندك هنا؟**",
-     "en": "(the service manager) **Good. A four-week trial with three residents, you submit the criteria, and the quality officer checks the standard against the professional standard.** **And what about your understanding of nursing — you come from another system. Has it changed here?**"
+     "en": "(the service manager) **Good. A four-week trial with three residents, you submit the criteria, and the quality officer checks the standard against the professional standard.** **And what about your understanding of nursing — you come from another system. Has it changed here?**",
+     "ton": "medien/p16-kollege-15.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -19156,13 +19319,15 @@ window.DATEN = {
      "ar": "**نعم، في موضعٍ واحد.** **تعلّمتُ أن أعتني جيّداً وأن أكون سريعاً، وكان ذلك يُعَدّ تمريضاً جيّداً.** **وهنا أدركتُ أنّ هذا لا يكفي: إن لم أستطع تعليلَ ما أفعله فأنا قابلٌ للاستبدال — وإن استطعتُ تعليلَه فعليّ أن أستطيعه عند السيّدة كرول في الثانية ليلاً أيضاً.** **والذي لم يتغيّر: لا أفعل ما أنا مقتنعٌ بأنّه يضرّ الإنسان، ولو كان مأموراً به. وحينئذٍ أقوله قبلاً.**",
      "why": "**جوابٌ عن «ما التمريضُ الجيّد عندك؟» بثلاثة مصادرَ لا بشعار**: ما تعلّمه، وما عاشه، **وما لا يفعله ولو أُمر به** — **وهذا الأخيرُ هو الحدُّ، ومن لا يستطيع تسميتَه فليس له حدٌّ بعد**.",
      "en": "**Yes, in one place.** **I learnt to care well and to be fast, and that counted as good nursing.** **Here I realised that it is not enough: if I cannot justify why I do something, I am replaceable — and if I can justify it, I have to be able to do so at Frau Kroll's bedside at two in the morning as well.** **What has not changed: I do not do what I am convinced harms the person, not even if it is ordered. And then I say so beforehand.**",
-     "why_en": "**An answer to “what is good nursing for you?” from three sources rather than a slogan**: what he learnt, what he has lived through, **and what he will not do even if ordered** — **and the last is the limit, and whoever cannot name it has no limit yet**."
+     "why_en": "**An answer to “what is good nursing for you?” from three sources rather than a slogan**: what he learnt, what he has lived through, **and what he will not do even if ordered** — **and the last is the limit, and whoever cannot name it has no limit yet**.",
+     "ton": "medien/p16-amina-16.mp3"
     },
     {
      "who": "Kollege",
      "de": "(Qualitätsbeauftragte) Wollen Sie bei der Überarbeitung des Standards mitarbeiten? Es ist unbezahlte Zeit in der Dienstzeit, und es dauert.",
      "ar": "(مسؤولةُ الجودة) **أتشارك في إعادة صياغة المعيار؟ وقتٌ غيرُ مدفوعٍ داخلَ الدوام، ويطول.**",
-     "en": "(the quality officer) **Would you like to take part in revising the standard? It is unpaid time within working hours, and it takes a while.**"
+     "en": "(the quality officer) **Would you like to take part in revising the standard? It is unpaid time within working hours, and it takes a while.**",
+     "ton": "medien/p16-kollege-17.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -19170,7 +19335,8 @@ window.DATEN = {
      "ar": "**نعم — لا في الأسابيع الأربعة القادمة، فذاك يكون غيرَ صادق؛ قلتُ للتوّ إنّي عند حدّي.** **ومن الشهر الذي يليه بسرور، وأريده داخلَ وقت الدوام لا بعده.** **ومن يكتبه غيرُنا؟ إن لم نكتبه نحن كتبه من لا يكون هنا في الليل.**",
      "why": "**الإسهامُ في تطوير المهنة يُقبَل بشرطٍ لا يُقبَل مجاملة**: **رفضُ التوقيت مع قبول المبدأ هو عينُ ما عُلِّم في القسم السابق** — **وإلّا صار الإسهامُ عبئاً إضافيّاً على منهَك، ثمّ يسقط الاثنان.**",
      "en": "**Yes — but not in the next four weeks, that would be dishonest; I have just said that I am at my limit.** **From the month after that, gladly, and I want it to be within working hours and not after them.** **And who else is to write it? If we do not write it, it is written by somebody who is not here at night.**",
-     "why_en": "**A contribution to developing the profession is accepted on a condition and not out of politeness**: **refusing the timing while accepting the principle is exactly what was taught in the previous section** — **otherwise the contribution becomes an extra burden on someone already exhausted, and then both fall.**"
+     "why_en": "**A contribution to developing the profession is accepted on a condition and not out of politeness**: **refusing the timing while accepting the principle is exactly what was taught in the previous section** — **otherwise the contribution becomes an extra burden on someone already exhausted, and then both fall.**",
+     "ton": "medien/p16-amina-18.mp3"
     }
    ],
    "vokabeln": [
@@ -20029,13 +20195,15 @@ window.DATEN = {
      "ar": "(إلى الفاحصَين، أمام الغرفة) **أخطّط بإيجازٍ بصوتٍ مسموع: أمامي حتّى العاشرة.** **أوّلاً أدخل إلى السيّدة فايس وأنظر إليها** — الوعيُ والتنفّسُ والدورةُ والألمُ والجرح. **ثمّ أرتّب: ما الذي تغيّر اليومَ عن أمس، وأيُّه خطر.** **ثمّ تغييرُ الضِماد، والحديثُ مع الابنة في التاسعة، والتسليمُ للعلاج الطبيعيّ في العاشرة والنصف.** **وأترك عشرين دقيقةً في الآخر للتوثيق والتسليم.**",
      "why": "**دقيقتان تكسبان الساعتين**: **الزمنُ يُخطَّط للموقف كلِّه لا للتنفيذ وحدَه**، **والعشرون دقيقةً المحجوزةُ في الآخر هي الفرقُ بين موقفٍ أُنهي وموقفٍ توقّف**. **والتخطيطُ بصوتٍ مسموعٍ هو أوّلُ ظهورٍ لتوجيه العمليّة.**",
      "en": "(to the examiners, outside the room) **I will plan briefly out loud: I have until ten.** **First I go in to Frau Weiss and look at her** — consciousness, breathing, circulation, pain, the wound. **Then I sort it: what is different today from yesterday, and which of that is dangerous.** **Then the dressing change, the conversation with the daughter at nine, and the handover to physiotherapy at half past ten.** **And I keep twenty minutes free at the end for documentation and handover.**",
-     "why_en": "**Two minutes that win the two hours**: **the time is planned for the whole situation and not for the carrying out alone**, **and the twenty minutes reserved at the end are the difference between a situation finished and a situation stopped**. **And planning out loud is the first showing of steering the process.**"
+     "why_en": "**Two minutes that win the two hours**: **the time is planned for the whole situation and not for the carrying out alone**, **and the twenty minutes reserved at the end are the difference between a situation finished and a situation stopped**. **And planning out loud is the first showing of steering the process.**",
+     "ton": "medien/p17-amina-00.mp3"
     },
     {
      "who": "Patient",
      "de": "(zupft am Verband) Wo ist meine Tasche? Ich muss doch zum Zug.",
      "ar": "(تعبث بالضِماد) **أين حقيبتي؟ عليّ أن ألحق بالقطار.**",
-     "en": "(plucks at the dressing) **Where is my bag? I have to catch my train.**"
+     "en": "(plucks at the dressing) **Where is my bag? I have to catch my train.**",
+     "ton": "medien/p17-patient-01.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -20043,7 +20211,8 @@ window.DATEN = {
      "ar": "سيّدة فايس، أنا السيّدة رحيمي، **أنتِ في المستشفى، وأُجريت لك عمليّةٌ في الورك أوّلَ أمس، واليومَ الأربعاء، الثامنةُ صباحاً.** — (إلى الفاحصَين) **الذي أراه**: عدمُ تيقّنٍ من الزمن، واضطرابُ حركة، وعبثٌ بالضِماد. **وأمسِ كانت واعية.** **والذي أستنتجه: تغيّرٌ حادٌّ لا حالٌ ثابتة** — **وله أسبابٌ أستطيع جمعَها**: ألمٌ، ونقصُ سوائل، وحرارة، وأكسجة، ومثانة، وأدوية، ونوم. **والذي لا أستطيع الحكمَ فيه: السببُ الطبّيُّ نفسُه.**",
      "why": "**التوجيهُ نحو الواقع يسبق كلَّ شيء ويُقال بجملةٍ واحدة.** **ثمّ الجملةُ الثلاثيّةُ بعينها: ما أرى / ما أستنتج / ما لا أحكم فيه** — **وهي التي تجعل المحصورَ مرئيّاً: التقديرُ فعلٌ يُقال لا يُخمَّن عنه**.",
      "en": "Frau Weiss, I am Frau Rahimi, **you are in hospital, you had an operation on your hip the day before yesterday, and today is Wednesday, eight in the morning.** — (to the examiners) **What I see**: unsure of the time, restless in her movements, plucking at the dressing. **And yesterday she was oriented.** **What I infer from that: an acute change, not a state** — **and there are causes for it that I can gather**: pain, lack of fluids, temperature, oxygen, bladder, medication, sleep. **What I cannot judge: the medical cause itself.**",
-     "why_en": "**Reorientation comes before everything and is said in one sentence.** **Then that same threefold sentence: what I see / what I infer / what I cannot judge** — **and it is what makes the reserved activity visible: assessment is an act that is spoken, not something to be guessed at from outside**."
+     "why_en": "**Reorientation comes before everything and is said in one sentence.** **Then that same threefold sentence: what I see / what I infer / what I cannot judge** — **and it is what makes the reserved activity visible: assessment is an act that is spoken, not something to be guessed at from outside**.",
+     "ton": "medien/p17-amina-02.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -20051,13 +20220,15 @@ window.DATEN = {
      "ar": "**أجمع الآن بهذا الترتيب**: الألم، والكمّيّةَ المشروبةَ منذ أمس، والحرارةَ والنبضَ ثانية، والأكسجة، **ومتى تبوّلت آخرَ مرّة**، **وأنظر إلى الضِماد قبل أن أغيّره**.",
      "why": "**الترتيبُ معلَّلٌ لا عشوائيّ**، **والنظرُ إلى الضِماد قبل التغيير جمعُ بياناتٍ لا إجراءً**: ما تحته اليومَ يقارَن بما وُصف أمس.",
      "en": "**I will now gather, in this order**: the pain, how much she has drunk since yesterday, the temperature and pulse again, the oxygen saturation, **when she last passed water**, **and I will look at the dressing before I change it**.",
-     "why_en": "**The order is justified, not arbitrary**, **and looking at the dressing before changing it is data-gathering rather than a procedure**: what is under it today is compared with what was described yesterday."
+     "why_en": "**The order is justified, not arbitrary**, **and looking at the dressing before changing it is data-gathering rather than a procedure**: what is under it today is compared with what was described yesterday.",
+     "ton": "medien/p17-amina-03.mp3"
     },
     {
      "who": "Patient",
      "de": "(beim Aufsetzen) Aah — das zieht. Sieben. In Ruhe geht es.",
      "ar": "(عند الجلوس) **آه — يشدّ. سبعة. وفي السكون يمضي الأمر.**",
-     "en": "(as she sits up) **Aah — that pulls. Seven. At rest it is all right.**"
+     "en": "(as she sits up) **Aah — that pulls. Seven. At rest it is all right.**",
+     "ton": "medien/p17-patient-04.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -20065,13 +20236,15 @@ window.DATEN = {
      "ar": "**سبعةٌ في الحركة وثلاثةٌ في السكون — أسجّلها هكذا، وهي مهمّةٌ للعاشرة والنصف: تحريكٌ وألمُه سبعةٌ لن يمضيَ حسناً.** **وأُبلغ الطبيبةَ بها مع البقيّة قبل أن يأتي العلاجُ الطبيعيّ، لا بعده.**",
      "why": "**الرقمُ يُربَط بقرارٍ قادمٍ في الوقت**: **البلاغُ قبل العاشرة والنصف يغيّر شيئاً، وبعدها يصف ما وقع.** **وهذا ترتيبُ الأولويّات لا حفظُ المعلومة.**",
      "en": "**Seven on movement and three at rest — I am recording it like that, and it matters for half past ten: mobilisation with pain at seven will not go well.** **I will report it to the doctor together with the rest before physiotherapy comes, not afterwards.**",
-     "why_en": "**The number is tied to a decision that is coming**: **a report before half past ten changes something; afterwards it describes what happened.** **And that is prioritising, not storing information.**"
+     "why_en": "**The number is tied to a decision that is coming**: **a report before half past ten changes something; afterwards it describes what happened.** **And that is prioritising, not storing information.**",
+     "ton": "medien/p17-amina-05.mp3"
     },
     {
      "who": "Angehoerige",
      "de": "(um neun) Sie erkennt mich kaum. Ist das jetzt Demenz? Meine Mutter war vorgestern noch völlig klar.",
      "ar": "(في التاسعة) **لا تكاد تعرفني. أهذا خرفٌ الآن؟ أمّي كانت أوّلَ أمسِ صافيةً تماماً.**",
-     "en": "(at nine) **She hardly recognises me. Is this dementia now? My mother was completely clear the day before yesterday.**"
+     "en": "(at nine) **She hardly recognises me. Is this dementia now? My mother was completely clear the day before yesterday.**",
+     "ton": "medien/p17-angeh-06.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -20079,7 +20252,8 @@ window.DATEN = {
      "ar": "**أن تكون أوّلَ أمسِ صافيةً هو بالضبط المهمّ** — **تغيّرٌ يأتي في ليلةٍ غيرُ خرفٍ يأتي في سنين**. **وأقول لك صريحاً: لا أستطيع أن أقول ما هو؛ ذاك طبّيّ.** **وأستطيع أن أقول ما نفعله: نبحث عن الأسباب التي تُعالَج** — ألمٌ، وقلّةُ شرب، وحرارة، وأكسجة، ومثانة. **وقد جمعتُ الأرقامَ وأُبلغها الطبيبةَ قبل أن يأتي العلاجُ الطبيعيّ.** **وثمّ ما تستطيعين فعلَه إن أردتِ: ابقي، وقولي لها أين هي وأيُّ يومٍ اليوم، وافتحي الستائر، وأحضري نظّارتها إن كانت في البيت.**",
      "why": "**ثلاثةٌ في نفَسٍ واحد**: **يُلتقَط ما قالته هي وكان دليلاً** (كانت صافيةً أوّلَ أمس)، **ويُقال الحدُّ صراحةً** (التشخيصُ طبّيّ)، **ثمّ يُعطى ما يُعرَف ويُسنَد إليها عملٌ** — **والقريبةُ التي لها عملٌ تبقى، والتي لا عملَ لها تنصرف أو تُلحّ**.",
      "en": "**That she was clear the day before yesterday is exactly the point** — **a change that comes overnight looks different from a dementia that comes over years**. **And I will tell you honestly: I cannot tell you what it is; that is medical.** **I can tell you what we are doing: we are looking for the causes that can be treated** — pain, too little to drink, fever, oxygen, bladder. **And I have gathered the figures and am reporting them to the doctor before physiotherapy comes.** **And there is something you can do if you would like to: stay, tell her where she is and what day it is, open the curtains, and bring her glasses if they are at home.**",
-     "why_en": "**Three things in one breath**: **what she said and that was evidence is picked up** (she was clear the day before yesterday), **the limit is said explicitly** (the diagnosis is medical), **then what is known is given and a task is assigned to her** — **and a relative with something to do stays, while one with nothing to do leaves or presses**."
+     "why_en": "**Three things in one breath**: **what she said and that was evidence is picked up** (she was clear the day before yesterday), **the limit is said explicitly** (the diagnosis is medical), **then what is known is given and a task is assigned to her** — **and a relative with something to do stays, while one with nothing to do leaves or presses**.",
+     "ton": "medien/p17-amina-07.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -20087,13 +20261,15 @@ window.DATEN = {
      "ar": "(في أثناء تغيير الضِماد، تتوقّف) **لحظة. هنا شيءٌ غيرُ صحيح: حافّةُ الجرح محمرّةٌ وأدفأُ ممّا وُصف أمس، وحرارتُها ٣٧٫٨.** **ولا أضع ضِماداً فوقها كأنّي لم أرَ شيئاً.** **أعتني بها بطريقةٍ معقّمة، وأوثّق الموجود، وأبلّغه فوراً — وهو من البلاغ نفسِه لا بلاغٌ آخر.**",
      "why": "**التوقّفُ عند ما ليس آمناً هو الإثباتُ لا العطل.** **ومن أكمل ليُنهيَ في الوقت خسر الموقفَ كلَّه، لأنّ كلَّ موقفٍ يُقيَّم بـ«ناجح» من الجميع ولا يُعوَّض.** **والموجودُ الجديد يُضمّ إلى البلاغ الواحد بدل أن يُفرَّق على ثلاث مكالمات.**",
      "en": "(during the dressing change, pausing) **One moment. Something here is not right: the wound edge is reddened and warmer than described yesterday, and she has 37.8.** **I am not putting a dressing over this as though I had seen nothing.** **I will dress it sterilely, document the finding, and report it at once — it belongs in the same report as the rest.**",
-     "why_en": "**Stopping at what is not safe is the proof, not the failure.** **And whoever carries on in order to finish on time loses the whole situation, because every situation has to be passed by everybody and cannot be made up for.** **And the new finding is added to the one report instead of being split over three telephone calls.**"
+     "why_en": "**Stopping at what is not safe is the proof, not the failure.** **And whoever carries on in order to finish on time loses the whole situation, because every situation has to be passed by everybody and cannot be made up for.** **And the new finding is added to the one report instead of being split over three telephone calls.**",
+     "ton": "medien/p17-amina-08.mp3"
     },
     {
      "who": "Arzt",
      "de": "(am Telefon) Was genau haben Sie?",
      "ar": "(في الهاتف) **ما الذي عندك بالضبط؟**",
-     "en": "(on the telephone) **What exactly have you got?**"
+     "en": "(on the telephone) **What exactly have you got?**",
+     "ton": "medien/p17-arzt-09.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -20101,13 +20277,15 @@ window.DATEN = {
      "ar": "**التمريض، القسمُ الرابع، السيّدة فايس، اليومُ الثاني بعد عمليّة الورك.** **الموقف: منذ الليل عدمُ تيقّنٍ من الزمن واضطراب، وهذا جديد؛ ومعه موجودٌ في الجرح.** **الخلفيّة: أمسِ واعية، واليومَ تعبث بالضِماد؛ والمشروبُ منذ ظهر أمسِ نحوَ ٤٠٠ مليلتر؛ والألمُ في السكون ثلاثةٌ وفي الحركة سبعة؛ والحرارةُ ٣٧٫٨، والنبضُ ٩٦، والأكسجةُ ٩٤؛ وحافّةُ الجرح محمرّةٌ ودافئةٌ خلافاً لوصف أمس.** **التقدير: من الوجهة التمريضيّة تغيّرٌ حادٌّ له أسبابٌ محتمَلةٌ عدّة؛ ولا أحكم في السبب نفسِه.** **الطلب: تقديرٌ طبّيٌّ قبل التحريك المقرَّر في العاشرة والنصف، وقرارٌ في أمر الألم؛ وحتّى ذلك لا أحرّكها، وأبقى في مدى النظر، وأعرض السوائل.**",
      "why": "**ISBAR كاملةٌ في نفَسٍ واحد، وفيها ما يميّز الممتحَنَ الناجح**: **«وهذا جديد»**، **والمقارنةُ بالأمس**، **وحدُّ الدور مقولاً**، **وطلبٌ مربوطٌ بوقتٍ قادم**، **وما سأفعله حتّى يأتي الجواب**. **والفاحصان يسمعان هنا القسمَ الشفهيَّ كلَّه مضغوطاً في دقيقة.**",
      "en": "**Nursing, ward 4, Frau Weiss, second day after a hip operation.** **Situation: since the night, unsure of the time and restless, and that is new; and with it a wound finding.** **Background: oriented yesterday, today plucking at the dressing; fluid intake since yesterday midday about 400 millilitres; pain three at rest and seven on movement; temperature 37.8, pulse 96, saturation 94; the wound edge reddened and warm compared with yesterday's description.** **Assessment: from a nursing point of view an acute change with several possible causes; the cause itself I do not judge.** **Recommendation: a medical assessment before the mobilisation planned for half past ten, and a decision about the pain; until then I will not mobilise her, I will stay within sight, and I will offer fluids.**",
-     "why_en": "**A complete ISBAR in one breath, and in it what marks out the successful candidate**: **“and that is new”**, **the comparison with yesterday**, **the limit of the role spoken**, **a request tied to a coming time**, **and what I will do until the answer comes**. **And the two examiners hear here the whole oral part compressed into a minute.**"
+     "why_en": "**A complete ISBAR in one breath, and in it what marks out the successful candidate**: **“and that is new”**, **the comparison with yesterday**, **the limit of the role spoken**, **a request tied to a coming time**, **and what I will do until the answer comes**. **And the two examiners hear here the whole oral part compressed into a minute.**",
+     "ton": "medien/p17-amina-10.mp3"
     },
     {
      "who": "Kollege",
      "de": "(Physiotherapie, 10:25) Ich hole sie dann?",
      "ar": "(العلاجُ الطبيعيّ، ١٠:٢٥) **آخذها إذاً؟**",
-     "en": "(physiotherapy, 10:25) **Shall I fetch her, then?**"
+     "en": "(physiotherapy, 10:25) **Shall I fetch her, then?**",
+     "ton": "medien/p17-kollege-11.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -20115,7 +20293,8 @@ window.DATEN = {
      "ar": "**اليومَ لا، حتّى يأتي جوابُ الطبيبة — وأقول لك لماذا: اضطرابٌ وعدمُ تيقّنٍ ظهرا حديثاً، وألمُ حركةٍ سبعة، وموجودٌ في الجرح، وحرارةٌ ٣٧٫٨.** **والطبيبةُ تنظر قبل الحادية عشرة.** **وأتّصل بك حالَ وصول الجواب، وإن لم يمضِ اليومَ فموعدٌ غداً صباحاً، فتكون أكثرَ راحة.**",
      "why": "**الرفضُ معلَّلٌ ومؤقَّتٌ ومعه بديل** — **وهذا ما يفصل قراراً تمريضيّاً عن عرقلة**. **والاتّصالُ الموعودُ يُبقي المهنةَ الأخرى شريكةً لا منتظِرة.**",
      "en": "**Not today without an answer from the doctor — and I will tell you why: newly appeared restlessness and disorientation in time, pain on movement of seven, a wound finding, temperature 37.8.** **The doctor is coming before eleven.** **And I will ring you as soon as I have an answer, and if it comes to nothing today we will make an appointment for tomorrow morning, when she will be more rested.**",
-     "why_en": "**A refusal that is justified and temporary and comes with an alternative** — **and that is what separates a nursing decision from obstruction**. **And the promised call keeps the other profession a partner rather than someone kept waiting.**"
+     "why_en": "**A refusal that is justified and temporary and comes with an alternative** — **and that is what separates a nursing decision from obstruction**. **And the promised call keeps the other profession a partner rather than someone kept waiting.**",
+     "ton": "medien/p17-amina-12.mp3"
     },
     {
      "who": "Pflegekraft",
@@ -20123,7 +20302,8 @@ window.DATEN = {
      "ar": "(٩:٤٠، إلى الفاحصَين) **أنا في الدقيقة المئة. أُنهي الآن: توثيقٌ ثمّ تسليم.** **وما لم يُنجَز هو التحريك — وهو موقوفٌ عمداً لا منسيّ، وأكتبه كذلك.**",
      "why": "**الإنهاءُ قرارٌ يُتَّخذ لا وقتٌ يفيض.** **وتسميةُ ما لم يُنجَز ولماذا تمنع أن يُقرأ نقصاً**، **وهي آخرُ ما يُظهر توجيهَ العمليّة: حكمٌ على ما بلغ وما لم يبلغ.**",
      "en": "(9:40, to the examiners) **I am at minute one hundred. I am closing now: documentation, then handover.** **What has not been done is the mobilisation — it is deliberately suspended, not forgotten, and I am writing it that way too.**",
-     "why_en": "**Finishing is a decision that is taken, not time that is left over.** **And naming what was not done and why prevents it being read as an omission**, **and it is the last showing of steering the process: a judgement on what was reached and what was not.**"
+     "why_en": "**Finishing is a decision that is taken, not time that is left over.** **And naming what was not done and why prevents it being read as an omission**, **and it is the last showing of steering the process: a judgement on what was reached and what was not.**",
+     "ton": "medien/p17-amina-13.mp3"
     }
    ],
    "vokabeln": [
