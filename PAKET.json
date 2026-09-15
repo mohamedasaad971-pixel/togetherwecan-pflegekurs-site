@@ -2,8 +2,8 @@
  "modus": "lernende",
  "gebaut_am": "2026-09-15",
  "quelle": {
-  "commit": "6d7751db818bd064e55fbde7b3d99b2ae39f3077",
-  "commit_kurz": "6d7751d",
+  "commit": "1e6a8cc4644598aa5e5cc661b8211a6c8d153acd",
+  "commit_kurz": "1e6a8cc",
   "zweig": "claude/inhalt-en",
   "sauber": true,
   "unversioniert": 0
