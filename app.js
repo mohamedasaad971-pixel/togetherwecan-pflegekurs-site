@@ -694,9 +694,10 @@
     var sprache = zustand.sprache || "ar";
     var datei = spuren[sprache];
     if (!datei) return "";
+    var namen = { de: "Deutsch", en: "English", ar: ui("العربيّة") };
     /* تبقى الترجمةُ اختياريّةً: لا نضع default كي يبدأ الفيلم نظيفاً. */
     return '<track kind="subtitles" srclang="' + esc(sprache) +
-      '" label="' + (sprache === "en" ? "English" : ui("العربيّة")) +
+      '" label="' + esc(namen[sprache] || sprache) +
       '" src="' + esc(datei) + '">';
   }
 
