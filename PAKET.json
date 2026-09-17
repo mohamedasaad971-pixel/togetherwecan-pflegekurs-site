@@ -1,12 +1,12 @@
 {
  "modus": "lernende",
- "gebaut_am": "2026-09-15",
+ "gebaut_am": "2026-09-17",
  "quelle": {
-  "commit": "0652feaf2ac0f923cc6676443b2927b2fc73fd38",
-  "commit_kurz": "0652fea",
-  "zweig": "claude/inhalt-en",
-  "sauber": true,
-  "unversioniert": 0
+  "commit": "20b5b847ae3f9cb9ce44beed265a518ccb6d678b",
+  "commit_kurz": "20b5b84",
+  "zweig": "codex/p01-cloud-subtitles",
+  "sauber": false,
+  "unversioniert": 24
  },
  "elemente_gesamt": 55,
  "elemente_klinisch_geprueft": 0,
@@ -19,6 +19,10 @@
   "index.html",
   "karten.js",
   "medien/P01-02-animation.mp4",
+  "medien/P01-ar.vtt",
+  "medien/P01-de.vtt",
+  "medien/P01-en.vtt",
+  "medien/P01-final-clean-matched.mp4",
   "medien/P02-01-animation.mp4",
   "medien/aerztin-08.mp3",
   "medien/amina-00.mp3",

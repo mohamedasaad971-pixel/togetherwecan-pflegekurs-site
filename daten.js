@@ -6008,7 +6008,12 @@ window.DATEN = {
     "en": "Half past eight. Mobilisation to the edge of the bed is planned for this morning, and physiotherapy comes at ten. The patient says she feels dizzy and would rather stay lying down, and that getting up yesterday caused her a pulling sensation."
    },
    "film": {
-    "ganz": "",
+    "ganz": "medien/P01-final-clean-matched.mp4",
+    "untertitel": {
+     "de": "medien/P01-de.vtt",
+     "ar": "medien/P01-ar.vtt",
+     "en": "medien/P01-en.vtt"
+    },
     "probe": {
      "pfad": "medien/P01-02-animation.mp4",
      "poster": "medien/dialog-edit-7fa54ff8-0.png",
