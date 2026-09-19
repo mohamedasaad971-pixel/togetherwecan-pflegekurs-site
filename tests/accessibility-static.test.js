@@ -32,3 +32,13 @@ test("delegated translation handlers are bound once", () => {
     "translation binding should register exactly one delegated click listener"
   );
 });
+
+test("visible select labels target their controls", () => {
+  for (const id of ["w-ar", "w-tempo", "k-richtung"]) {
+    assert.match(
+      app,
+      new RegExp(`<label[^>]+for=["']${id}["'][^>]*>[^<]+<\\/label>[\\s\\S]*?<select id=["']${id}["']`),
+      `select #${id} should follow a label that targets it`
+    );
+  }
+});
