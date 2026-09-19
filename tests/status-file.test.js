@@ -62,6 +62,13 @@ const BANNED_SUBSTRINGS = [
   "stack trace",
 ];
 
+// طيُّ التشكيل/المسافات نفسُه المستخدَم لمطابقة معرّفات مراجع Markdown
+// ("[نصّ]" مقابل تعريف "[نصّ]: عنوان") بلا حساسيّةٍ لحالة الأحرف أو تكرار
+// المسافات، أسوةً بمعيار CommonMark لمطابقة المعرّفات.
+function foldReferenceLabel(text) {
+  return text.replace(DIACRITIC, "").replace(/\s+/g, " ").trim().toLowerCase();
+}
+
 function normalize(raw) {
   // إزالة فواصل تنسيق Markdown (**تشديد**، `شفرة`، ~~شطب~~) قبل طيّ المسافات:
   // بلا هذا، عبارةٌ كـ"معتمد **سريريّاً**" تبقى غيرَ مطابقةٍ لأنماط \s+ رغم أنّ
@@ -72,10 +79,25 @@ function normalize(raw) {
   // Markdown بصيغة المرجع "[نصّ][معرّف]" (مع تعريفٍ منفصلٍ لاحقاً كـ
   // "[معرّف]: عنوان") صيغةٌ قياسيّةٌ أخرى تُعرَض النصَّ نفسَه أيضاً، فتُسقَط
   // بنفس المنطق — لا يكفي إسقاط صيغة القوسين وحدها (ملاحظة Codex الثانية).
-  return raw
-    .replace(DIACRITIC, "")
+  // وأخيراً صيغةُ "المرجع المختصَر" ("[نصّ]" وحدها، حين يوجد تعريفٌ لهذا
+  // النصّ بعينه) تُعرَض نصَّها أيضاً بمعيار Markdown — بخلاف الصيغتَين
+  // أعلاه، هذه لا تُسقَط دائماً: قوسان حول نصٍّ عاديٍّ (لا رابط) شائعان في
+  // نثرٍ عاديٍّ (كتعليقٍ بين قوسين)، فتُقارَن فقط بمجموعة المعرّفات الموجودة
+  // فعلاً في الملفّ (سطرٌ بصيغة "[معرّف]: عنوان")، لا كلُّ "[نصّ]" حرفيّاً
+  // (ملاحظة Codex الثالثة).
+  const withoutDiacritics = raw.replace(DIACRITIC, "");
+  const referenceLabels = new Set();
+  const REFERENCE_DEFINITION_RE = /^[ \t]{0,3}\[([^\]]+)\]:\s*\S+/gm;
+  let definitionMatch;
+  while ((definitionMatch = REFERENCE_DEFINITION_RE.exec(withoutDiacritics))) {
+    referenceLabels.add(foldReferenceLabel(definitionMatch[1]));
+  }
+  return withoutDiacritics
     .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
     .replace(/\[([^\]]*)\]\[[^\]]*\]/g, "$1")
+    .replace(/\[([^\]]*)\]/g, (whole, text) =>
+      referenceLabels.has(foldReferenceLabel(text)) ? text : whole
+    )
     .replace(/[*_~`]/g, "")
     .replace(/\s+/g, " ")
     .toLowerCase();
