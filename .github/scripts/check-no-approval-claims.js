@@ -136,17 +136,25 @@ function normalizeWithLineMap(raw) {
 // المعروفتَين في صفحة التغطية، راجع ALLOWED_EXACT_SEGMENTS)، لا حين ترد داخل
 // جملةٍ أعمّ مثل "المحتوى معتمد سريريّاً ومنهجيّاً" — استثناءٌ نمطيٌّ سابقٌ
 // كهذا كان يسمح بأيّ جملةٍ من هذا الشكل (ملاحظة Codex على #6).
-const COMBINED_CLAIM = /(?:ا|م)عتمد[ة]?\s+سريريا/;
+// وسمُ HTML ضمنيٌّ (كـ"<strong>") بين كلمتَي الادّعاء لا يغيّر ما يراه
+// المستخدم فعليّاً ("clinically <strong>approved</strong>" تُعرَض
+// "clinically approved" متّصلةً)، لكنّ حروفَه الحرفيّةَ تبقى بين الكلمتين في
+// النصّ المطبَّع فتمنع مطابقةَ \s+/[\s-]+ رغم ظهور الادّعاء فعليّاً للمستخدم
+// (ملاحظة Codex). الفاصلُ بين كلمتَي كلّ عبارةٍ أدناه يقبل الآن وسماً واحداً
+// أو أكثر (بلا "<"/">" داخليّةٍ) بالتبادل مع المسافة/الشرطة، فلا يُفلت وسمٌ
+// بينهما الادّعاءَ من الاكتشاف.
+const TAG_GAP = "<[^<>]*>";
+const COMBINED_CLAIM = /(?:ا|م)عتمد[ة]?(?:\s|<[^<>]*>)+سريريا/;
 // الإنجليزيّة/الألمانيّة بفاصلٍ [\s-]+ لا مسافةٍ حرفيّةٍ وحدها: الصيغةُ
 // الموصولة بشرطةٍ ("clinically-approved") ادّعاءٌ بنفس المعنى، ولم تكن
 // السلاسلُ الحرفيّةُ السابقةُ (مطابَقةٌ بـindexOf) تكتشفها (ملاحظة Codex).
 const BANNED_PHRASES = [
   COMBINED_CLAIM,
-  /معتمد[ة]?\s+طبيا/,
-  /clinically[\s-]+approved/,
-  /klinisch[\s-]+freigegeben/,
-  /medically[\s-]+approved/,
-  /medizinisch[\s-]+freigegeben/,
+  /معتمد[ة]?(?:\s|<[^<>]*>)+طبيا/,
+  new RegExp(`clinically(?:[\\s-]|${TAG_GAP})+approved`),
+  new RegExp(`klinisch(?:[\\s-]|${TAG_GAP})+freigegeben`),
+  new RegExp(`medically(?:[\\s-]|${TAG_GAP})+approved`),
+  new RegExp(`medizinisch(?:[\\s-]|${TAG_GAP})+freigegeben`),
 ];
 
 // المواضع الوحيدة المسموح فيها بعبارة الادّعاء: شارتا حالةٍ مشروطتان ببيانات

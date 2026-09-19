@@ -151,9 +151,31 @@ do {
   htmlBeforeTemplatePass = html;
   html = html.replace(TEMPLATE_LEAF_RE, "");
 } while (html !== htmlBeforeTemplatePass);
+// قيمةُ سمةٍ مقتبسةٍ في أيّ وسمٍ (لا "srcdoc" وحدها) قد تحمل HTML متكاملاً
+// كنصٍّ حرفيٍّ (كـ<iframe srcdoc="<meta name='robots' content='noindex'>">) —
+// خاملٌ تماماً بالنسبة لمستند الصفحة الأصليّ نفسه (يُفسَّر داخل سياقٍ متصفّحٍ
+// منفصلٍ إن وُجد أصلاً)، فمطابقةُ "<meta...>" الظاهرة داخله كأنّها توجيهٌ
+// فعليٌّ لهذه الصفحة تمنع فهرسةَ صفحةٍ تبقى قابلةً للفهرسة فعلاً (ملاحظة
+// Codex). نطمس محتوى كلّ قيمة سمةٍ مقتبسةٍ (لا الاقتباسَين المحيطَين) بمحارف
+// "_" بنفس الطول قبل البحث عن <meta>، فلا يبقى أيّ "<meta" مطابَقٌ داخل أيّ
+// قيمةٍ؛ ثمّ نأخذ نصَّ كلّ وسمٍ حقيقيٍّ من النصّ الأصليّ غير المطموس (بنفس
+// الإزاحات، إذ الطمسُ لا يغيّر طول النصّ) كي تبقى قيمُ سماته الحقيقيّةُ
+// (كـcontent="noindex") سليمةً لقراءتها لاحقاً.
+function maskAttributeValueContents(text) {
+  return text.replace(/="([^"]*)"|='([^']*)'/g, (whole, dq, sq) => {
+    const [quote, inner] = dq !== undefined ? ['"', dq] : ["'", sq];
+    return "=" + quote + inner.replace(/[^\n]/g, "_") + quote;
+  });
+}
+const maskedForScan = maskAttributeValueContents(html);
+const META_TAG_RE = /<meta\b(?:"[^"]*"|'[^']*'|[^>])*>/gi;
 // يلتقط الوسمَ كاملاً حتى لو وقعت ">" داخل قيمةٍ مقتبسةٍ (كـ data-note="a > b")،
 // بدل التوقّف عند أوّل ">" بصرف النظر عن الاقتباس.
-const metaTags = html.match(/<meta\b(?:"[^"]*"|'[^']*'|[^>])*>/gi) || [];
+const metaTags = [];
+let metaMatch;
+while ((metaMatch = META_TAG_RE.exec(maskedForScan))) {
+  metaTags.push(html.slice(metaMatch.index, metaMatch.index + metaMatch[0].length));
+}
 // "none" يكافئ "noindex, nofollow" عند محرّكات البحث، لا "noindex" وحدها.
 const BLOCKING_TOKENS = new Set(["noindex", "none"]);
 // name="robots" يخاطب كلَّ الزواحف، لكن اسماً خاصّاً بزاحفٍ بعينه (كـ
