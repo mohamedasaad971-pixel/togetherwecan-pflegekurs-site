@@ -132,7 +132,12 @@ const NAMED_ENTITIES = {
   NewLine: " ",
 };
 function decodeHtmlEntities(text) {
-  return text.replace(/&(#[xX][0-9a-fA-F]+;?|#\d+;?|[a-zA-Z]+;)/g, (whole, ref) => {
+  // [a-zA-Z][a-zA-Z0-9]*؛ لا [a-zA-Z]+ وحدها: مرجعٌ اسميٌّ بمعيار HTML5 قد
+  // يحمل رقماً بعد الحرف الأوّل (كـ"emsp13"/"emsp14" أعلاه)، وكان النمطُ
+  // السابق لا يقبل رقماً في اسم المرجع أصلاً، فيستحيل الوصولُ إلى هذين
+  // المدخلَين في NAMED_ENTITIES مهما فُعِّلا فيها (كودٌ ميتٌ فعليّاً — ملاحظة
+  // Codex).
+  return text.replace(/&(#[xX][0-9a-fA-F]+;?|#\d+;?|[a-zA-Z][a-zA-Z0-9]*;)/g, (whole, ref) => {
     if (ref[0] === "#") {
       const digits = ref.replace(/;$/, "");
       const codePoint =
@@ -209,14 +214,16 @@ test("STATUS.md leaks no internal details or approval claims", () => {
   const raw = fs.readFileSync(STATUS_PATH, "utf8");
   const normalized = normalize(raw);
   // فحوصُ البيانات الشخصيّة/المعرّفات تعمل على النصّ بعد فكّ مراجع HTML
-  // فقط (لا التطبيع الكامل بقلب الوسوم فراغاً وحذف التشكيل وطيّ الحالة):
-  // رقمُ هاتفٍ بفواصل مُرمَّزةٍ كـ"+49&ensp;151&ensp;..." يُعرَض رقماً
-  // عاديّاً فعليّاً، لكنّ PHONE_RE على النصّ الخامّ غيرِ المفكوك لا يرى إلا
-  // نصَّ المرجع الحرفيَّ بين الأرقام (ملاحظة Codex). لا نستخدم normalize()
-  // الكاملةَ هنا عمداً: قلبُ الوسوم فراغاً قد يُلصق نصّاً سداسيَّ عشريَّاً
-  // غيرَ مرتبطٍ عبر حدّ وسمٍ (كـ"...abc123<span>def456</span>...") فيُنشئ
-  // معرّفاً سداسيَّ عشريَّاً زائفاً لم يكن موجوداً في المصدر أصلاً.
-  const decoded = decodeHtmlEntities(raw);
+  // وإسقاط فواصل تشديد Markdown («*»/«_»/«~»/«`») فقط — لا التطبيع الكامل
+  // بقلب الوسوم فراغاً وحذف التشكيل وطيّ الحالة: رقمُ هاتفٍ بفواصل مُرمَّزةٍ
+  // كـ"+49&ensp;151&ensp;..." أو بمجموعةِ أرقامٍ مُشدَّدةٍ كـ"+49 **151**
+  // ..." يُعرَض رقماً عاديّاً فعليّاً، لكنّ PHONE_RE على النصّ الخامّ غيرِ
+  // المعالَج لا يرى إلا المرجعَ الحرفيَّ أو فواصلَ التشديد بين الأرقام
+  // (ملاحظة Codex، جولتان). لا نستخدم normalize() الكاملةَ هنا عمداً: قلبُ
+  // الوسوم فراغاً قد يُلصق نصّاً سداسيَّ عشريَّاً غيرَ مرتبطٍ عبر حدّ وسمٍ
+  // (كـ"...abc123<span>def456</span>...") فيُنشئ معرّفاً سداسيَّ عشريَّاً
+  // زائفاً لم يكن موجوداً في المصدر أصلاً.
+  const decoded = decodeHtmlEntities(raw).replace(/[*_~`]/g, "");
 
   assert.equal(EMAIL_RE.test(decoded), false, "STATUS.md must not contain an email address");
   assert.equal(PHONE_RE.test(decoded), false, "STATUS.md must not contain a phone number");
