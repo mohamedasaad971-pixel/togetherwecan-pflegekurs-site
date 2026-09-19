@@ -257,37 +257,91 @@ Object.assign(HTML_NAMED_ENTITIES, {
   mdash: "—", ndash: "–", hellip: "…", trade: "™", bull: "•",
   lsquo: "‘", rsquo: "’", ldquo: "“", rdquo: "”",
 });
-function decodeHtmlEntities(text) {
-  // ";" اختياريّةٌ بعد الصيغتَين العدديّتين، ويجب أن يلتقطها النمطُ نفسُه حين
-  // تكون موجودةً — وإلّا بقيت معلَّقةً حرفيّاً في الناتج (كـ"appro;ved" بدل
-  // "approved").
-  // "X" مقبولةٌ أيضاً بديلاً عن "x" في مرجعٍ سداسيّ عشريّ بمعيار HTML5،
-  // أسوةً بنفس الإصلاح في check-robots-and-indexing.js (ملاحظة Codex).
-  return text.replace(/&(#[xX][0-9a-fA-F]+;?|#\d+;?|[a-zA-Z]+;)/g, (whole, ref) => {
-    if (ref[0] === "#") {
-      const digits = ref.replace(/;$/, "");
-      const codePoint = digits[1] === "x" || digits[1] === "X" ? parseInt(digits.slice(2), 16) : parseInt(digits.slice(1), 10);
-      if (Number.isNaN(codePoint)) return whole;
-      try {
-        return String.fromCodePoint(codePoint);
-      } catch {
-        return whole;
-      }
+// ";" اختياريّةٌ بعد الصيغتَين العدديّتين، ويجب أن يلتقطها النمطُ نفسُه حين
+// تكون موجودةً — وإلّا بقيت معلَّقةً حرفيّاً في الناتج (كـ"appro;ved" بدل
+// "approved").
+// "X" مقبولةٌ أيضاً بديلاً عن "x" في مرجعٍ سداسيّ عشريّ بمعيار HTML5،
+// أسوةً بنفس الإصلاح في check-robots-and-indexing.js (ملاحظة Codex).
+const ENTITY_RE = /&(#[xX][0-9a-fA-F]+;?|#\d+;?|[a-zA-Z]+;)/g;
+// الفكُّ يقع الآن دائماً على نصٍّ طُبِّع بالفعل (مُصغَّرٌ حروفُه، راجع
+// normalizeWithLineMap)، فالمرجعُ الاسميّ في النصّ يصل هنا مُصغَّراً دوماً
+// (كـ"&tab;" لا "&Tab;") — لا مطابقةَ بحثٍ حساسةً لحالة الأحرف تفيد هنا.
+// نبحث بمفتاحٍ مُصغَّرٍ الحروف عن نسخةٍ مصغَّرةِ المفاتيح من الجدول، ونُصغِّر
+// ناتجَ الفكّ (الاسميّ والعدديّ معاً) قبل إرجاعه، ليبقى متّسقاً مع بقيّة
+// النصّ المُطبَّع المحيط به — وإلّا بقيت بعضُ محارف الناتج (كـÁ من &Aacute;)
+// بحالتها الأصليّة رغم أنّ كلَّ ما حولها مُصغَّرٌ بالفعل.
+const HTML_NAMED_ENTITIES_LOWER = {};
+for (const key of Object.keys(HTML_NAMED_ENTITIES)) {
+  const lowerKey = key.toLowerCase();
+  if (!(lowerKey in HTML_NAMED_ENTITIES_LOWER)) {
+    HTML_NAMED_ENTITIES_LOWER[lowerKey] = HTML_NAMED_ENTITIES[key].toLowerCase();
+  }
+}
+function decodeEntityRef(ref) {
+  if (ref[0] === "#") {
+    const digits = ref.replace(/;$/, "");
+    const codePoint = digits[1] === "x" || digits[1] === "X" ? parseInt(digits.slice(2), 16) : parseInt(digits.slice(1), 10);
+    if (Number.isNaN(codePoint)) return null;
+    try {
+      return String.fromCodePoint(codePoint).toLowerCase();
+    } catch {
+      return null;
     }
-    const name = ref.slice(0, -1);
-    return Object.prototype.hasOwnProperty.call(HTML_NAMED_ENTITIES, name) ? HTML_NAMED_ENTITIES[name] : whole;
-  });
+  }
+  const name = ref.slice(0, -1).toLowerCase();
+  return Object.prototype.hasOwnProperty.call(HTML_NAMED_ENTITIES_LOWER, name) ? HTML_NAMED_ENTITIES_LOWER[name] : null;
+}
+// نفسُ فكّ المراجع أعلاه، لكن مع خريطةٍ تُعيد كلَّ فهرسٍ في الناتج المفكوك
+// إلى فهرسه الأصليّ في النصّ الخامّ — تلزم عند فكّ المراجع بعد تحديد حدود
+// السماتِ/الوسوم لا قبله (راجع التعليق أعلى stripTagsWithMap)، إذ يتغيّر
+// طولُ النصّ عند الفكّ فيفسد التوافقَ المباشر بين الفهرسَين. الفهرسُ
+// تقريبيٌّ فقط لمحارف مرجعٍ مفكوكٍ (بداية المرجع حرفيّاً)، لا الأصليّ
+// حرفاً حرفاً، أسوةً بتقريب أرقام الأسطر المقبول أصلاً في هذا الملفّ عند
+// أيّ تحويلٍ يغيّر الطول (استمرارُ سطرٍ، وسومٌ فاصلة...).
+function decodeHtmlEntitiesWithIndexMap(text) {
+  const decoded = [];
+  const indexMap = [];
+  let last = 0;
+  const re = new RegExp(ENTITY_RE.source, "g");
+  let m;
+  while ((m = re.exec(text))) {
+    for (let i = last; i < m.index; i++) {
+      decoded.push(text[i]);
+      indexMap.push(i);
+    }
+    const replacement = decodeEntityRef(m[1]) ?? m[0];
+    for (const ch of replacement) {
+      decoded.push(ch);
+      indexMap.push(m.index);
+    }
+    last = re.lastIndex;
+  }
+  for (let i = last; i < text.length; i++) {
+    decoded.push(text[i]);
+    indexMap.push(i);
+  }
+  return { decoded: decoded.join(""), indexMap };
 }
 
 // يطبّع الملفَّ كلَّه دفعةً واحدة (لا سطراً سطراً)، فتلتقط العبارةُ حتّى لو
 // قسمها التفافُ HTML بين سطرين، مع بقاء خريطةٍ لرقم السطر الأصليّ لكلّ حرفٍ
 // في الناتج، ليبقى تقرير الخطأ مفيداً.
+// فكُّ مراجع HTML لا يقع هنا: تقديمُه على تحديد حدود السماتِ/الوسوم (في
+// stripTagsWithMap لاحقاً) قد يصنع بنيةً مزيَّفةً — قيمةُ سمةٍ حقيقيّةٍ
+// واحدةٍ مثل data-note="&quot; title=&quot;clinically approved&quot;"
+// تحمل سمةً واحدةً فقط (الاقتباساتُ الداخليّةُ نصٌّ حرفيٌّ، لا اقتباساتٍ
+// بنيويّةً)، لكنّ فكَّ "&quot;" إلى '"' *قبل* تفكيك السمات يُنتج اقتباساتٍ
+// حقيقيّةً مزيَّفةً يُخطئ التفكيكُ اللاحقُ فيقرأها سمةَ "title" منفصلةً
+// وهميّة، فيُخفق الفحصُ على محتوًى آمنٍ فعليّاً (ملاحظة Codex). الفكُّ الآن
+// يقع لاحقاً في stripTagsWithMap، بعد إيجاد الوسوم وتفكيك سماتها على النصّ
+// الخامّ غير المفكوك، وعلى النصّ المستخرَج (قيمةُ سمةٍ، أو نصٌّ بين وسمَين)
+// فقط لا على الوسم بأكمله.
 function normalizeWithLineMap(raw) {
   let normalized = "";
   const lineOfIndex = [];
   let line = 1;
   let inWhitespaceRun = false;
-  for (const ch of decodeHtmlEntities(unescapeJsStringEscapes(raw))) {
+  for (const ch of unescapeJsStringEscapes(raw)) {
     if (DIACRITIC.test(ch)) continue;
     if (/\s/.test(ch)) {
       if (!inWhitespaceRun) {
@@ -414,6 +468,17 @@ function extractTextBearingAttrValues(tagText) {
   }
   return values;
 }
+// يدفع نصّاً بين-الوسوم إلى strippedChars بعد فكّ مراجع HTML فيه، مع
+// خريطة فهارسَ تُعيده إلى موضعه في normalized (راجع تعليق
+// decodeHtmlEntitiesWithIndexMap وnormalizeWithLineMap لسبب تأخير الفكّ
+// إلى هنا تحديداً، بعد تحديد حدود الوسوم لا قبله).
+function pushDecodedText(strippedChars, indexMap, text, baseIndex) {
+  const { decoded, indexMap: chunkMap } = decodeHtmlEntitiesWithIndexMap(text);
+  for (let k = 0; k < decoded.length; k++) {
+    strippedChars.push(decoded[k]);
+    indexMap.push(baseIndex + chunkMap[k]);
+  }
+}
 function stripTagsWithMap(normalized) {
   const strippedChars = [];
   const indexMap = [];
@@ -421,17 +486,11 @@ function stripTagsWithMap(normalized) {
   let lastIndex = 0;
   let m;
   while ((m = tagRe.exec(normalized))) {
-    for (let i = lastIndex; i < m.index; i++) {
-      strippedChars.push(normalized[i]);
-      indexMap.push(i);
-    }
+    pushDecodedText(strippedChars, indexMap, normalized.slice(lastIndex, m.index), lastIndex);
     for (const attrValue of extractTextBearingAttrValues(m[0])) {
       strippedChars.push(" ");
       indexMap.push(m.index);
-      for (const ch of attrValue) {
-        strippedChars.push(ch);
-        indexMap.push(m.index);
-      }
+      pushDecodedText(strippedChars, indexMap, attrValue, m.index);
       strippedChars.push(" ");
       indexMap.push(m.index);
     }
@@ -444,10 +503,7 @@ function stripTagsWithMap(normalized) {
     }
     lastIndex = tagRe.lastIndex;
   }
-  for (let i = lastIndex; i < normalized.length; i++) {
-    strippedChars.push(normalized[i]);
-    indexMap.push(i);
-  }
+  pushDecodedText(strippedChars, indexMap, normalized.slice(lastIndex), lastIndex);
   return { stripped: strippedChars.join(""), indexMap };
 }
 
