@@ -183,10 +183,17 @@ const TAG_GAP = "<(?:\"[^\"]*\"|'[^']*'|[^<>\"'])*>";
 // واحدةٍ ("clinicallyapproved")، فتُفلت من مطابقة العبارة رغم ظهورها
 // للمستخدم مفصولةً (ملاحظة Codex). القائمةُ عناصرُ HTML القياسيّة ذاتُ
 // العرض الكتليّ أو الفاصل السطريّ، لا كلَّ وسمٍ محتمَل.
+// القائمةُ عناصرُ HTML5 الكتليّةُ/القطاعيّةُ/التجميعيّةُ القياسيّة كلُّها،
+// لا مجموعةً جزئيّةً مختارةً بحسب المثال فقط: نسيان عنصرٍ كتليٍّ حقيقيٍّ
+// (كـ<main>/<aside> في المثال الذي ذكره Codex) يُبقي نفسَ فئة الثغرة قائمةً
+// لعنصرٍ آخر لم يُختبَر بعد.
 const BLOCK_SEPARATOR_TAGS = new Set([
-  "br", "p", "div", "li", "ul", "ol", "tr", "td", "th", "table",
-  "h1", "h2", "h3", "h4", "h5", "h6", "section", "article",
-  "header", "footer", "blockquote", "pre", "hr",
+  "br", "p", "div", "li", "ul", "ol", "dl", "dt", "dd", "tr", "td", "th",
+  "table", "thead", "tbody", "tfoot", "caption", "colgroup",
+  "h1", "h2", "h3", "h4", "h5", "h6", "section", "article", "aside", "nav",
+  "header", "footer", "main", "figure", "figcaption", "form", "fieldset",
+  "legend", "address", "details", "summary", "dialog",
+  "blockquote", "pre", "hr",
 ]);
 function tagName(tagText) {
   const m = tagText.match(/^<\/?([a-zA-Z][a-zA-Z0-9-]*)/);

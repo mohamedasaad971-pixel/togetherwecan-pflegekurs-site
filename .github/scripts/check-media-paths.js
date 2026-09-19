@@ -97,9 +97,13 @@ function unescapeJsStringEscapes(raw) {
 // src="medien/&#109;issing.mp3" يراها المتصفّحُ "medien/missing.mp3"
 // فعليّاً، لا النصَّ الحرفيَّ غيرَ المفكوك — وMEDIA_REF لا يطابق "&" أصلاً،
 // فمسارٌ مكسورٌ بهذا الشكل كان يُفلت من الفحص كلّيّاً بدل أن يُبلَّغ مفقوداً
-// (ملاحظة Codex). يُطبَّق هذا الفكّ على .js أيضاً لا .html فقط: نصوصُ حوارٍ
-// في ui-de.js/ui-en.js تحمل HTML حرفيّاً (يُدرَج لاحقاً بـinnerHTML)، فقد
-// تحمل مرجعَ محرفٍ بنفس الطريقة.
+// (ملاحظة Codex). يقتصر هذا الفكّ على ملفّات .html حصراً (أسوةً بقصر فكّ
+// تهريبات JS على .js وحدها أدناه)، لا تعميمَه على كلّ نصّ .js: مسارٌ مبنيٌّ
+// كسلسلة JS عاديّةٍ ويُسنَد إلى خاصّيةٍ كـ.src مباشرةً (لا يُدرَج عبر
+// innerHTML) لا يمرّ بفكّ محارف HTML إطلاقاً وقت التشغيل، فمرجعُ محرفٍ
+// حرفيٌّ فيه (كـ"amina&#45;00.mp3" الناتج من esc() مثلاً) يبقى جزءاً
+// حرفيّاً من الرابط الفعليّ المطلوب؛ فكُّه هنا كان يُطابقه خطأً بمسارٍ
+// موجودٍ فيُخفي مساراً مكسوراً فعليّاً من نوعٍ آخر (ملاحظة Codex الثانية).
 const HTML_NAMED_ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
 function decodeHtmlEntities(text) {
   return text.replace(/&(#[xX][0-9a-fA-F]+;?|#\d+;?|[a-zA-Z]+;)/g, (whole, ref) => {
@@ -129,7 +133,7 @@ for (const file of SOURCE_FILES) {
   // فعلاً على القرص، فذلك يُخفي مساراً حقيقيّاً مكسوراً عن هذا الفحص
   // (ملاحظة Codex). تطبيقُ الفكّ على .html كما على .js كان يفوّت هذه الحالة.
   const jsUnescaped = file.endsWith(".js") ? unescapeJsStringEscapes(raw) : raw;
-  const text = decodeHtmlEntities(jsUnescaped);
+  const text = file.endsWith(".html") ? decodeHtmlEntities(jsUnescaped) : jsUnescaped;
   const matches = text.match(MEDIA_REF) || [];
   for (const m of matches) referenced.add(decodePercentEscapes(stripTrailingSentencePunct(m)));
 }
