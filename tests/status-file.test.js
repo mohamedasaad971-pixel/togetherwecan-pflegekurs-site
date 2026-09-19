@@ -234,41 +234,49 @@ test("STATUS.md exists and is not empty", () => {
 test("STATUS.md leaks no internal details or approval claims", () => {
   const raw = fs.readFileSync(STATUS_PATH, "utf8");
   const normalized = normalize(raw);
-  // فحوصُ البيانات الشخصيّة/المعرّفات تُطبَّق على نصَّين معاً (يكفي أحدهما
-  // ليُبلَّغ خطأً)، لا نصٍّ واحدٍ:
-  // ١) `entityDecoded` — النصّ الخامّ بعد فكّ مراجع HTML وإسقاط التعليقات
-  //    فقط، بلا لمس أيّ وسمٍ أو سمةٍ: بيانٌ شخصيٌّ داخل قيمة سمةٍ (كـ
-  //    `<a href="mailto:م@مثال.اختبار">للتواصل</a>` أو `href="tel:+49-..."`)
-  //    ينشره المصدرُ العامُّ فعليّاً بصرف النظر عمّا يُعرَض للقارئ، وكان
-  //    `stripInlineHtml()` يُسقط الوسمَ بكامل سماته (فيُسقط قيمة href
-  //    معه) قبل أن تراه EMAIL_RE/PHONE_RE أصلاً (ملاحظة Codex).
-  // ٢) `strippedForPersonalData` — بعد إسقاط تشديد Markdown ووسم HTML
-  //    المضمّن أيضاً (بنفس تفريق stripInlineHtml() بين السطريّ والفاصل):
-  //    رقمُ هاتفٍ بفواصل مُرمَّزةٍ كـ"+49&ensp;151&ensp;..."، أو مُشدَّدةٍ كـ
-  //    "+49 **151** ..."، أو مقسومٍ بوسمٍ سطريٍّ كـ"+49 <strong>151</strong>
-  //    ..." — كلُّها تُعرَض رقماً عاديّاً واحداً فعليّاً، لكنّ الفاصلَ الحرفيَّ
-  //    يمنع مطابقته في النصّ الخامّ وحده (ملاحظة Codex، جولاتٌ سابقة).
-  const entityDecoded = decodeHtmlEntities(raw).replace(/<!--[\s\S]*?-->/g, "");
-  const strippedForPersonalData = stripInlineHtml(entityDecoded.replace(/[*_~`]/g, ""));
-  function leaksPersonalData(re) {
-    return re.test(entityDecoded) || re.test(strippedForPersonalData);
+  // فحوصُ البيانات الشخصيّة/التفاصيل الداخليّة تُطبَّق على نصَّين معاً (يكفي
+  // أحدهما ليُبلَّغ خطأً)، لا نصٍّ واحدٍ:
+  // ١) `sourceText` — النصّ الخامّ بعد فكّ مراجع HTML فقط، بلا لمس أيّ وسمٍ
+  //    ولا سمةٍ ولا تعليقٍ: بيانٌ حسّاسٌ داخل قيمة سمةٍ (كـ`href="mailto:
+  //    م@مثال.اختبار"` أو `href="tel:+49-..."`) أو داخل تعليق HTML (كـ
+  //    `<!-- contact: user@example.com; api key: secret -->`) ينشره
+  //    المصدرُ العامُّ فعليّاً على GitHub بصرف النظر عمّا يُعرَض للقارئ في
+  //    الصفحة المُصيَّرة؛ إسقاطُ الوسم أو التعليق قبل هذا الفحص كان يُخفي
+  //    كِلا الشكلَين عن EMAIL_RE/PHONE_RE/BANNED_SUBSTRINGS (ملاحظة Codex،
+  //    جولتان: السمات ثمّ التعليقات). لا يُطبَّق هذا على CLAIM_PATTERNS
+  //    عمداً: ادّعاءُ اعتمادٍ يُعَدّ ادّعاءً حين يُعرَض لقارئٍ فعليّاً، لا حين
+  //    يبقى نصّاً خاملاً داخل تعليقٍ لا يُصيَّر إطلاقاً.
+  // ٢) `strippedForPersonalData` — بعد إسقاط التعليقات وتشديد Markdown ووسم
+  //    HTML المضمّن أيضاً (بنفس تفريق stripInlineHtml() بين السطريّ
+  //    والفاصل): رقمُ هاتفٍ بفواصل مُرمَّزةٍ كـ"+49&ensp;151&ensp;..."، أو
+  //    مُشدَّدةٍ كـ"+49 **151** ..."، أو مقسومٍ بوسمٍ سطريٍّ كـ"+49
+  //    <strong>151</strong> ..." — كلُّها تُعرَض رقماً عاديّاً واحداً
+  //    فعليّاً، لكنّ الفاصلَ الحرفيَّ يمنع مطابقته في `sourceText` وحده
+  //    (ملاحظة Codex، جولاتٌ سابقة).
+  const sourceText = decodeHtmlEntities(raw);
+  const strippedForPersonalData = stripInlineHtml(sourceText.replace(/[*_~`]/g, ""));
+  function leaksSensitiveData(re) {
+    return re.test(sourceText) || re.test(strippedForPersonalData);
   }
 
-  assert.equal(leaksPersonalData(EMAIL_RE), false, "STATUS.md must not contain an email address");
-  assert.equal(leaksPersonalData(PHONE_RE), false, "STATUS.md must not contain a phone number");
+  assert.equal(leaksSensitiveData(EMAIL_RE), false, "STATUS.md must not contain an email address");
+  assert.equal(leaksSensitiveData(PHONE_RE), false, "STATUS.md must not contain a phone number");
   assert.equal(
-    leaksPersonalData(HEX_ID_RE),
+    leaksSensitiveData(HEX_ID_RE),
     false,
     "STATUS.md must not contain a long hex id (looks like a job/asset id)"
   );
   assert.equal(
-    leaksPersonalData(PREFIXED_ID_RE),
+    leaksSensitiveData(PREFIXED_ID_RE),
     false,
     "STATUS.md must not contain an asset_/job_ prefixed identifier"
   );
 
+  const sourceTextLower = sourceText.toLowerCase();
   const offenders = [...BANNED_SUBSTRINGS, ...CLAIM_PATTERNS].filter((phrase) =>
-    phrase instanceof RegExp ? phrase.test(normalized) : normalized.includes(phrase)
+    phrase instanceof RegExp
+      ? phrase.test(normalized)
+      : normalized.includes(phrase) || sourceTextLower.includes(phrase)
   );
   assert.deepEqual(
     offenders,
