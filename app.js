@@ -31,6 +31,7 @@
 
   /* درجاتُ التقييم الذاتيّ الثلاث. حكمُ المتعلّم على نفسِه، لا درجةُ آلة. */
   var STUFEN = [["wieder", "يحتاج إعادة"], ["ok", "مقبول"], ["sicher", "واثق"]];
+  var AR_SCHALT_NR = 0;
   var SCHRITTE = [
     "einleitung", "patient", "film", "szenen", "dialog", "vokabeln", "ablauf",
     "aufklaerung", "isbar", "dokumentation", "fragen", "fehler", "transfer",
@@ -152,9 +153,13 @@
   function uebersetzung(objekt, schluessel) {
     if (!objekt || !objekt[schluessel]) return "";
     var en = objekt[enName(schluessel)];
-    return '<div class="ar-schalt"><p class="ar">' + fett(objekt[schluessel]) + "</p>" +
+    var id = "uebersetzung-" + (++AR_SCHALT_NR);
+    return '<div class="ar-schalt"><button type="button" class="ar-umschalter" ' +
+      'aria-expanded="false" aria-controls="' + id + '"></button>' +
+      '<div class="ar-inhalt" id="' + id + '" aria-hidden="true">' +
+      '<p class="ar">' + fett(objekt[schluessel]) + "</p>" +
       '<p class="en">' + (en ? fett(en) : '<i class="fehlt">' + EN_FEHLT + "</i>") +
-      "</p></div>";
+      "</p></div></div>";
   }
 
   /* عنوانٌ: إن غابت الإنجليزيّةُ عُرض الألمانيّ لا تنبيهُ الغياب.
@@ -327,6 +332,7 @@
       a.value = zustand.ar;
       a.onchange = function () {
         zustand.ar = a.value; document.body.setAttribute("data-ar", a.value); sichern();
+        arSchaltStatus();
       };
     }
     var t = document.getElementById("w-tempo");
@@ -337,10 +343,55 @@
         var v = document.querySelector("video"); if (v) v.playbackRate = zustand.tempo;
       };
     }
-    document.body.addEventListener("click", function (ev) {
-      var s = ev.target.closest ? ev.target.closest(".ar-schalt") : null;
-      if (s && document.body.getAttribute("data-ar") === "klick") s.classList.toggle("offen");
+    arSchaltBinden();
+  }
+
+  /* Die Uebersetzung wird per Event-Delegation bedient, weil der
+     Seiteninhalt bei jedem Routenwechsel neu gezeichnet wird. Der Listener
+     darf deshalb nur einmal am body haengen; sonst schalten zwei Listener
+     die Klasse sofort wieder zurueck. */
+  function arSchaltStatus() {
+    var modus = document.body.getAttribute("data-ar");
+    var aktiv = modus === "klick" &&
+      (zustand.sprache || "ar") !== "de";
+    var labels = {
+      ar: ["إظهار الترجمة", "إخفاء الترجمة"],
+      de: ["Übersetzung anzeigen", "Übersetzung ausblenden"],
+      en: ["Show translation", "Hide translation"]
+    };
+    Array.prototype.forEach.call(document.querySelectorAll(".ar-schalt"), function (s) {
+      var knopf = s.querySelector(".ar-umschalter");
+      var inhalt = s.querySelector(".ar-inhalt");
+      if (!aktiv) {
+        knopf.hidden = true;
+        inhalt.setAttribute("aria-hidden", modus === "an" ? "false" : "true");
+        return;
+      }
+      knopf.hidden = false;
+      var offen = s.classList.contains("offen");
+      var texte = labels[zustand.sprache || "ar"] || labels.ar;
+      knopf.setAttribute("aria-expanded", offen ? "true" : "false");
+      knopf.textContent = texte[offen ? 1 : 0];
+      inhalt.setAttribute("aria-hidden", offen ? "false" : "true");
     });
+  }
+
+  function arSchaltUmschalten(s) {
+    if (!s || document.body.getAttribute("data-ar") !== "klick") return;
+    s.classList.toggle("offen");
+    arSchaltStatus();
+  }
+
+  function arSchaltBinden() {
+    if (document.body.getAttribute("data-ar-schalt-gebunden") !== "ja") {
+      document.body.setAttribute("data-ar-schalt-gebunden", "ja");
+      document.body.addEventListener("click", function (ev) {
+        var knopf = ev.target.closest ? ev.target.closest(".ar-umschalter") : null;
+        var s = knopf && knopf.closest ? knopf.closest(".ar-schalt") : null;
+        arSchaltUmschalten(s);
+      });
+    }
+    arSchaltStatus();
   }
 
   /* ————— الصفحة الأولى ————— */
