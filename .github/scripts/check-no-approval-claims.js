@@ -15,14 +15,23 @@ function normalize(text) {
   return text.replace(DIACRITICS, "").toLowerCase();
 }
 
+// نمطٌ لا قائمةٌ حرفيّة: يلتقط صيغتَي الفعل والصفة معاً ("اعتُمد"/"معتمد")
+// مع استثناءٍ سلبيٍّ لِـ"…ومنهجيّاً" كي لا يطال شارة "معتمد سريريّاً
+// ومنهجيّاً" المشروطة ببيانات صفحة التغطية (خارج نطاق issue #4).
 const BANNED_PHRASES = [
-  normalize("اعتمد سريريا"),
-  normalize("معتمد طبيا"),
+  /(?:ا|م)عتمد سريريا(?!\s*ومنهجيا)/,
+  /معتمد طبيا/,
   "clinically approved",
   "klinisch freigegeben",
   "medically approved",
   "medizinisch freigegeben",
 ];
+
+function matchesBannedPhrase(normalizedLine, phrase) {
+  return phrase instanceof RegExp
+    ? phrase.test(normalizedLine)
+    : normalizedLine.includes(phrase);
+}
 
 const offenders = [];
 for (const file of SHIPPED_FILES) {
@@ -30,7 +39,7 @@ for (const file of SHIPPED_FILES) {
   raw.split("\n").forEach((line, i) => {
     const normalized = normalize(line);
     for (const phrase of BANNED_PHRASES) {
-      if (normalized.includes(phrase)) {
+      if (matchesBannedPhrase(normalized, phrase)) {
         offenders.push(`${file}:${i + 1} — "${phrase}"`);
       }
     }

@@ -17,7 +17,13 @@ if (/^Disallow:\s*\/\s*$/m.test(robots)) {
 }
 
 const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
-if (/<meta[^>]+name=["']robots["'][^>]*noindex/i.test(html)) {
+const metaTags = html.match(/<meta\b[^>]*>/gi) || [];
+const hasNoindexMeta = metaTags.some((tag) => {
+  const isRobotsTag = /name\s*=\s*["']robots["']/i.test(tag);
+  const hasNoindex = /content\s*=\s*["'][^"']*\bnoindex\b[^"']*["']/i.test(tag);
+  return isRobotsTag && hasNoindex;
+});
+if (hasNoindexMeta) {
   errors.push("index.html صار يحمل meta robots noindex — سيُخفى الموقعُ عن محرّكات البحث.");
 }
 
