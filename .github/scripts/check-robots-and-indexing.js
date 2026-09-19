@@ -51,16 +51,19 @@ if (starGroups.length === 0) {
 }
 
 // يقرأ قيمةَ سمةٍ من وسمٍ سواءٌ اقتُبست بـ" أو ' أو بلا اقتباسٍ أصلاً
-// (الثلاثةُ HTML صحيحةٌ وتعمل في المتصفّح).
+// (الثلاثةُ HTML صحيحةٌ وتعمل في المتصفّح). حدُّ اسم السمة بـ (?<![\w-])
+// قبلها يمنع مطابقة "name" داخل سمةٍ أخرى تنتهي به، مثل "data-name".
 function readAttr(tag, attrName) {
-  var re = new RegExp(attrName + '\\s*=\\s*(?:"([^"]*)"|\'([^\']*)\'|(\\S+))', "i");
+  var re = new RegExp('(?<![\\w-])' + attrName + '\\s*=\\s*(?:"([^"]*)"|\'([^\']*)\'|(\\S+))', "i");
   var m = tag.match(re);
   if (!m) return null;
   return m[1] !== undefined ? m[1] : m[2] !== undefined ? m[2] : m[3].replace(/[>/]+$/, "");
 }
 
 const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
-const metaTags = html.match(/<meta\b[^>]*>/gi) || [];
+// يلتقط الوسمَ كاملاً حتى لو وقعت ">" داخل قيمةٍ مقتبسةٍ (كـ data-note="a > b")،
+// بدل التوقّف عند أوّل ">" بصرف النظر عن الاقتباس.
+const metaTags = html.match(/<meta\b(?:"[^"]*"|'[^']*'|[^>])*>/gi) || [];
 // "none" يكافئ "noindex, nofollow" عند محرّكات البحث، لا "noindex" وحدها.
 const BLOCKING_TOKENS = new Set(["noindex", "none"]);
 const hasNoindexMeta = metaTags.some((tag) => {
