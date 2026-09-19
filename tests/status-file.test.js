@@ -102,7 +102,13 @@ function foldReferenceLabel(text) {
 // (ملاحظة Codex). المرجعُ العدديّ لا يلزمه ";" بمعيار HTML5. القائمةُ تشمل
 // مراجعَ المسافة البيضاء الاسميّةَ الأخرى التي يفكّها العارضُ (لا "nbsp"
 // وحدها): "&ensp;"/"&emsp;" وأخواتهما تُعرَض مسافاتٍ فعليّةً أيضاً، فتُفلت
-// نفسَ إفلات "&nbsp;" لو اقتُصر عليها وحدها (ملاحظة Codex الثانية).
+// نفسَ إفلات "&nbsp;" لو اقتُصر عليها وحدها (ملاحظة Codex الثانية). ومراجعُ
+// أخرى بحالة أحرفٍ مختلفةٍ (Tab وNewLine وMediumSpace وأخواتها) حسّاسةٌ
+// لحالة الأحرف بمعيار HTML5 (لا صلةَ لها بـ"tab"/"newline" الصغيرتَين)،
+// وكانت غائبةً كليّاً عن القائمة السابقة رغم كونها مسافاتٍ فعليّةً أيضاً
+// (ملاحظة Codex الثالثة). هذه القائمةُ ليست الجدولَ الكاملَ لمراجع HTML5
+// الاسميّة (يفوق ألفَي مدخلٍ)، بل كلُّ مرجعٍ منها يُعرَض مسافةً بيضاء
+// فعليّاً — وهو ما يلزم هذا الحارسَ تحديداً.
 const NAMED_ENTITIES = {
   amp: "&",
   lt: "<",
@@ -110,6 +116,7 @@ const NAMED_ENTITIES = {
   quot: '"',
   apos: "'",
   nbsp: " ",
+  NonBreakingSpace: " ",
   ensp: " ",
   emsp: " ",
   emsp13: " ",
@@ -117,7 +124,12 @@ const NAMED_ENTITIES = {
   numsp: " ",
   puncsp: " ",
   thinsp: " ",
+  ThinSpace: " ",
   hairsp: " ",
+  VeryThinSpace: " ",
+  MediumSpace: " ",
+  Tab: " ",
+  NewLine: " ",
 };
 function decodeHtmlEntities(text) {
   return text.replace(/&(#[xX][0-9a-fA-F]+;?|#\d+;?|[a-zA-Z]+;)/g, (whole, ref) => {
@@ -196,16 +208,25 @@ test("STATUS.md exists and is not empty", () => {
 test("STATUS.md leaks no internal details or approval claims", () => {
   const raw = fs.readFileSync(STATUS_PATH, "utf8");
   const normalized = normalize(raw);
+  // فحوصُ البيانات الشخصيّة/المعرّفات تعمل على النصّ بعد فكّ مراجع HTML
+  // فقط (لا التطبيع الكامل بقلب الوسوم فراغاً وحذف التشكيل وطيّ الحالة):
+  // رقمُ هاتفٍ بفواصل مُرمَّزةٍ كـ"+49&ensp;151&ensp;..." يُعرَض رقماً
+  // عاديّاً فعليّاً، لكنّ PHONE_RE على النصّ الخامّ غيرِ المفكوك لا يرى إلا
+  // نصَّ المرجع الحرفيَّ بين الأرقام (ملاحظة Codex). لا نستخدم normalize()
+  // الكاملةَ هنا عمداً: قلبُ الوسوم فراغاً قد يُلصق نصّاً سداسيَّ عشريَّاً
+  // غيرَ مرتبطٍ عبر حدّ وسمٍ (كـ"...abc123<span>def456</span>...") فيُنشئ
+  // معرّفاً سداسيَّ عشريَّاً زائفاً لم يكن موجوداً في المصدر أصلاً.
+  const decoded = decodeHtmlEntities(raw);
 
-  assert.equal(EMAIL_RE.test(raw), false, "STATUS.md must not contain an email address");
-  assert.equal(PHONE_RE.test(raw), false, "STATUS.md must not contain a phone number");
+  assert.equal(EMAIL_RE.test(decoded), false, "STATUS.md must not contain an email address");
+  assert.equal(PHONE_RE.test(decoded), false, "STATUS.md must not contain a phone number");
   assert.equal(
-    HEX_ID_RE.test(raw),
+    HEX_ID_RE.test(decoded),
     false,
     "STATUS.md must not contain a long hex id (looks like a job/asset id)"
   );
   assert.equal(
-    PREFIXED_ID_RE.test(raw),
+    PREFIXED_ID_RE.test(decoded),
     false,
     "STATUS.md must not contain an asset_/job_ prefixed identifier"
   );
