@@ -13,21 +13,27 @@ const SHIPPED_FILES = fs
 const DIACRITIC = /[ؐ-ًؚ-ٰٟۖ-ۭ]/;
 
 // يفكّ مهرَّبات سلاسل JS ذات الأثر على المطابقة قبل التطبيع:
-// - "\n"/"\t"/"\r" (سطرٌ جديدٌ أو تبويبٌ مهرَّبان) تُصيَّران مسافةً — كما يراهما
-//   المتصفّحُ فعلاً — لا حرفاً حرفيّاً يُلصق كلمتين (ملاحظة Codex الأولى).
+// - "\" متبوعةً بسطرٍ جديدٍ فعليّ هي استمرارُ سطرٍ (line continuation): يُسقطه
+//   JS كلَّه (الـ"\" والسطرَ الجديد معاً) بلا أثرٍ، لا مسافةً ولا حرفاً — فتصير
+//   الفراغُ الوحيدُ بين الكلمتين هو ما كان موجوداً فعلاً في السلسلة قبل موضع
+//   الاستمرار (ملاحظة Codex الثالثة). يُفقَد عدُّ رقم السطر لهذا الموضع
+//   تحديداً (تقريرُ الخطأ يبقى تقريبيّاً هنا، لا أدقّ ممكن).
+// - "\n"/"\t"/"\r" (سطرٌ جديدٌ أو تبويبٌ مهرَّبان *حرفيّاً*، لا استمرارَ سطرٍ)
+//   تُصيَّران مسافةً — كما يراهما المتصفّحُ فعلاً — لا حرفاً حرفيّاً يُلصق
+//   كلمتين (ملاحظة Codex الأولى).
 // - "\uNNNN"، "\u{...}"، و"\xNN" (مراجعُ يونيكود/سداسيّةٌ) تُفكّ إلى المحرف
-//   الفعليّ الذي تمثّله، لا نصّها الحرفيّ (فـ"a" يصير "a"، لا "u0061"
-//   ملتصقةً بما حولها) — وإلّا أمكن تهريبُ الادّعاء بأكمله حرفاً حرفاً
-//   (ملاحظة Codex الثانية). مرجعٌ غيرُ صالحٍ (نقطةُ ترميزٍ خارج المدى) يبقى
-//   كما هو بلا فكٍّ بدل رمي استثناء.
+//   الفعليّ الذي تمثّله، لا نصّها الحرفيّ — وإلّا أمكن تهريبُ الادّعاء بأكمله
+//   حرفاً حرفاً (ملاحظة Codex الثانية). مرجعٌ غيرُ صالحٍ (نقطةُ ترميزٍ خارج
+//   المدى) يبقى كما هو بلا فكٍّ بدل رمي استثناء.
 // - "\""/"\'" تصيران محرفَ الاقتباس نفسَه (فيتطابق شكلا الاقتباس بين app.js
 //   غيرِ المهرَّب وui-de.js/ui-en.js المهرَّبين كمفاتيح قاموس).
 // - أيّ تهريبٍ آخر (\\، \/، ...) يُسقَط الـ"\" منه فقط ويبقى المحرفُ كما هو،
 //   وهو السلوكُ الآمن الافتراضيّ لأيّ تهريبٍ لا يغيّر المعنى البصريّ هنا.
 function unescapeJsStringEscapes(raw) {
   return raw.replace(
-    /\\(?:u\{([0-9a-fA-F]+)\}|u([0-9a-fA-F]{4})|x([0-9a-fA-F]{2})|(.))/g,
-    (whole, uBrace, uHex4, xHex2, other) => {
+    /\\(?:(\r?\n)|u\{([0-9a-fA-F]+)\}|u([0-9a-fA-F]{4})|x([0-9a-fA-F]{2})|(.))/g,
+    (whole, lineCont, uBrace, uHex4, xHex2, other) => {
+      if (lineCont !== undefined) return "";
       const hex = uBrace !== undefined ? uBrace : uHex4 !== undefined ? uHex4 : xHex2;
       if (hex !== undefined) {
         try {
@@ -42,6 +48,31 @@ function unescapeJsStringEscapes(raw) {
   );
 }
 
+// يفكّ مراجعَ محارف HTML (العدديّة، ومرجعٌ اسميٌّ شائعٌ)، أسوةً بـ
+// check-robots-and-indexing.js: نصٌّ منشورٌ مثل "appr&#111;ved" يراه
+// المتصفّحُ "approved" فعليّاً، لا النصَّ الحرفيَّ غيرَ المفكوك (ملاحظة
+// Codex). المرجعُ العدديّ لا يلزمه ";" بمعيار HTML5.
+const HTML_NAMED_ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
+function decodeHtmlEntities(text) {
+  // ";" اختياريّةٌ بعد الصيغتَين العدديّتين، ويجب أن يلتقطها النمطُ نفسُه حين
+  // تكون موجودةً — وإلّا بقيت معلَّقةً حرفيّاً في الناتج (كـ"appro;ved" بدل
+  // "approved").
+  return text.replace(/&(#x[0-9a-fA-F]+;?|#\d+;?|[a-zA-Z]+;)/g, (whole, ref) => {
+    if (ref[0] === "#") {
+      const digits = ref.replace(/;$/, "");
+      const codePoint = digits[1] === "x" || digits[1] === "X" ? parseInt(digits.slice(2), 16) : parseInt(digits.slice(1), 10);
+      if (Number.isNaN(codePoint)) return whole;
+      try {
+        return String.fromCodePoint(codePoint);
+      } catch {
+        return whole;
+      }
+    }
+    const name = ref.slice(0, -1);
+    return Object.prototype.hasOwnProperty.call(HTML_NAMED_ENTITIES, name) ? HTML_NAMED_ENTITIES[name] : whole;
+  });
+}
+
 // يطبّع الملفَّ كلَّه دفعةً واحدة (لا سطراً سطراً)، فتلتقط العبارةُ حتّى لو
 // قسمها التفافُ HTML بين سطرين، مع بقاء خريطةٍ لرقم السطر الأصليّ لكلّ حرفٍ
 // في الناتج، ليبقى تقرير الخطأ مفيداً.
@@ -50,7 +81,7 @@ function normalizeWithLineMap(raw) {
   const lineOfIndex = [];
   let line = 1;
   let inWhitespaceRun = false;
-  for (const ch of unescapeJsStringEscapes(raw)) {
+  for (const ch of decodeHtmlEntities(unescapeJsStringEscapes(raw))) {
     if (DIACRITIC.test(ch)) continue;
     if (/\s/.test(ch)) {
       if (!inWhitespaceRun) {

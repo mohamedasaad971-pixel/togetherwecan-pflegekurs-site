@@ -81,10 +81,24 @@ function parseTagAttrs(tag) {
 // Codex الثانية) — بخلاف المرجع الاسميّ الذي أبقيتُه هنا يلزم ";".
 const NAMED_ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
 function decodeEntities(value) {
-  return value.replace(/&(#x[0-9a-fA-F]+|#\d+|[a-zA-Z]+;)/g, (whole, ref) => {
+  // ";" اختياريّةٌ بعد الصيغتَين العدديّتين هنا أيضاً (السطرُ أعلاه)، ويجب
+  // أن يلتقطها النمطُ نفسُه حين تكون موجودةً — وإلّا بقيت معلَّقةً حرفيّاً في
+  // الناتج (كـ"noi;ndex" بدل "noindex")، وهو خطأٌ انزلق حين أُضيف اختيارُ
+  // ";" في جولةٍ سابقة (اكتُشف أثناء التحقّق من إصلاحٍ مشابهٍ في الملفّ
+  // الآخر، لا بملاحظةٍ من Codex على هذا الموضع تحديداً).
+  return value.replace(/&(#x[0-9a-fA-F]+;?|#\d+;?|[a-zA-Z]+;)/g, (whole, ref) => {
     if (ref[0] === "#") {
-      const codePoint = ref[1] === "x" || ref[1] === "X" ? parseInt(ref.slice(2), 16) : parseInt(ref.slice(1), 10);
-      return Number.isNaN(codePoint) ? whole : String.fromCodePoint(codePoint);
+      const digits = ref.replace(/;$/, "");
+      const codePoint = digits[1] === "x" || digits[1] === "X" ? parseInt(digits.slice(2), 16) : parseInt(digits.slice(1), 10);
+      if (Number.isNaN(codePoint)) return whole;
+      // نقطةُ ترميزٍ خارج المدى الصالح (> 0x10FFFF) ترمي String.fromCodePoint
+      // استثناءً بدل إرجاع محرف؛ المتصفّحُ يستبدلها بمحرف "�" ولا ينهار، فمن
+      // الأسلم هنا إبقاءُ النصّ الأصليّ كما هو بدل تعطيل السكربت (ملاحظة Codex).
+      try {
+        return String.fromCodePoint(codePoint);
+      } catch {
+        return whole;
+      }
     }
     const name = ref.slice(0, -1);
     return Object.prototype.hasOwnProperty.call(NAMED_ENTITIES, name) ? NAMED_ENTITIES[name] : whole;
