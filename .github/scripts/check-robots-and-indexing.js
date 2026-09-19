@@ -161,10 +161,16 @@ do {
 // قيمةٍ؛ ثمّ نأخذ نصَّ كلّ وسمٍ حقيقيٍّ من النصّ الأصليّ غير المطموس (بنفس
 // الإزاحات، إذ الطمسُ لا يغيّر طول النصّ) كي تبقى قيمُ سماته الحقيقيّةُ
 // (كـcontent="noindex") سليمةً لقراءتها لاحقاً.
+// المسافةُ بين "=" والاقتباس صحيحةٌ بمعيار HTML5 (كـ srcdoc = "...")، لا
+// اقتباسٌ يلي "=" مباشرةً فقط — إغفالُها كان يُبقي القيمةَ غيرَ مطموسةٍ
+// فتفشل هذه الحالةُ الفحصَ خطأً رغم كونها متعلّقةً بمستندٍ متداخلٍ منفصلٍ لا
+// بالصفحة الأصليّة (ملاحظة Codex). المسافةُ المُلتقَطةُ تُعاد كما هي في
+// الناتج (لا تُطمَس ولا تُسقَط)، فيبقى طولُ النصّ كما هو تماماً — شرطٌ
+// أساسيٌّ لصحّة الإزاحات المستخدَمة لاحقاً لاستخراج الوسم من النصّ الأصليّ.
 function maskAttributeValueContents(text) {
-  return text.replace(/="([^"]*)"|='([^']*)'/g, (whole, dq, sq) => {
-    const [quote, inner] = dq !== undefined ? ['"', dq] : ["'", sq];
-    return "=" + quote + inner.replace(/[^\n]/g, "_") + quote;
+  return text.replace(/=(\s*)"([^"]*)"|=(\s*)'([^']*)'/g, (whole, wsDq, dq, wsSq, sq) => {
+    const [ws, quote, inner] = dq !== undefined ? [wsDq, '"', dq] : [wsSq, "'", sq];
+    return "=" + ws + quote + inner.replace(/[^\n]/g, "_") + quote;
   });
 }
 const maskedForScan = maskAttributeValueContents(html);
