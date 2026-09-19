@@ -297,13 +297,13 @@
     var uebersetzbar = (zustand.sprache || "ar") !== "de";
     return '<div class="werkzeug">' +
       (uebersetzbar
-        ? ui('<label class="klein matt">ظهورها</label>') +
+        ? ui('<label class="klein matt" for="w-ar">ظهورها</label>') +
           '<select id="w-ar">' +
           ui('<option value="an">كاملة</option>') +
           ui('<option value="klick">عند الطلب</option>') +
           ui('<option value="aus">مخفيّة</option></select>')
         : "") +
-      (mitTempo ? ui('<label class="klein matt">سرعة الفيديو</label>') +
+      (mitTempo ? ui('<label class="klein matt" for="w-tempo">سرعة الفيديو</label>') +
         '<select id="w-tempo"><option>0.75</option><option>1</option>' +
         '<option>1.25</option><option>1.5</option><option>2</option></select>' : "") +
       "</div>";
@@ -2528,7 +2528,7 @@
 
   function werkzeugRichtung() {
     return '<div class="werkzeug">' +
-      ui('<label class="klein matt">وجهُ البطاقة</label>') +
+      ui('<label class="klein matt" for="k-richtung">وجهُ البطاقة</label>') +
       '<select id="k-richtung">' +
       ui('<option value="de">ألمانيّ ← عربيّ</option>') +
       ui('<option value="ar">عربيّ ← ألمانيّ</option></select></div>');
