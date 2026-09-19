@@ -95,7 +95,11 @@ function readAttr(tag, attrName) {
   return value === undefined ? null : decodeEntities(value);
 }
 
-const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+const htmlRaw = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+// يُسقَط تعليقُ HTML (<!-- ... -->) قبل البحث عن <meta>: وسمٌ داخل تعليقٍ
+// خامل لا ينفّذه المتصفّح، فمطابقتُه كأنّه توجيهٌ فعليٌّ تمنع فهرسة صفحةٍ
+// تبقى قابلةً للفهرسة فعلاً (ملاحظة Codex).
+const html = htmlRaw.replace(/<!--[\s\S]*?-->/g, "");
 // يلتقط الوسمَ كاملاً حتى لو وقعت ">" داخل قيمةٍ مقتبسةٍ (كـ data-note="a > b")،
 // بدل التوقّف عند أوّل ">" بصرف النظر عن الاقتباس.
 const metaTags = html.match(/<meta\b(?:"[^"]*"|'[^']*'|[^>])*>/gi) || [];

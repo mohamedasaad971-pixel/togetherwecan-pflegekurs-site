@@ -12,6 +12,21 @@ const SHIPPED_FILES = fs
 
 const DIACRITIC = /[ؐ-ًؚ-ٰٟۖ-ۭ]/;
 
+// يفكّ مهرَّبات سلاسل JS ذات الأثر على المطابقة قبل التطبيع: "\n"/"\t"/"\r"
+// (سطرٌ جديدٌ أو تبويبٌ مهرَّبان) تُصيَّران مسافةً — كما يراهما المتصفّحُ فعلاً
+// عند تنفيذ السلسلة — لا مجرّد إسقاط "\" الذي كان يُلصق الكلمتين معاً
+// (كـ"clinicallynapproved" بدل "clinically approved"، ملاحظة Codex).
+// و"\""/"\'" تصيران محرفَ الاقتباس نفسَه (فيتطابق شكلا الاقتباس بين app.js
+// غيرِ المهرَّب وui-de.js/ui-en.js المهرَّبين كمفاتيح قاموس). أيّ تهريبٍ آخر
+// (\\، \/، ...) يُسقَط الـ"\" منه فقط ويبقى المحرفُ كما هو، وهو السلوكُ
+// الآمن الافتراضيّ لأيّ تهريبٍ لا يغيّر المعنى البصريّ للمطابقة هنا.
+function unescapeJsStringEscapes(raw) {
+  return raw.replace(/\\(.)/g, (whole, c) => {
+    if (c === "n" || c === "t" || c === "r") return " ";
+    return c;
+  });
+}
+
 // يطبّع الملفَّ كلَّه دفعةً واحدة (لا سطراً سطراً)، فتلتقط العبارةُ حتّى لو
 // قسمها التفافُ HTML بين سطرين، مع بقاء خريطةٍ لرقم السطر الأصليّ لكلّ حرفٍ
 // في الناتج، ليبقى تقرير الخطأ مفيداً.
@@ -20,13 +35,8 @@ function normalizeWithLineMap(raw) {
   const lineOfIndex = [];
   let line = 1;
   let inWhitespaceRun = false;
-  for (const ch of raw) {
+  for (const ch of unescapeJsStringEscapes(raw)) {
     if (DIACRITIC.test(ch)) continue;
-    // يُسقَط "\" (تهريبُ الاقتباس داخل سلاسل JS، كـ \"...\" في ui-de.js/
-    // ui-en.js)، فتصير نفسَ نصّ الوسم غيرِ المهرَّب في app.js — وإلّا لَما
-    // طابق استثناءُ سياق الوسم أدناه (ALLOWED_EXACT_FRAGMENTS_BY_FILE) كلا
-    // الصيغتَين بنمطٍ واحد.
-    if (ch === "\\") continue;
     if (/\s/.test(ch)) {
       if (!inWhitespaceRun) {
         normalized += " ";
