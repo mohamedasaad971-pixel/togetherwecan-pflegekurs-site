@@ -76,15 +76,18 @@ function parseTagAttrs(tag) {
 }
 // يفكّ مراجع محارف HTML (العدديّة والاسميّة الشائعة) في قيمة السمة قبل
 // مقارنتها: المتصفّح والزاحفُ يريان "no&#105;ndex" هو "noindex" فعليّاً، لا
-// النصَّ الحرفيَّ غيرَ المفكوك (ملاحظة Codex).
+// النصَّ الحرفيَّ غيرَ المفكوك (ملاحظة Codex). والمرجعُ العدديّ لا يلزمه ";"
+// أصلاً بمعيار HTML5 — يُقبل حتى بلا فاصلةٍ منقوطة، كـ"&#105ndex" (ملاحظة
+// Codex الثانية) — بخلاف المرجع الاسميّ الذي أبقيتُه هنا يلزم ";".
 const NAMED_ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
 function decodeEntities(value) {
-  return value.replace(/&(#x[0-9a-fA-F]+|#\d+|[a-zA-Z]+);/g, (whole, ref) => {
+  return value.replace(/&(#x[0-9a-fA-F]+|#\d+|[a-zA-Z]+;)/g, (whole, ref) => {
     if (ref[0] === "#") {
       const codePoint = ref[1] === "x" || ref[1] === "X" ? parseInt(ref.slice(2), 16) : parseInt(ref.slice(1), 10);
       return Number.isNaN(codePoint) ? whole : String.fromCodePoint(codePoint);
     }
-    return Object.prototype.hasOwnProperty.call(NAMED_ENTITIES, ref) ? NAMED_ENTITIES[ref] : whole;
+    const name = ref.slice(0, -1);
+    return Object.prototype.hasOwnProperty.call(NAMED_ENTITIES, name) ? NAMED_ENTITIES[name] : whole;
   });
 }
 function readAttr(tag, attrName) {
@@ -98,10 +101,24 @@ const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
 const metaTags = html.match(/<meta\b(?:"[^"]*"|'[^']*'|[^>])*>/gi) || [];
 // "none" يكافئ "noindex, nofollow" عند محرّكات البحث، لا "noindex" وحدها.
 const BLOCKING_TOKENS = new Set(["noindex", "none"]);
+// name="robots" يخاطب كلَّ الزواحف، لكن اسماً خاصّاً بزاحفٍ بعينه (كـ
+// googlebot) يُطاع من محرّكه هو تحديداً حتى لو بقي name="robots" العامّ
+// مسموحاً — فإخفاءُ الموقع عن محرّكٍ واحدٍ فقط يفلت من هذا الفحص لولا هذه
+// القائمة (ملاحظة Codex). القائمةُ محدودةٌ عمداً بأسماء الزواحف الرئيسيّة
+// المعروفة، لا كلّ زاحفٍ متخيَّل.
+const ROBOTS_META_NAMES = new Set([
+  "robots",
+  "googlebot",
+  "bingbot",
+  "duckduckbot",
+  "slurp",
+  "baiduspider",
+  "yandex",
+]);
 const hasNoindexMeta = metaTags.some((tag) => {
   const name = readAttr(tag, "name");
   const content = readAttr(tag, "content");
-  if (!name || name.toLowerCase() !== "robots" || !content) return false;
+  if (!name || !ROBOTS_META_NAMES.has(name.toLowerCase()) || !content) return false;
   return content
     .toLowerCase()
     .split(/[,\s]+/)

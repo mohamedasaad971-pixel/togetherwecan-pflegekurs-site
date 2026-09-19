@@ -22,6 +22,11 @@ function normalizeWithLineMap(raw) {
   let inWhitespaceRun = false;
   for (const ch of raw) {
     if (DIACRITIC.test(ch)) continue;
+    // يُسقَط "\" (تهريبُ الاقتباس داخل سلاسل JS، كـ \"...\" في ui-de.js/
+    // ui-en.js)، فتصير نفسَ نصّ الوسم غيرِ المهرَّب في app.js — وإلّا لَما
+    // طابق استثناءُ سياق الوسم أدناه (ALLOWED_EXACT_FRAGMENTS_BY_FILE) كلا
+    // الصيغتَين بنمطٍ واحد.
+    if (ch === "\\") continue;
     if (/\s/.test(ch)) {
       if (!inWhitespaceRun) {
         normalized += " ";
@@ -57,24 +62,26 @@ const BANNED_PHRASES = [
 // المواضع الوحيدة المسموح فيها بعبارة الادّعاء: شارتا حالةٍ مشروطتان ببيانات
 // متطلَّبٍ بعينه في صفحة التغطية (#/abdeckung) — واحدةٌ لكلّ متطلَّب، وأخرى
 // لاكتمالها كلِّها معاً — لا ادّعاءٌ عامّ. خارج نطاق issue #4 بقرار صاحب
-// المستودع. الاستثناءُ مربوطٌ بالملفّ أيضاً لا بنصّ الشارة وحده: الملفّات
-// الثلاثة هي مواضعُ الشارتَين الفعليّة فقط (app.js يولّدهما، وui-de.js/
-// ui-en.js يحملانهما كمفتاحَي ترجمةٍ حرفيَّين) — فنشرُ نفس النصّ حرفيّاً في
-// أيّ ملفٍّ آخر (كـ index.html) يبقى مرفوضاً، لا مستثنًى تلقائيّاً بمجرّد
-// تطابق النصّ (ملاحظة Codex).
-const ALLOWED_EXACT_SEGMENTS_BY_FILE = {
-  "app.js": new Set(["معتمد سريريا ومنهجيا", "كل المتطلبات معتمدة سريريا ومنهجيا."]),
-  "ui-de.js": new Set(["معتمد سريريا ومنهجيا", "كل المتطلبات معتمدة سريريا ومنهجيا."]),
-  "ui-en.js": new Set(["معتمد سريريا ومنهجيا", "كل المتطلبات معتمدة سريريا ومنهجيا."]),
-};
+// المستودع. الاستثناءُ مربوطٌ بالملفّ *وبوسم الفتح المحيط معاً*، لا بنصّ
+// الشارة وحده: فمجرّد نشر النصّ نفسِه بوسمٍ آخر (كـ"<p>" بدل "<span>"، حتى
+// داخل app.js نفسِه) يبقى مرفوضاً — لا يكفي أن يكون الملفُّ صحيحاً، بل
+// السياقُ الحرفيُّ (الوسمُ الذي يلفّ الشارتين فعليّاً في الكود) أيضاً
+// (ملاحظة Codex بعد التضييق الأوّل بالملفّ وحده).
+const ALLOWED_EXACT_FRAGMENTS = new Set([
+  "<span>معتمد سريريا ومنهجيا",
+  '<span class="chip frei">معتمد سريريا ومنهجيا',
+  '<div class="band gut">كل المتطلبات معتمدة سريريا ومنهجيا.',
+]);
+const FRAGMENT_ALLOWED_FILES = new Set(["app.js", "ui-de.js", "ui-en.js"]);
 
 function isAllowedExactSegment(file, normalized, matchIndex) {
-  const allowed = ALLOWED_EXACT_SEGMENTS_BY_FILE[file];
-  if (!allowed) return false;
+  if (!FRAGMENT_ALLOWED_FILES.has(file)) return false;
   const before = normalized.lastIndexOf(">", matchIndex);
   const after = normalized.indexOf("<", matchIndex);
   if (before === -1 || after === -1) return false;
-  return allowed.has(normalized.slice(before + 1, after).trim());
+  const tagStart = normalized.lastIndexOf("<", before);
+  if (tagStart === -1) return false;
+  return ALLOWED_EXACT_FRAGMENTS.has(normalized.slice(tagStart, after).trim());
 }
 
 function findMatchIndices(normalized, phrase) {
