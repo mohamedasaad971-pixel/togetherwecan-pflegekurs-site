@@ -154,6 +154,28 @@ function decodeHtmlEntities(text) {
   });
 }
 
+// وسمُ HTML قد يكون سطريّاً بحتاً (لا فراغَ يُنتجه العرضُ حين يُحذَف، كـ
+// "<strong>"/"<em>"/"<span>"/"<a>") أو فاصلاً حقيقيّاً يُنتج سطراً أو فقرةً
+// جديدةً عند العرض (كـ"<br>"، أو أيّ وسمٍ من مستوى الكتلة block-level كـ
+// "<p>"/"<div>"/"<li>"). الأوّل يُسقَط بلا أثرٍ (فراغٍ): لا فراغَ منظوراً
+// يفصله عمّا حوله فعلاً. الثاني يُستبدَل بمسافةٍ واحدة بدل الفراغ التامّ:
+// "clinically<br>approved" يُعرَض على سطرَين منفصلَين فعليّاً — التصاقهما
+// حرفيّاً في "clinicallyapproved" بعد إسقاط الوسم يُفلت الادّعاءَ (أو
+// "api<br>key" البيانات الداخليّة) من الاكتشاف رغم انفصالهما البصريّ في
+// الصفحة المعروضة (ملاحظة Codex). القائمةُ ليست كلَّ وسمٍ من مستوى الكتلة
+// نظريّاً، بل الأشيَعُ فيما قد يظهر في نصٍّ يُحوَّل من Markdown كهذا.
+const GAP_TAG_NAMES = new Set([
+  "br", "p", "div", "li", "tr", "td", "th", "table", "thead", "tbody",
+  "ul", "ol", "h1", "h2", "h3", "h4", "h5", "h6", "section", "article",
+  "header", "footer", "blockquote", "hr", "dt", "dd", "pre",
+]);
+function stripInlineHtml(text) {
+  return text.replace(
+    /<\/?([a-zA-Z][a-zA-Z0-9]*)\b(?:"[^"]*"|'[^']*'|[^<>])*>/g,
+    (whole, tagName) => (GAP_TAG_NAMES.has(tagName.toLowerCase()) ? " " : "")
+  );
+}
+
 function normalize(rawInput) {
   const raw = decodeHtmlEntities(rawInput);
   // إزالة فواصل تنسيق Markdown (**تشديد**، `شفرة`، ~~شطب~~) قبل طيّ المسافات:
@@ -178,28 +200,19 @@ function normalize(rawInput) {
   while ((definitionMatch = REFERENCE_DEFINITION_RE.exec(withoutDiacritics))) {
     referenceLabels.add(foldReferenceLabel(definitionMatch[1]));
   }
-  return withoutDiacritics
+  const linksResolved = withoutDiacritics
     .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
     .replace(/\[([^\]]*)\]\[[^\]]*\]/g, "$1")
     .replace(/\[([^\]]*)\]/g, (whole, text) =>
       referenceLabels.has(foldReferenceLabel(text)) ? text : whole
     )
-    .replace(/[*_~`]/g, "")
-    // إسقاطُ وسم HTML مضمّنٍ (واحدٍ أو أكثر، واعٍ بالاقتباس فلا يتوقّف عند
-    // ">" داخل قيمة سمةٍ مقتبسةٍ، أسوةً بمطابقة meta في
-    // check-robots-and-indexing.js) إلى فراغٍ لا مسافة، لا فقط ضمن أنماط
-    // CLAIM_PATTERNS: وسمٌ كـ"<strong>" بين "api" و"key" يُفلت BANNED_
-    // SUBSTRINGS أيضاً (مطابَقةٌ بـ.includes() الحرفيّة لا نمطاً)، فوضعُ
-    // الإسقاط هنا يشمل كلَّ فحصٍ لاحقٍ معاً بدل تكرار التحمّل في كلّ نمطٍ.
-    // فراغٌ لا مسافةٌ تحديداً: الوسمُ نفسُه عديمُ العرض (zero-width) في
-    // الصفحة المعروضة، فاستبدالُه بمسافةٍ كان يُدخل مسافةً زائفةً حين يقطع
-    // الوسمُ كلمةً واحدةً من الداخل (كـ"api<strong>key</strong>" ← "api
-    // key" بدل "apikey" الصحيحة، أو الأخطر: "clini<strong>cally</strong>"
-    // ← "clini cally" لا "clinically" فتُفلت من المطابقة الحرفيّة تماماً —
-    // نفس الثغرة وُجدت في check-no-approval-claims.js على PR الشقيق،
-    // ملاحظة Codex هناك). المسافةُ الحقيقيّةُ الوحيدةُ التي يجب أن تبقى هي
-    // ما كانت مسافةً فعليّةً في المصدر أصلاً، لا حدودَ الوسم.
-    .replace(/<(?:"[^"]*"|'[^']*'|[^<>])*>/g, "")
+    .replace(/[*_~`]/g, "");
+  // إسقاطُ وسم HTML مضمّنٍ، لا فقط ضمن أنماط CLAIM_PATTERNS: وسمٌ كـ
+  // "<strong>" بين "api" و"key" يُفلت BANNED_SUBSTRINGS أيضاً (مطابَقةٌ
+  // بـ.includes() الحرفيّة لا نمطاً)، فوضعُ الإسقاط هنا يشمل كلَّ فحصٍ لاحقٍ
+  // معاً بدل تكرار التحمّل في كلّ نمطٍ. stripInlineHtml() (أعلاه) تُفرّق بين
+  // وسمٍ سطريٍّ بحتٍ (يُسقَط بلا أثرٍ) ووسمٍ فاصلٍ حقيقيٍّ (يُستبدَل بمسافة).
+  return stripInlineHtml(linksResolved)
     .replace(/\s+/g, " ")
     .toLowerCase();
 }
@@ -213,17 +226,17 @@ test("STATUS.md exists and is not empty", () => {
 test("STATUS.md leaks no internal details or approval claims", () => {
   const raw = fs.readFileSync(STATUS_PATH, "utf8");
   const normalized = normalize(raw);
-  // فحوصُ البيانات الشخصيّة/المعرّفات تعمل على النصّ بعد فكّ مراجع HTML
-  // وإسقاط فواصل تشديد Markdown («*»/«_»/«~»/«`») فقط — لا التطبيع الكامل
-  // بقلب الوسوم فراغاً وحذف التشكيل وطيّ الحالة: رقمُ هاتفٍ بفواصل مُرمَّزةٍ
-  // كـ"+49&ensp;151&ensp;..." أو بمجموعةِ أرقامٍ مُشدَّدةٍ كـ"+49 **151**
-  // ..." يُعرَض رقماً عاديّاً فعليّاً، لكنّ PHONE_RE على النصّ الخامّ غيرِ
-  // المعالَج لا يرى إلا المرجعَ الحرفيَّ أو فواصلَ التشديد بين الأرقام
-  // (ملاحظة Codex، جولتان). لا نستخدم normalize() الكاملةَ هنا عمداً: قلبُ
-  // الوسوم فراغاً قد يُلصق نصّاً سداسيَّ عشريَّاً غيرَ مرتبطٍ عبر حدّ وسمٍ
-  // (كـ"...abc123<span>def456</span>...") فيُنشئ معرّفاً سداسيَّ عشريَّاً
-  // زائفاً لم يكن موجوداً في المصدر أصلاً.
-  const decoded = decodeHtmlEntities(raw).replace(/[*_~`]/g, "");
+  // فحوصُ البيانات الشخصيّة/المعرّفات تعمل على النصّ بعد فكّ مراجع HTML،
+  // وإسقاط فواصل تشديد Markdown، وإسقاط وسم HTML مضمّنٍ (بنفس تفريق
+  // stripInlineHtml() بين السطريّ والفاصل): رقمُ هاتفٍ بفواصل مُرمَّزةٍ كـ
+  // "+49&ensp;151&ensp;..."، أو مُشدَّدةٍ كـ"+49 **151** ..."، أو داخل وسمٍ
+  // سطريٍّ كـ"+49 <strong>151</strong> ..." — كلُّها تُعرَض رقماً عاديّاً
+  // فعليّاً، لكنّ PHONE_RE على نصٍّ غيرِ معالَجٍ لا يرى إلا الفاصلَ الحرفيَّ
+  // بين الأرقام (ملاحظة Codex، ثلاث جولات). هذا لا يزال أخفَّ من
+  // normalize() الكاملة (لا حذف تشكيلٍ ولا طيّ حالةٍ)، لكنّه يشارك معها
+  // الآن إسقاطَ الوسم بنفس المنطق (وسمٌ فاصلٌ حقيقيٌّ كـ<br> يُستبدَل
+  // بمسافة، لا فراغاً، فلا يُلصق مجموعتَي أرقامٍ منفصلتَين بصريّاً).
+  const decoded = stripInlineHtml(decodeHtmlEntities(raw).replace(/[*_~`]/g, ""));
 
   assert.equal(EMAIL_RE.test(decoded), false, "STATUS.md must not contain an email address");
   assert.equal(PHONE_RE.test(decoded), false, "STATUS.md must not contain a phone number");
