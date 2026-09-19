@@ -1,22 +1,47 @@
 name: CI
 
 on:
-  pull_request:
-    branches: [main]
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
 
 permissions:
   contents: read
 
 jobs:
-  test:
+  checks:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Check JavaScript syntax
-        run: find . -maxdepth 1 -name '*.js' -print0 | xargs -0 -n1 node --check
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Syntax-check every root JS file
+        run: |
+          set -e
+          for f in *.js; do
+            echo "node --check $f"
+            node --check "$f"
+          done
+
       - name: Run tests
-        run: node --test tests/*.test.js
+        run: |
+          set -e
+          if compgen -G "tests/*.test.js" > /dev/null; then
+            node --test tests/*.test.js
+          else
+            echo "no tests/*.test.js yet — skipping"
+          fi
+
+      - name: Media paths exist and are listed in PAKET.json
+        run: node .github/scripts/check-media-paths.js
+
+      - name: No clinical/medical approval claims in shipped text
+        run: node .github/scripts/check-no-approval-claims.js
+
+      - name: robots.txt / noindex unchanged
+        run: node .github/scripts/check-robots-and-indexing.js
