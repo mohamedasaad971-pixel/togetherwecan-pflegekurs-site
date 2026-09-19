@@ -95,7 +95,14 @@ function unescapeJsStringEscapes(raw) {
 const referenced = new Set();
 for (const file of SOURCE_FILES) {
   const raw = fs.readFileSync(path.join(ROOT, file), "utf8");
-  const text = unescapeJsStringEscapes(raw);
+  // فكُّ تهريبات سلاسل JS معنيٌّ بملفّات .js حصراً: "\" ليست محرفَ تهريبٍ في
+  // نصّ HTML أصلاً (لا في قيمة سمةٍ ولا في نصٍّ عاديّ)، فقيمةُ سمةٍ حرفيّةٌ
+  // مثل src="medien/amina-00.mp3" في ملفّ .html تطلب هذا المسارَ
+  // الحرفيَّ بعينه (بالشرطة المائلة العكسيّة وحروف a كما هي)، لا
+  // "medien/amina-00.mp3" — ولو صادف أنّ فكَّها هنا ينتج مساراً موجوداً
+  // فعلاً على القرص، فذلك يُخفي مساراً حقيقيّاً مكسوراً عن هذا الفحص
+  // (ملاحظة Codex). تطبيقُ الفكّ على .html كما على .js كان يفوّت هذه الحالة.
+  const text = file.endsWith(".js") ? unescapeJsStringEscapes(raw) : raw;
   const matches = text.match(MEDIA_REF) || [];
   for (const m of matches) referenced.add(decodePercentEscapes(stripTrailingSentencePunct(m)));
 }
