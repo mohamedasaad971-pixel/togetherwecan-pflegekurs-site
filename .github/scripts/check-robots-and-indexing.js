@@ -16,12 +16,24 @@ if (/^Disallow:\s*\/\s*$/m.test(robots)) {
   errors.push('robots.txt صار يحتوي "Disallow: /" — يمنع فهرسة الموقع كلّه.');
 }
 
+// يقرأ قيمةَ سمةٍ من وسمٍ سواءٌ اقتُبست بـ" أو ' أو بلا اقتباسٍ أصلاً
+// (الثلاثةُ HTML صحيحةٌ وتعمل في المتصفّح).
+function readAttr(tag, attrName) {
+  var re = new RegExp(attrName + '\\s*=\\s*(?:"([^"]*)"|\'([^\']*)\'|(\\S+))', "i");
+  var m = tag.match(re);
+  if (!m) return null;
+  return m[1] !== undefined ? m[1] : m[2] !== undefined ? m[2] : m[3].replace(/[>/]+$/, "");
+}
+
 const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
 const metaTags = html.match(/<meta\b[^>]*>/gi) || [];
 const hasNoindexMeta = metaTags.some((tag) => {
-  const isRobotsTag = /name\s*=\s*["']robots["']/i.test(tag);
-  const hasNoindex = /content\s*=\s*["'][^"']*\bnoindex\b[^"']*["']/i.test(tag);
-  return isRobotsTag && hasNoindex;
+  const name = readAttr(tag, "name");
+  const content = readAttr(tag, "content");
+  return (
+    name && name.toLowerCase() === "robots" &&
+    content && content.toLowerCase().split(/[,\s]+/).includes("noindex")
+  );
 });
 if (hasNoindexMeta) {
   errors.push("index.html صار يحمل meta robots noindex — سيُخفى الموقعُ عن محرّكات البحث.");
