@@ -52,19 +52,50 @@ function stripTrailingSentencePunct(ref) {
 const paket = JSON.parse(fs.readFileSync(path.join(ROOT, "PAKET.json"), "utf8"));
 const listed = new Set(paket.dateien || []);
 
-// جافاسكربت يسمح بكتابة "/" داخل نصٍّ حرفيٍّ مهروبةً ("medien\/x.mp3")، وهي
-// تُقيَّم إلى "medien/x.mp3" وقت التشغيل، لكنّ المصدر الخامّ يحمل شرطةً
-// مائلةً عكسيّةً قبل كلّ "/" كهذه، فلا يطابقها هذا النمط أصلاً (فيمرّ
-// المسارُ بلا تحقّقٍ صامتاً بدل أن يُبلَّغ مفقوداً — ملاحظة Codex). نفكّ هذا
-// الهروب في نسخةٍ من النصّ خاصّةٍ بالمطابقة فقط، قبل البحث عن المسارات.
-function unescapeForwardSlashes(text) {
-  return text.replace(/\\\//g, "/");
+// جافاسكربت يسمح بتهريب أيّ محرفٍ في نصٍّ حرفيٍّ ("medien\/x.mp3"، أو
+// "medien/missing.mp3" بمرجع يونيكود)، فيُقيَّم كلاهما إلى مسارٍ حقيقيٍّ
+// وقت التشغيل رغم أنّ المصدر الخامّ لا يطابق نمط المسار أصلاً (يفوته حرفٌ
+// مهرَّبٌ واحدٌ فيمرّ المسارُ بلا تحقّقٍ صامتاً بدل أن يُبلَّغ مفقوداً —
+// ملاحظة Codex، جولتان: "\/" أوّلاً، ثمّ أيُّ تهريبٍ آخر كمرجع يونيكود).
+// نفكّ كلَّ تهريبات سلاسل JS ذات الأثر (نفسُ unescapeJsStringEscapes في
+// check-no-approval-claims.js) في نسخةٍ من النصّ خاصّةٍ بالمطابقة فقط، قبل
+// البحث عن المسارات.
+const LINE_SEPARATOR = String.fromCharCode(0x2028);
+const PARAGRAPH_SEPARATOR = String.fromCharCode(0x2029);
+const JS_ESCAPE_RE = new RegExp(
+  "\\\\(?:(\\r\\n|[\\r\\n" + LINE_SEPARATOR + PARAGRAPH_SEPARATOR + "])|u\\{([0-9a-fA-F]+)\\}|u([0-9a-fA-F]{4})|x([0-9a-fA-F]{2})|([0-3][0-7]{0,2}|[4-7][0-7]?)|(.))",
+  "g"
+);
+function unescapeJsStringEscapes(raw) {
+  return raw.replace(
+    JS_ESCAPE_RE,
+    (whole, lineCont, uBrace, uHex4, xHex2, octal, other) => {
+      if (lineCont !== undefined) return "";
+      const hex = uBrace !== undefined ? uBrace : uHex4 !== undefined ? uHex4 : xHex2;
+      if (hex !== undefined) {
+        try {
+          return String.fromCodePoint(parseInt(hex, 16));
+        } catch {
+          return whole;
+        }
+      }
+      if (octal !== undefined) {
+        try {
+          return String.fromCodePoint(parseInt(octal, 8));
+        } catch {
+          return whole;
+        }
+      }
+      if (other === "n" || other === "t" || other === "r" || other === "f" || other === "v") return " ";
+      return other;
+    }
+  );
 }
 
 const referenced = new Set();
 for (const file of SOURCE_FILES) {
   const raw = fs.readFileSync(path.join(ROOT, file), "utf8");
-  const text = unescapeForwardSlashes(raw);
+  const text = unescapeJsStringEscapes(raw);
   const matches = text.match(MEDIA_REF) || [];
   for (const m of matches) referenced.add(decodePercentEscapes(stripTrailingSentencePunct(m)));
 }

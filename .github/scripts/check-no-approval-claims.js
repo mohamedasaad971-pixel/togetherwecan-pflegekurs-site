@@ -141,28 +141,43 @@ function normalizeWithLineMap(raw) {
 // المعروفتَين في صفحة التغطية، راجع ALLOWED_EXACT_SEGMENTS)، لا حين ترد داخل
 // جملةٍ أعمّ مثل "المحتوى معتمد سريريّاً ومنهجيّاً" — استثناءٌ نمطيٌّ سابقٌ
 // كهذا كان يسمح بأيّ جملةٍ من هذا الشكل (ملاحظة Codex على #6).
-// وسمُ HTML ضمنيٌّ (كـ"<strong>") بين كلمتَي الادّعاء لا يغيّر ما يراه
-// المستخدم فعليّاً ("clinically <strong>approved</strong>" تُعرَض
-// "clinically approved" متّصلةً)، لكنّ حروفَه الحرفيّةَ تبقى بين الكلمتين في
-// النصّ المطبَّع فتمنع مطابقةَ \s+/[\s-]+ رغم ظهور الادّعاء فعليّاً للمستخدم
-// (ملاحظة Codex). الفاصلُ بين كلمتَي كلّ عبارةٍ أدناه يقبل الآن وسماً واحداً
-// أو أكثر بالتبادل مع المسافة/الشرطة، فلا يُفلت وسمٌ بينهما الادّعاءَ من
-// الاكتشاف. TAG_GAP لا تتوقّف عند أوّل ">" فقط: قيمةُ سمةٍ مقتبسةٌ داخل
-// الوسم قد تحمل ">" حرفيّةً (كـ<strong title="a > b">)، فتقطع الوسمَ قبل
-// إغلاقه الفعليّ وتُفلت الادّعاءَ من جديد (ملاحظة Codex الثانية) — نفس
-// الأسلوب المستخدَم لالتقاط <meta> في check-robots-and-indexing.js.
+// وسمُ HTML ضمنيٌّ (كـ"<strong>") لا يغيّر ما يراه المستخدم فعليّاً — لا بين
+// كلمتَي الادّعاء فقط ("clinically <strong>approved</strong>")، بل داخل
+// كلمةٍ واحدةٍ أيضاً ("clini<strong>cally</strong> approved" تُعرَض
+// "clinically approved" متّصلةً، ملاحظة Codex الثانية: تحمّلُ الوسم بين
+// الكلمتَين الكاملتَين وحده لم يكفِ) — لأنّ الوسمَ نفسَه عديمُ العرض
+// (zero-width) في الصفحة المعروضة، والفراغُ الوحيدُ الفعليُّ هو ما كان
+// مسافةً حقيقيّةً في المصدر أصلاً. tagTolerant() تُدرج TAG_GAP اختياريّاً
+// بين كلّ حرفَين من حروف الكلمة الحرفيّة (لا فقط بين الكلمتَين)، فوسمٌ
+// يقطع الكلمةَ من الداخل لا يُفلتها من المطابقة، بلا التأثير في المطابقة
+// حين لا وسمَ هناك أصلاً (كلُّ مجموعةٍ اختياريّةٌ، فتُطابِق صفرَ محارفَ).
+// TAG_GAP نفسُها لا تتوقّف عند أوّل ">" فقط: قيمةُ سمةٍ مقتبسةٌ داخل الوسم
+// قد تحمل ">" حرفيّةً (كـ<strong title="a > b">)، فتقطع الوسمَ قبل إغلاقه
+// الفعليّ وتُفلت الادّعاءَ من جديد (ملاحظة Codex) — نفس الأسلوب المستخدَم
+// لالتقاط <meta> في check-robots-and-indexing.js.
 const TAG_GAP = "<(?:\"[^\"]*\"|'[^']*'|[^<>])*>";
-const COMBINED_CLAIM = /(?:ا|م)عتمد[ة]?(?:\s|<(?:"[^"]*"|'[^']*'|[^<>])*>)+سريريا/;
+function escapeRegExpChar(ch) {
+  return ch.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+function tagTolerant(literal) {
+  return [...literal].map(escapeRegExpChar).join(`(?:${TAG_GAP})?`);
+}
+const ARABIC_ROOT = tagTolerant("عتمد");
+const COMBINED_CLAIM = new RegExp(
+  `(?:ا|م)(?:${TAG_GAP})?${ARABIC_ROOT}(?:${TAG_GAP})?[ة]?(?:\\s|${TAG_GAP})+${tagTolerant("سريريا")}`
+);
 // الإنجليزيّة/الألمانيّة بفاصلٍ [\s-]+ لا مسافةٍ حرفيّةٍ وحدها: الصيغةُ
 // الموصولة بشرطةٍ ("clinically-approved") ادّعاءٌ بنفس المعنى، ولم تكن
 // السلاسلُ الحرفيّةُ السابقةُ (مطابَقةٌ بـindexOf) تكتشفها (ملاحظة Codex).
 const BANNED_PHRASES = [
   COMBINED_CLAIM,
-  /معتمد[ة]?(?:\s|<(?:"[^"]*"|'[^']*'|[^<>])*>)+طبيا/,
-  new RegExp(`clinically(?:[\\s-]|${TAG_GAP})+approved`),
-  new RegExp(`klinisch(?:[\\s-]|${TAG_GAP})+freigegeben`),
-  new RegExp(`medically(?:[\\s-]|${TAG_GAP})+approved`),
-  new RegExp(`medizinisch(?:[\\s-]|${TAG_GAP})+freigegeben`),
+  new RegExp(
+    `(?:ا|م)(?:${TAG_GAP})?${ARABIC_ROOT}(?:${TAG_GAP})?[ة]?(?:\\s|${TAG_GAP})+${tagTolerant("طبيا")}`
+  ),
+  new RegExp(`${tagTolerant("clinically")}(?:[\\s-]|${TAG_GAP})+${tagTolerant("approved")}`),
+  new RegExp(`${tagTolerant("klinisch")}(?:[\\s-]|${TAG_GAP})+${tagTolerant("freigegeben")}`),
+  new RegExp(`${tagTolerant("medically")}(?:[\\s-]|${TAG_GAP})+${tagTolerant("approved")}`),
+  new RegExp(`${tagTolerant("medizinisch")}(?:[\\s-]|${TAG_GAP})+${tagTolerant("freigegeben")}`),
 ];
 
 // المواضع الوحيدة المسموح فيها بعبارة الادّعاء: شارتا حالةٍ مشروطتان ببيانات
