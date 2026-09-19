@@ -41,18 +41,32 @@ function normalizeWithLineMap(raw) {
   return { normalized, lineOfIndex };
 }
 
-// عباراتٌ ادّعاءُ اعتمادٍ سريريّ/طبّيّ عامّ، لا تسمياتُ حالةٍ مشروطةٌ ببيانات
-// عنصرٍ بعينه (راجع issue #4): شارةُ "معتمد سريريّاً ومنهجيّاً" في صفحة
-// التغطية مستثناةٌ عمداً بالنمط السلبيّ (?!\s*ومنهجيا) أدناه، لأنّ "ومنهجيّاً"
-// بعدها يجعلها تسميةَ حالةٍ مزدوجةَ الشرط لا ادّعاءً عامّاً.
+// عبارةُ الادّعاء السريريّ الجذريّة، بلا استثناءٍ نمطيّ: تُستثنى فقط حين
+// تكون هي وحدَها محتوى عقدة نصٍّ كاملةٍ بين وسمَي HTML (تساوي تماماً إحدى
+// الشارتين المعروفتَين في صفحة التغطية، راجع ALLOWED_EXACT_SEGMENTS)، لا
+// حين ترد داخل جملةٍ أعمّ مثل "المحتوى معتمد سريريّاً ومنهجيّاً" — استثناءٌ
+// نمطيٌّ سابقٌ كهذا كان يسمح بأيّ جملةٍ من هذا الشكل (ملاحظة Codex على #5).
+const COMBINED_CLAIM = /(?:ا|م)عتمد سريريا/;
 const BANNED_PHRASES = [
-  /(?:ا|م)عتمد سريريا(?!\s*ومنهجيا)/,
+  COMBINED_CLAIM,
   /معتمد طبيا/,
   "clinically approved",
   "klinisch freigegeben",
   "medically approved",
   "medizinisch freigegeben",
 ];
+
+// المواضع الوحيدة المسموح فيها بعبارة الادّعاء: شارةُ حالةٍ مشروطةٌ ببيانات
+// متطلَّبٍ بعينه في صفحة التغطية (#/abdeckung)، لا ادّعاءٌ عامّ. خارج نطاق
+// issue #4 بقرار صاحب المستودع.
+const ALLOWED_EXACT_SEGMENTS = new Set(["معتمد سريريا ومنهجيا"]);
+
+function isAllowedExactSegment(normalized, matchIndex) {
+  const before = normalized.lastIndexOf(">", matchIndex);
+  const after = normalized.indexOf("<", matchIndex);
+  if (before === -1 || after === -1) return false;
+  return ALLOWED_EXACT_SEGMENTS.has(normalized.slice(before + 1, after).trim());
+}
 
 function findMatchIndices(normalized, phrase) {
   const indices = [];
@@ -81,6 +95,7 @@ test("no shipped file claims general clinical/medical approval", () => {
     const { normalized, lineOfIndex } = normalizeWithLineMap(raw);
     for (const phrase of BANNED_PHRASES) {
       for (const idx of findMatchIndices(normalized, phrase)) {
+        if (phrase === COMBINED_CLAIM && isAllowedExactSegment(normalized, idx)) continue;
         offenders.push(`${file}:${lineOfIndex[idx]} contains banned phrase "${phrase}"`);
       }
     }
