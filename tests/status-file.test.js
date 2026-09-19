@@ -26,7 +26,7 @@ const DIACRITIC = /[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]/g;
 // بعد حذف التشكيل وطيّ المسافات (بما فيها فواصل الأسطر) إلى مسافةٍ واحدة.
 const CLAIM_PATTERNS = [
   /(?:ا|م)عتمد[ة]?\s+سريريا/,
-  /معتمد[ة]?\s+طبيا/,
+  /(?:ا|م)عتمد[ة]?\s+طبيا/,
   "clinically approved",
   "medically approved",
   "klinisch freigegeben",
