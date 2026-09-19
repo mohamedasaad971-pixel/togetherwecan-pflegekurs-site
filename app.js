@@ -327,6 +327,7 @@
       a.value = zustand.ar;
       a.onchange = function () {
         zustand.ar = a.value; document.body.setAttribute("data-ar", a.value); sichern();
+        arSchaltStatus();
       };
     }
     var t = document.getElementById("w-tempo");
@@ -337,10 +338,59 @@
         var v = document.querySelector("video"); if (v) v.playbackRate = zustand.tempo;
       };
     }
-    document.body.addEventListener("click", function (ev) {
-      var s = ev.target.closest ? ev.target.closest(".ar-schalt") : null;
-      if (s && document.body.getAttribute("data-ar") === "klick") s.classList.toggle("offen");
+    arSchaltBinden();
+  }
+
+  /* Die Uebersetzung wird per Event-Delegation bedient, weil der
+     Seiteninhalt bei jedem Routenwechsel neu gezeichnet wird. Der Listener
+     darf deshalb nur einmal am body haengen; sonst schalten zwei Listener
+     die Klasse sofort wieder zurueck. */
+  function arSchaltStatus() {
+    var aktiv = document.body.getAttribute("data-ar") === "klick" &&
+      (zustand.sprache || "ar") !== "de";
+    var labels = {
+      ar: ["إظهار الترجمة", "إخفاء الترجمة"],
+      de: ["Übersetzung anzeigen", "Übersetzung ausblenden"],
+      en: ["Show translation", "Hide translation"]
+    };
+    Array.prototype.forEach.call(document.querySelectorAll(".ar-schalt"), function (s) {
+      if (!aktiv) {
+        s.removeAttribute("role");
+        s.removeAttribute("tabindex");
+        s.removeAttribute("aria-expanded");
+        s.removeAttribute("aria-label");
+        return;
+      }
+      s.setAttribute("role", "button");
+      s.setAttribute("tabindex", "0");
+      var offen = s.classList.contains("offen");
+      var texte = labels[zustand.sprache || "ar"] || labels.ar;
+      s.setAttribute("aria-expanded", offen ? "true" : "false");
+      s.setAttribute("aria-label", texte[offen ? 1 : 0]);
     });
+  }
+
+  function arSchaltUmschalten(s) {
+    if (!s || document.body.getAttribute("data-ar") !== "klick") return;
+    s.classList.toggle("offen");
+    arSchaltStatus();
+  }
+
+  function arSchaltBinden() {
+    if (document.body.getAttribute("data-ar-schalt-gebunden") !== "ja") {
+      document.body.setAttribute("data-ar-schalt-gebunden", "ja");
+      document.body.addEventListener("click", function (ev) {
+        var s = ev.target.closest ? ev.target.closest(".ar-schalt") : null;
+        arSchaltUmschalten(s);
+      });
+      document.body.addEventListener("keydown", function (ev) {
+        var s = ev.target.closest ? ev.target.closest(".ar-schalt") : null;
+        if (!s || (ev.key !== "Enter" && ev.key !== " ")) return;
+        ev.preventDefault();
+        arSchaltUmschalten(s);
+      });
+    }
+    arSchaltStatus();
   }
 
   /* ————— الصفحة الأولى ————— */
