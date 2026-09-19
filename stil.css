@@ -368,7 +368,7 @@ body[data-en="fehlt"] main .fehlt{display:none}
 
 /* المراجعة: ما يعود ولماذا */
 .wh-liste{margin:6px 0 0;padding-inline-start:0;list-style:none}
-.wh-liste li{margin:9px 0;padding:8px 10px;border:1px solid var(--rand);border-radius:6px}
+.wh-liste li{margin:9px 0;padding:8px 10px;border:1px solid var(--linie);border-radius:6px}
 .wh-kopf{display:flex;gap:7px;align-items:flex-start;flex-wrap:wrap}
 .wh-liste .werkzeug{margin:6px 0 0;gap:6px;flex-wrap:wrap}
 .wh-liste button{font-size:.9em;padding:3px 9px}
@@ -388,7 +388,7 @@ body[data-en="fehlt"] main .fehlt{display:none}
 .uebung .werkzeug{gap:6px;flex-wrap:wrap;margin:6px 0 0}
 .uebung button{font-size:.9em;padding:3px 9px}
 .o-liste{margin:6px 0 0;padding-inline-start:0;list-style:none;counter-reset:o}
-.o-liste li{margin:4px 0;padding:5px 8px;border:1px solid var(--rand);border-radius:5px;
+.o-liste li{margin:4px 0;padding:5px 8px;border:1px solid var(--linie);border-radius:5px;
   background:#fff;counter-increment:o}
 .o-liste li.gut{border-color:#8ec9a8;background:#f3fbf6}
 .o-liste li.schlecht{border-color:#e2b3a8;background:#fdf5f3}
@@ -401,7 +401,7 @@ body[data-en="fehlt"] main .fehlt{display:none}
 .l-liste li{margin:7px 0}
 .l-liste li.gut .l-richtig{color:#1f7a4d;font-weight:600}
 .l-liste li.schlecht .l-richtig{color:#a4402c;font-weight:600}
-.l-ein{font-size:.95em;padding:1px 5px;margin:0 3px;border:1px solid var(--rand);
+.l-ein{font-size:.95em;padding:1px 5px;margin:0 3px;border:1px solid var(--linie);
   border-radius:4px}
 .l-optionen{display:inline-flex;gap:4px;flex-wrap:wrap}
 /* `display` يهزم سمةَ `hidden`: بلا هذا السطر ظهرت الخياراتُ كلُّها من
