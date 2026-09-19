@@ -2704,7 +2704,10 @@
     rahmenSprache();
     document.body.setAttribute("data-sprache", zustand.sprache || "ar");
     var pfad = (location.hash || "#/").slice(1);
-    if (pfad.indexOf("a-") === 0) return;
+    /* مراسيُ الدرس تبقى داخل الصفحة الحالية. لو مرّت `#quiz` عبر موجّه
+       الصفحات عوملت كمسارٍ مجهول، فاستُبدل الدرس برسالة 404 بدل الانتقال
+       إلى اختبار الوحدة. */
+    if (pfad === "quiz" || pfad.indexOf("a-") === 0) return;
     navMarkieren();
     if (pfad === "" || pfad === "/") return zeichnen(start());
     if (pfad === "/abdeckung") return zeichnen(abdeckung());
