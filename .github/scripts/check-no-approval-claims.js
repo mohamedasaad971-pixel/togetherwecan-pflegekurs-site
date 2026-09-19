@@ -12,6 +12,148 @@ const SHIPPED_FILES = fs
 
 const DIACRITIC = /[ؐ-ًؚ-ٰٟۖ-ۭ]/;
 
+// يستخرج محتوى السلاسل الحرفيّة والتعليقات فقط من كودٍ جافاسكربتيٍّ خامّ،
+// ويُسقط كودَ البرنامج الفعليَّ بينها (يُبقي فواصلَ أسطره فقط لتبقى أرقامُ
+// الأسطر في تقارير الأخطاء مطابقةً للملفّ الأصليّ). عبارةُ ادّعاءٍ متعدّدةُ
+// الكلمات لا يمكن أن تختبئ إلا داخل سلسلةٍ حرفيّةٍ أو تعليق — لا داخل
+// معرّفاتٍ أو عوامل مقارنةٍ كـ"<"/">" — فإسقاطُ الكود الخامّ بينها لا يفوّت
+// أيّ ادّعاءٍ ممكن، ويزيل جذرَ مشكلةٍ لا حلَّ نمطيّاً موثوقاً لها: التمييزُ
+// بين "<" عاملَ مقارنةٍ و"<" بدايةَ وسم HTML بأيّ حدٍّ نمطيٍّ (حرفٌ يلي "<"
+// أم لا) يفشل حتماً أمام كودٍ مضغوطٍ بلا مسافات (كـ"i<n" أو "a<b)" — حرفٌ
+// واحدٌ متغيّرٌ شائعٌ يقع مباشرةً بعد "<"، فيُعامَل وسماً هائلاً يمتدّ حتى
+// أوّل ">" تالية ويُسقط كلَّ ما بينهما — بما فيه ادّعاءٌ حقيقيٌّ في سلسلةٍ
+// حرفيّةٍ بين عاملَي المقارنة (ملاحظة Codex، جولتان: أوّلاً بمسافاتٍ حول
+// العامل، ثمّ بكودٍ مضغوطٍ بلا مسافات — تضييقُ نمط TAG_GAP وحده لا يكفي
+// أبداً لحسم هذا اللَبس، إذ حروفٌ قصيرةٌ كـ"b" أسماءُ وسومٍ حقيقيّةٌ أيضاً
+// (Bold) فلا يفيد حتى تقييدُها بقائمة أسماء وسومٍ معروفة).
+// يجب تمييزُ "/" حرفيّةً نمطيّةً (regex literal، كـ`/"/ `) عن "/" عاملَ
+// قسمةٍ: محاولةٌ أولى أهملت هذا الفرقَ فأصابت خللاً حقيقيّاً — انتظرتُ محارف
+// اقتباسٍ داخل حرفيّةٍ نمطيّةٍ (كـ`.replace(/"/g, "&quot;")` في app.js
+// الفعليّ) كأنّها بدايةُ سلسلةٍ حقيقيّة، فبحثت عن إغلاقٍ بعيدٍ ووجدَتْه في
+// اقتباس سلسلةٍ حقيقيّةٍ تالية، فاختلّت حالةُ التتبّع لبقيّة الملفّ كلِّه
+// من تلك النقطة (اكتُشف بالتحقّق الذاتيّ على الملفّات الحقيقيّة، لا
+// بملاحظة Codex). جافاسكربت نفسُها تحسم هذا بالسياق النحويّ الكامل (موضعُ
+// تعبيرٍ أم قيمة)؛ هنا نستخدم تخميناً عمليّاً شائعاً في الماسحات الخفيفة:
+// "/" تبدأ حرفيّةً نمطيّةً إن سبقها (بعد تجاهل الفراغ) أحدُ محارف "لا يمكن
+// أن يتبعها قسمةٌ" (فاتحةُ قوسٍ، فاصلةٌ، عاملٌ، ...) أو كلمةٌ مفتاحيّةٌ من
+// هذا النوع (return/typeof/...)، أو بداية الملفّ — غيرَ ذلك (بعد معرّفٍ أو
+// رقمٍ أو قوسٍ مغلَقٍ) فهي قسمةٌ عاديّة. هذا تخمينٌ لا تحليلٌ نحويٌّ كامل،
+// لكنّه يكفي لأنماط الكود الحقيقيّة الشائعة، ويمنع الخللَ الحرجَ أعلاه —
+// أسوأ أثرٍ متبقٍّ لتخمينٍ خاطئٍ نادر هو تفويتُ جزءٍ من نصٍّ لا اختلالُ
+// تتبّعٍ يمتدّ للملفّ كلِّه (فالمسارُ الخاطئ الوحيدُ الخطِر — معاملةُ حرفيّةٍ
+// نمطيّةٍ سلسلةً — أُغلق بمعالجة الحرفيّة النمطيّة صراحةً بدل تركها للمسار
+// الافتراضيّ).
+const REGEX_PRECEDER_CHAR = /[(,=:!&|?{}[;+\-*/%^~<>\n]/;
+const REGEX_PRECEDER_KEYWORD = /^(return|typeof|instanceof|in|of|new|delete|void|throw|case|do|else|yield|await)$/;
+function looksLikeRegexStart(raw, i) {
+  let k = i - 1;
+  while (k >= 0 && /\s/.test(raw[k])) k--;
+  if (k < 0) return true;
+  if (REGEX_PRECEDER_CHAR.test(raw[k])) return true;
+  let wordStart = k + 1;
+  while (wordStart > 0 && /[a-zA-Z_$]/.test(raw[wordStart - 1])) wordStart--;
+  return REGEX_PRECEDER_KEYWORD.test(raw.slice(wordStart, k + 1));
+}
+// تتخطّى حرفيّةً نمطيّةً كاملةً (بدايتُها raw[i] === "/") حتّى إغلاقها،
+// متجاهلةً محارف الاقتباس داخلها تماماً — فلا تُعامَل بدايةَ سلسلةٍ أبداً.
+// "/" داخل صنف محارفَ ([...]) لا تُغلق الحرفيّةَ (بمعيار ECMAScript)، ولا
+// نتبع الحرفيّةَ عبر سطرٍ جديدٍ (غيرُ صالحةٍ نحويّاً بلا "\": توقّفٌ آمنٌ).
+function skipRegexLiteral(raw, i, n) {
+  let j = i + 1;
+  let inClass = false;
+  while (j < n) {
+    const c = raw[j];
+    if (c === "\\") {
+      j += 2;
+      continue;
+    }
+    if (c === "\n") break;
+    if (c === "[") {
+      inClass = true;
+      j++;
+      continue;
+    }
+    if (c === "]") {
+      inClass = false;
+      j++;
+      continue;
+    }
+    if (c === "/" && !inClass) {
+      j++;
+      break;
+    }
+    j++;
+  }
+  while (j < n && /[a-zA-Z]/.test(raw[j])) j++;
+  return j;
+}
+function extractJsStringsAndComments(raw) {
+  let result = "";
+  let i = 0;
+  const n = raw.length;
+  let spanStart = 0;
+  function flushSkippedNewlines(uptoIndex) {
+    for (let k = spanStart; k < uptoIndex; k++) {
+      if (raw[k] === "\n") result += "\n";
+    }
+  }
+  while (i < n) {
+    const ch = raw[i];
+    const next = raw[i + 1];
+    if (ch === "/" && next === "/") {
+      flushSkippedNewlines(i);
+      let j = i + 2;
+      while (j < n && raw[j] !== "\n") j++;
+      result += raw.slice(i, j);
+      i = j;
+      spanStart = i;
+    } else if (ch === "/" && next === "*") {
+      flushSkippedNewlines(i);
+      const end = raw.indexOf("*/", i + 2);
+      const j = end === -1 ? n : end + 2;
+      result += raw.slice(i, j);
+      i = j;
+      spanStart = i;
+    } else if (ch === "/" && looksLikeRegexStart(raw, i)) {
+      flushSkippedNewlines(i);
+      i = skipRegexLiteral(raw, i, n);
+      spanStart = i;
+    } else if (ch === '"' || ch === "'" || ch === "`") {
+      flushSkippedNewlines(i);
+      const quote = ch;
+      let j = i + 1;
+      while (j < n) {
+        if (raw[j] === "\\") {
+          j += 2;
+          continue;
+        }
+        if (raw[j] === quote) {
+          j++;
+          break;
+        }
+        j++;
+      }
+      j = Math.min(j, n);
+      result += raw.slice(i, j);
+      i = j;
+      spanStart = i;
+    } else {
+      i++;
+    }
+  }
+  flushSkippedNewlines(n);
+  return result;
+}
+// نفسُ الاستخلاص أعلاه، مطبَّقٌ على محتوى كلّ <script> داخل ملفّ .html:
+// كودُ <script> جافاسكربتٌ فعليٌّ يحمل نفس اللَبس بين "<"/">" مقارنةً أم
+// وسماً، فيلزمه نفسُ المعالجة، لا الفحصَ المباشر كبقيّة نصّ HTML المحيط
+// به (الذي يبقى يُفحص كاملاً كما هو، فهو سياقُ HTML حقيقيٌّ بالفعل).
+function extractJsFromHtmlScripts(html) {
+  return html.replace(/(<script\b[^>]*>)([\s\S]*?)(<\/script\s*>)/gi, (whole, openTag, code, closeTag) => {
+    return openTag + extractJsStringsAndComments(code) + closeTag;
+  });
+}
+
 // يفكّ مهرَّبات سلاسل JS ذات الأثر على المطابقة قبل التطبيع:
 // - "\" متبوعةً بأيّ فاصل أسطرٍ تعترف به ECMAScript فعليّاً — LF، أو CRLF، أو
 //   U+2028 (Line Separator)، أو U+2029 (Paragraph Separator)، لا "\n"/"\r\n"
@@ -374,7 +516,8 @@ function findMatchIndices(normalized, phrase) {
 const offenders = [];
 for (const file of SHIPPED_FILES) {
   const raw = fs.readFileSync(path.join(ROOT, file), "utf8");
-  const { normalized, lineOfIndex } = normalizeWithLineMap(raw);
+  const scanned = file.endsWith(".js") ? extractJsStringsAndComments(raw) : extractJsFromHtmlScripts(raw);
+  const { normalized, lineOfIndex } = normalizeWithLineMap(scanned);
   const { stripped, indexMap } = stripTagsWithMap(normalized);
   for (const phrase of BANNED_PHRASES) {
     for (const strippedIdx of findMatchIndices(stripped, phrase)) {
