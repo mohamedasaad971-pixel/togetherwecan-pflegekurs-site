@@ -9,8 +9,13 @@ const SOURCE_FILES = fs
   .filter((f) => f.endsWith(".js") || f.endsWith(".html"));
 
 // المسارُ قد يتضمّن مجلّداتٍ فرعيّة (medien/course/intro.mp4)، فلا يُقتصر
-// الشرطُ على أحرف اسم الملفّ وحدَه بلا فاصل "/".
-const MEDIA_REF = /medien\/[A-Za-z0-9_.\-/]+/g;
+// الشرطُ على أحرف اسم الملفّ وحدَه بلا فاصل "/". وصنفُ المحارف يقبل حروفَ
+// يونيكود (\p{L})، أرقامَه (\p{N})، وعلاماتِه التشكيليّة (\p{M})، لا ASCII
+// وحدَها: مستودعٌ ألمانيّ/عربيّ قد يسمّي ملفّاً حقيقيّاً "medien/überblick.mp3"
+// أو باسمٍ عربيّ، وكان صنفُ المحارف السابقَ يقطعه عند أوّل محرفٍ غيرِ ASCII
+// (فيُبلَّغ خطأً أنّه مفقودٌ من القرص أو من PAKET.json رغم وجوده)، أو يُسقطه
+// كلّياً إن جاء المحرفُ غيرُ ASCII أوّل اسم الملفّ (ملاحظة Codex).
+const MEDIA_REF = /medien\/[\p{L}\p{N}\p{M}_.\-/]+/gu;
 
 const paket = JSON.parse(fs.readFileSync(path.join(ROOT, "PAKET.json"), "utf8"));
 const listed = new Set(paket.dateien || []);

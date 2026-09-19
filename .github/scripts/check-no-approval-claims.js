@@ -29,6 +29,13 @@ const DIACRITIC = /[ؐ-ًؚ-ٰٟۖ-ۭ]/;
 //   الفعليّ الذي تمثّله، لا نصّها الحرفيّ — وإلّا أمكن تهريبُ الادّعاء بأكمله
 //   حرفاً حرفاً (ملاحظة Codex الثانية). مرجعٌ غيرُ صالحٍ (نقطةُ ترميزٍ خارج
 //   المدى) يبقى كما هو بلا فكٍّ بدل رمي استثناء.
+// - مرجعٌ ثُمانيٌّ قديمٌ (Annex B legacy octal escape، كـ"\040" للمسافة) في
+//   نصٍّ غيرِ صارمٍ (بلا "use strict") يُفكّ إلى المحرف الفعليّ أيضاً، أسوةً
+//   بالمراجع السداسيّة/اليونيكوديّة أعلاه، لا بإسقاط الـ"\" وترك الأرقام
+//   حرفيّةً ملتصقةً بالكلمة المجاورة (ملاحظة Codex): رقمٌ أوّلُ من 0-3 يقبل
+//   حتى رقمَين ثُمانيَّين إضافيَّين، ورقمٌ أوّلُ من 4-7 يقبل رقماً واحداً فقط
+//   إضافيّاً — طبقاً لقواعد ECMAScript لهذا النوع من المراجع. "\8"/"\9" ليسا
+//   ثُمانيَّين أصلاً (يبقيان كما هما عبر فرع "أيّ تهريبٍ آخر" أدناه).
 // - "\""/"\'" تصيران محرفَ الاقتباس نفسَه (فيتطابق شكلا الاقتباس بين app.js
 //   غيرِ المهرَّب وui-de.js/ui-en.js المهرَّبين كمفاتيح قاموس).
 // - أيّ تهريبٍ آخر (\\، \/، ...) يُسقَط الـ"\" منه فقط ويبقى المحرفُ كما هو،
@@ -41,18 +48,25 @@ const DIACRITIC = /[ؐ-ًؚ-ٰٟۖ-ۭ]/;
 const LINE_SEPARATOR = String.fromCharCode(0x2028);
 const PARAGRAPH_SEPARATOR = String.fromCharCode(0x2029);
 const JS_ESCAPE_RE = new RegExp(
-  "\\\\(?:(\\r?\\n|[" + LINE_SEPARATOR + PARAGRAPH_SEPARATOR + "])|u\\{([0-9a-fA-F]+)\\}|u([0-9a-fA-F]{4})|x([0-9a-fA-F]{2})|(.))",
+  "\\\\(?:(\\r?\\n|[" + LINE_SEPARATOR + PARAGRAPH_SEPARATOR + "])|u\\{([0-9a-fA-F]+)\\}|u([0-9a-fA-F]{4})|x([0-9a-fA-F]{2})|([0-3][0-7]{0,2}|[4-7][0-7]?)|(.))",
   "g"
 );
 function unescapeJsStringEscapes(raw) {
   return raw.replace(
     JS_ESCAPE_RE,
-    (whole, lineCont, uBrace, uHex4, xHex2, other) => {
+    (whole, lineCont, uBrace, uHex4, xHex2, octal, other) => {
       if (lineCont !== undefined) return "";
       const hex = uBrace !== undefined ? uBrace : uHex4 !== undefined ? uHex4 : xHex2;
       if (hex !== undefined) {
         try {
           return String.fromCodePoint(parseInt(hex, 16));
+        } catch {
+          return whole;
+        }
+      }
+      if (octal !== undefined) {
+        try {
+          return String.fromCodePoint(parseInt(octal, 8));
         } catch {
           return whole;
         }
