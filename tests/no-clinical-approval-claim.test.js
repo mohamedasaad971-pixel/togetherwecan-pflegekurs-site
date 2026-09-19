@@ -13,9 +13,32 @@ const SHIPPED_FILES = fs
   .readdirSync(ROOT)
   .filter((f) => f.endsWith(".js") || f.endsWith(".html"));
 
-const DIACRITICS = /[ؐ-ًؚ-ٰٟۖ-ۭ]/g;
-function normalize(text) {
-  return text.replace(DIACRITICS, "").toLowerCase();
+const DIACRITIC = /[ؐ-ًؚ-ٰٟۖ-ۭ]/;
+
+// يطبّع الملفَّ كلَّه دفعةً واحدة (لا سطراً سطراً)، فتلتقط العبارةُ حتّى لو
+// قسمها التفافُ HTML بين سطرين (راجع مراجعة Codex المطابقة على #6)، مع
+// بقاء خريطةٍ لرقم السطر الأصليّ لكلّ حرفٍ في الناتج، ليبقى تقرير الخطأ مفيداً.
+function normalizeWithLineMap(raw) {
+  let normalized = "";
+  const lineOfIndex = [];
+  let line = 1;
+  let inWhitespaceRun = false;
+  for (const ch of raw) {
+    if (DIACRITIC.test(ch)) continue;
+    if (/\s/.test(ch)) {
+      if (!inWhitespaceRun) {
+        normalized += " ";
+        lineOfIndex.push(line);
+        inWhitespaceRun = true;
+      }
+      if (ch === "\n") line++;
+      continue;
+    }
+    inWhitespaceRun = false;
+    normalized += ch.toLowerCase();
+    lineOfIndex.push(line);
+  }
+  return { normalized, lineOfIndex };
 }
 
 // عباراتٌ ادّعاءُ اعتمادٍ سريريّ/طبّيّ عامّ، لا تسمياتُ حالةٍ مشروطةٌ ببيانات
@@ -31,25 +54,36 @@ const BANNED_PHRASES = [
   "medizinisch freigegeben",
 ];
 
-function matchesBannedPhrase(normalizedLine, phrase) {
-  return phrase instanceof RegExp
-    ? phrase.test(normalizedLine)
-    : normalizedLine.includes(phrase);
+function findMatchIndices(normalized, phrase) {
+  const indices = [];
+  if (phrase instanceof RegExp) {
+    const global = new RegExp(
+      phrase.source,
+      phrase.flags.includes("g") ? phrase.flags : phrase.flags + "g"
+    );
+    let m;
+    while ((m = global.exec(normalized))) {
+      indices.push(m.index);
+      if (m[0].length === 0) global.lastIndex++;
+    }
+  } else {
+    for (let i = normalized.indexOf(phrase); i !== -1; i = normalized.indexOf(phrase, i + 1)) {
+      indices.push(i);
+    }
+  }
+  return indices;
 }
 
 test("no shipped file claims general clinical/medical approval", () => {
   const offenders = [];
   for (const file of SHIPPED_FILES) {
     const raw = fs.readFileSync(path.join(ROOT, file), "utf8");
-    const lines = raw.split("\n");
-    lines.forEach((line, i) => {
-      const normalized = normalize(line);
-      for (const phrase of BANNED_PHRASES) {
-        if (matchesBannedPhrase(normalized, phrase)) {
-          offenders.push(`${file}:${i + 1} contains banned phrase "${phrase}"`);
-        }
+    const { normalized, lineOfIndex } = normalizeWithLineMap(raw);
+    for (const phrase of BANNED_PHRASES) {
+      for (const idx of findMatchIndices(normalized, phrase)) {
+        offenders.push(`${file}:${lineOfIndex[idx]} contains banned phrase "${phrase}"`);
       }
-    });
+    }
   }
   assert.deepEqual(offenders, []);
 });
