@@ -8,7 +8,9 @@ const SOURCE_FILES = fs
   .readdirSync(ROOT)
   .filter((f) => f.endsWith(".js") || f.endsWith(".html"));
 
-const MEDIA_REF = /medien\/[A-Za-z0-9_.\-]+/g;
+// المسارُ قد يتضمّن مجلّداتٍ فرعيّة (medien/course/intro.mp4)، فلا يُقتصر
+// الشرطُ على أحرف اسم الملفّ وحدَه بلا فاصل "/".
+const MEDIA_REF = /medien\/[A-Za-z0-9_.\-/]+/g;
 
 const paket = JSON.parse(fs.readFileSync(path.join(ROOT, "PAKET.json"), "utf8"));
 const listed = new Set(paket.dateien || []);
