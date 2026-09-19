@@ -50,7 +50,7 @@ function normalizeWithLineMap(raw) {
 const COMBINED_CLAIM = /(?:ا|م)عتمد[ة]?\s+سريريا/;
 const BANNED_PHRASES = [
   COMBINED_CLAIM,
-  /معتمد طبيا/,
+  /معتمد[ة]?\s+طبيا/,
   "clinically approved",
   "klinisch freigegeben",
   "medically approved",
