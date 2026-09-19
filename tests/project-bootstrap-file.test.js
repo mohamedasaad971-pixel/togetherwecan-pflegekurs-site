@@ -19,7 +19,15 @@ const REQUIRED_HEADINGS = [
 ];
 
 const EMAIL_RE = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
-const LONG_HEX_ID_RE = /\b[0-9a-fA-F]{16,}\b/;
+// لا \b: بادئةٌ تقليديّةٌ كـ"task_"/"asset_" حرفُها الأخير ("_") وأوّلُ رقمٍ
+// سداسيَّ عشريَّ بعدها حرفا كلمةٍ كلاهما، فلا حدَّ بينهما يطابقه \b (ملاحظة
+// Codex على #14، مطابقةٌ لِما أُصلح في HEX_ID_RE من tests/status-file.test.js).
+const LONG_HEX_ID_RE = /(?<![0-9a-fA-F])[0-9a-fA-F]{16,}(?![0-9a-fA-F])/;
+// نفس مدى التشكيل العربيّ المستبعَد في tests/no-clinical-approval-claim.test.js
+// وtests/status-file.test.js (U+0610–U+061A، U+064B–U+065F، U+0670،
+// U+06D6–U+06ED)، كي لا يُفلت ادّعاءٌ مشكَّلٌ مثل "معتمَد سريريّاً" من
+// المطابقة (ملاحظة Codex على #14).
+const DIACRITIC_RE = /[ؐ-ًؚ-ٰٟۖ-ۭ]/g;
 const APPROVAL_CLAIM_RE = /(?:ا|م)عتمد[ة]?\s+(?:سريريا|طبيا)/;
 
 test("PROJECT-BOOTSTRAP.md exists and contains every required section", () => {
@@ -33,7 +41,8 @@ test("PROJECT-BOOTSTRAP.md exists and contains every required section", () => {
 
 test("PROJECT-BOOTSTRAP.md leaks no internal details", () => {
   const raw = fs.readFileSync(FILE_PATH, "utf8");
+  const withoutDiacritics = raw.replace(DIACRITIC_RE, "");
   assert.doesNotMatch(raw, EMAIL_RE, "must not contain an email address");
   assert.doesNotMatch(raw, LONG_HEX_ID_RE, "must not contain a long hex id");
-  assert.doesNotMatch(raw, APPROVAL_CLAIM_RE, "must not contain a clinical approval claim");
+  assert.doesNotMatch(withoutDiacritics, APPROVAL_CLAIM_RE, "must not contain a clinical approval claim");
 });
