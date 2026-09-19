@@ -116,11 +116,21 @@ const htmlRaw = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
 // شجرة المستند حتى يُستنسَخ صراحةً بجافاسكربت — فمطابقةُ وسمٍ داخل أيٍّ منها
 // كأنّه توجيهٌ فعليٌّ تمنع فهرسة صفحةٍ تبقى قابلةً للفهرسة فعلاً (ملاحظة
 // Codex؛ التعليقات جولةٌ، والسكربت/الأسلوب جولةٌ تالية، والتمبلت جولةٌ ثالثة).
-const html = htmlRaw
+// إسقاطُ <template> يتكرّر حتى ثباتِ الناتج (لا مرّةً واحدة): النمطُ غيرُ
+// الجشعِ يتوقّف عند أوّل </template>، فـ<template> متداخلةً (كـ
+// <template><template></template><meta ...></template>) كانت تترك وسمَ
+// meta الداخليَّ الخاملَ ظاهراً بعد إزالة طبقةٍ واحدةٍ فقط؛ التكرارُ يزيل
+// الطبقةَ الأعمق أوّلاً ثم ما فوقها إلى أن يستقرّ النصّ (ملاحظة Codex).
+let html = htmlRaw
   .replace(/<!--[\s\S]*?-->/g, "")
   .replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, "")
-  .replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, "")
-  .replace(/<template\b[^>]*>[\s\S]*?<\/template\s*>/gi, "");
+  .replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, "");
+const TEMPLATE_LEAF_RE = /<template\b[^>]*>((?:(?!<template\b|<\/template\s*>)[\s\S])*?)<\/template\s*>/gi;
+let htmlBeforeTemplatePass;
+do {
+  htmlBeforeTemplatePass = html;
+  html = html.replace(TEMPLATE_LEAF_RE, "");
+} while (html !== htmlBeforeTemplatePass);
 // يلتقط الوسمَ كاملاً حتى لو وقعت ">" داخل قيمةٍ مقتبسةٍ (كـ data-note="a > b")،
 // بدل التوقّف عند أوّل ">" بصرف النظر عن الاقتباس.
 const metaTags = html.match(/<meta\b(?:"[^"]*"|'[^']*'|[^>])*>/gi) || [];
