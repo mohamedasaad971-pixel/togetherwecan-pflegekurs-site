@@ -155,17 +155,24 @@ function decodeHtmlEntities(text) {
 // فمرجعُ محرفٍ حرفيٌّ داخلهما (كـ"medien/amina&#45;00.mp3" في new
 // Audio(...)) لا يفكّه المتصفّحُ إطلاقاً؛ فكُّه هنا كان يحوّل الطلبَ
 // الحرفيَّ المكسورَ إلى مسارٍ موجودٍ خطأً فيُخفي كسراً فعليّاً (ملاحظة
-// Codex). النمطُ نفسُه المستخدَم لإسقاط هذا المحتوى في
+// Codex). لكنّ محتوى <script> جافاسكربتٌ فعليٌّ (بخلاف <style>)، فتهريباتُ
+// سلاسل JS فيه حقيقيّةٌ وتُفكّ وقت التشغيل — تركُها كما هي كان يفوّت مساراً
+// مثل "medien/missing.mp3" داخل <script> كلّيّاً (لا يُصادَق عليه
+// خطأً، لكن لا يُبلَّغ مفقوداً أيضاً؛ ملاحظة Codex الثانية). فنفكّ تهريبات
+// JS (لا مراجعَ HTML) داخل <script> تحديداً، ونفكّ مراجعَ HTML (لا تهريبات
+// JS) خارج <script>/<style>، ولا شيء داخل <style> (CSS خامّةٌ أيضاً، ولا
+// معنى لمساراتٍ داخلها هنا). نمطُ إسقاط <script>/<style> نفسُه المستخدَم في
 // check-robots-and-indexing.js.
-const RAW_TEXT_ELEMENT_RE = /<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>/gi;
-function decodeHtmlEntitiesOutsideRawText(text) {
+const SCRIPT_STYLE_RE = /<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>/gi;
+function processHtmlSource(text) {
   let result = "";
   let lastIndex = 0;
   let m;
-  RAW_TEXT_ELEMENT_RE.lastIndex = 0;
-  while ((m = RAW_TEXT_ELEMENT_RE.exec(text))) {
-    result += decodeHtmlEntities(text.slice(lastIndex, m.index)) + m[0];
-    lastIndex = RAW_TEXT_ELEMENT_RE.lastIndex;
+  SCRIPT_STYLE_RE.lastIndex = 0;
+  while ((m = SCRIPT_STYLE_RE.exec(text))) {
+    result += decodeHtmlEntities(text.slice(lastIndex, m.index));
+    result += m[1].toLowerCase() === "script" ? unescapeJsStringEscapes(m[0]) : m[0];
+    lastIndex = SCRIPT_STYLE_RE.lastIndex;
   }
   return result + decodeHtmlEntities(text.slice(lastIndex));
 }
@@ -173,15 +180,11 @@ function decodeHtmlEntitiesOutsideRawText(text) {
 const referenced = new Set();
 for (const file of SOURCE_FILES) {
   const raw = fs.readFileSync(path.join(ROOT, file), "utf8");
-  // فكُّ تهريبات سلاسل JS معنيٌّ بملفّات .js حصراً: "\" ليست محرفَ تهريبٍ في
-  // نصّ HTML أصلاً (لا في قيمة سمةٍ ولا في نصٍّ عاديّ)، فقيمةُ سمةٍ حرفيّةٌ
-  // مثل src="medien/amina-00.mp3" في ملفّ .html تطلب هذا المسارَ
-  // الحرفيَّ بعينه (بالشرطة المائلة العكسيّة وحروف a كما هي)، لا
-  // "medien/amina-00.mp3" — ولو صادف أنّ فكَّها هنا ينتج مساراً موجوداً
-  // فعلاً على القرص، فذلك يُخفي مساراً حقيقيّاً مكسوراً عن هذا الفحص
-  // (ملاحظة Codex). تطبيقُ الفكّ على .html كما على .js كان يفوّت هذه الحالة.
-  const jsUnescaped = file.endsWith(".js") ? unescapeJsStringEscapes(raw) : raw;
-  const text = file.endsWith(".html") ? decodeHtmlEntitiesOutsideRawText(jsUnescaped) : jsUnescaped;
+  // ملفّ .js كاملاً يُعامَل سلسلةَ JS (فكُّ تهريباتها فقط، لا مراجعَ HTML —
+  // "\" ليست محرفَ تهريبٍ في HTML أصلاً، وملفّ .js ليس مستنداً يُفسَّر
+  // كHTML أصلاً). ملفّ .html يمرّ بـprocessHtmlSource أعلاه، التي تفكّ ما
+  // يناسب كلَّ جزءٍ بحسب سياقه الفعليّ (راجع تعليقها).
+  const text = file.endsWith(".js") ? unescapeJsStringEscapes(raw) : processHtmlSource(raw);
   const matches = text.match(MEDIA_REF) || [];
   for (const m of matches) referenced.add(decodePercentEscapes(stripTrailingSentencePunct(m)));
 }
