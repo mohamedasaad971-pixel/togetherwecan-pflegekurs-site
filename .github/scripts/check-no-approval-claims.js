@@ -86,7 +86,35 @@ function unescapeJsStringEscapes(raw) {
 // check-robots-and-indexing.js: نصٌّ منشورٌ مثل "appr&#111;ved" يراه
 // المتصفّحُ "approved" فعليّاً، لا النصَّ الحرفيَّ غيرَ المفكوك (ملاحظة
 // Codex). المرجعُ العدديّ لا يلزمه ";" بمعيار HTML5.
-const HTML_NAMED_ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
+// الجدولُ الأصليّ اقتصر على ستّة أسماءَ شائعة، فلم يفكّ مراجعَ اسميّةً
+// معياريّةً أخرى (كـ"&Tab;" لفراغ، يُستخدَم فاصلاً بين كلمتَي ادّعاءٍ في
+// نمط المطابقة)، فادّعاءٌ مثل "clinically&Tab;approved" كان يُفلت من
+// الفحص (ملاحظة Codex؛ نفس الثغرة في الجدول المطابق تماماً في
+// check-media-paths.js). معيار HTML5 يعرّف أكثرَ من ٢٠٠٠ مرجعٍ اسميٍّ
+// (أغلبُها تكرارٌ بصيغٍ قديمةٍ لتوافق متصفّحاتٍ سابقة)؛ تضمينُها كلَّها هنا
+// حرفيّاً خارج نطاق حارسٍ نصّيٍّ بلا اعتماديّاتٍ خارجيّة. بدلاً من ذلك:
+// مجموعةُ Latin-1 الكاملة من معيار HTML4 (٩٦ مرجعاً، ٠xA0–٠xFF بالترتيب)
+// مبنيّةٌ برمجيّاً من قائمة الأسماء القياسيّة الثابتة (نفسُها المستخدَمة في
+// check-media-paths.js)، زائداً مراجعُ الفراغ البنيويّة التي أظهرها مثالُ
+// Codex، زائداً علاماتٌ طباعيّةٌ شائعة. تضييقٌ نطاقيٌّ مقصودٌ موثَّقٌ هنا،
+// لا سهواً؛ مرجعٌ اسميٌّ نادرٌ جدّاً خارج هذه المجموعة يبقى محتمَلاً نظريّاً.
+const LATIN1_ENTITY_NAMES = (
+  "nbsp iexcl cent pound curren yen brvbar sect uml copy ordf laquo not shy reg macr " +
+  "deg plusmn sup2 sup3 acute micro para middot cedil sup1 ordm raquo frac14 frac12 frac34 iquest " +
+  "Agrave Aacute Acirc Atilde Auml Aring AElig Ccedil Egrave Eacute Ecirc Euml Igrave Iacute Icirc Iuml " +
+  "ETH Ntilde Ograve Oacute Ocirc Otilde Ouml times Oslash Ugrave Uacute Ucirc Uuml Yacute THORN szlig " +
+  "agrave aacute acirc atilde auml aring aelig ccedil egrave eacute ecirc euml igrave iacute icirc iuml " +
+  "eth ntilde ograve oacute ocirc otilde ouml divide oslash ugrave uacute ucirc uuml yacute thorn yuml"
+).split(" ");
+const HTML_NAMED_ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'" };
+LATIN1_ENTITY_NAMES.forEach((name, i) => {
+  HTML_NAMED_ENTITIES[name] = String.fromCharCode(0xa0 + i);
+});
+Object.assign(HTML_NAMED_ENTITIES, {
+  sol: "/", Tab: "\t", NewLine: "\n",
+  mdash: "—", ndash: "–", hellip: "…", trade: "™", bull: "•",
+  lsquo: "‘", rsquo: "’", ldquo: "“", rdquo: "”",
+});
 function decodeHtmlEntities(text) {
   // ";" اختياريّةٌ بعد الصيغتَين العدديّتين، ويجب أن يلتقطها النمطُ نفسُه حين
   // تكون موجودةً — وإلّا بقيت معلَّقةً حرفيّاً في الناتج (كـ"appro;ved" بدل
@@ -192,7 +220,7 @@ const BLOCK_SEPARATOR_TAGS = new Set([
   "table", "thead", "tbody", "tfoot", "caption", "colgroup",
   "h1", "h2", "h3", "h4", "h5", "h6", "section", "article", "aside", "nav",
   "header", "footer", "main", "figure", "figcaption", "form", "fieldset",
-  "legend", "address", "details", "summary", "dialog",
+  "legend", "address", "details", "summary", "dialog", "menu",
   "blockquote", "pre", "hr",
 ]);
 function tagName(tagText) {

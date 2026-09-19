@@ -104,7 +104,37 @@ function unescapeJsStringEscapes(raw) {
 // حرفيٌّ فيه (كـ"amina&#45;00.mp3" الناتج من esc() مثلاً) يبقى جزءاً
 // حرفيّاً من الرابط الفعليّ المطلوب؛ فكُّه هنا كان يُطابقه خطأً بمسارٍ
 // موجودٍ فيُخفي مساراً مكسوراً فعليّاً من نوعٍ آخر (ملاحظة Codex الثانية).
-const HTML_NAMED_ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
+// الجدولُ الأصليّ اقتصر على ستّة أسماءَ شائعة، فلم يفكّ مراجعَ اسميّةً
+// معياريّةً أخرى (كـ"&sol;" لـ"/" — حرفٌ يلزم MEDIA_REF نفسَها لمطابقة
+// "medien/" أصلاً)، فمسارٌ يستبدل "/" بـ"&sol;" كان يُفلت من الفحص كلّيّاً
+// (ملاحظة Codex). معيار HTML5 يعرّف أكثرَ من ٢٠٠٠ مرجعٍ اسميٍّ (أغلبُها
+// تكرارٌ بصيغٍ قديمةٍ لتوافق متصفّحاتٍ سابقة)؛ تضمينُها كلَّها هنا حرفيّاً
+// خارج نطاق حارسٍ نصّيٍّ بلا اعتماديّاتٍ خارجيّة. بدلاً من ذلك: مجموعةُ
+// Latin-1 الكاملة من معيار HTML4 (٩٦ مرجعاً، ٠xA0–٠xFF بالترتيب — تغطّي كلّ
+// الحروف اللاتينيّة المشكَّلة الشائعة في المحتوى الألمانيّ) مبنيّةٌ
+// برمجيّاً من قائمة الأسماء القياسيّة الثابتة، زائداً مراجعُ الفراغ/الفاصل
+// البنيويّة التي أظهرها مثالُ Codex ("sol" لـ"/"، "Tab"/"NewLine" لفراغٍ)،
+// زائداً مجموعةٌ من العلامات الطباعيّة الشائعة في النثر. هذا يغطّي كلَّ
+// حالةٍ واقعيّةٍ محتملةٍ في محتوًى حقيقيٍّ دون حمل الجدول الكامل غيرِ
+// العمليّ؛ مرجعٌ اسميٌّ نادرٌ جدّاً خارج هذه المجموعة يبقى محتمَلاً نظريّاً،
+// وهذا تضييقٌ نطاقيٌّ مقصودٌ موثَّقٌ هنا، لا سهواً.
+const LATIN1_ENTITY_NAMES = (
+  "nbsp iexcl cent pound curren yen brvbar sect uml copy ordf laquo not shy reg macr " +
+  "deg plusmn sup2 sup3 acute micro para middot cedil sup1 ordm raquo frac14 frac12 frac34 iquest " +
+  "Agrave Aacute Acirc Atilde Auml Aring AElig Ccedil Egrave Eacute Ecirc Euml Igrave Iacute Icirc Iuml " +
+  "ETH Ntilde Ograve Oacute Ocirc Otilde Ouml times Oslash Ugrave Uacute Ucirc Uuml Yacute THORN szlig " +
+  "agrave aacute acirc atilde auml aring aelig ccedil egrave eacute ecirc euml igrave iacute icirc iuml " +
+  "eth ntilde ograve oacute ocirc otilde ouml divide oslash ugrave uacute ucirc uuml yacute thorn yuml"
+).split(" ");
+const HTML_NAMED_ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'" };
+LATIN1_ENTITY_NAMES.forEach((name, i) => {
+  HTML_NAMED_ENTITIES[name] = String.fromCharCode(0xa0 + i);
+});
+Object.assign(HTML_NAMED_ENTITIES, {
+  sol: "/", Tab: "\t", NewLine: "\n",
+  mdash: "—", ndash: "–", hellip: "…", trade: "™", bull: "•",
+  lsquo: "‘", rsquo: "’", ldquo: "“", rdquo: "”",
+});
 function decodeHtmlEntities(text) {
   return text.replace(/&(#[xX][0-9a-fA-F]+;?|#\d+;?|[a-zA-Z]+;)/g, (whole, ref) => {
     if (ref[0] === "#") {
@@ -121,6 +151,24 @@ function decodeHtmlEntities(text) {
     return Object.prototype.hasOwnProperty.call(HTML_NAMED_ENTITIES, name) ? HTML_NAMED_ENTITIES[name] : whole;
   });
 }
+// <script>/<style> ليسا سياقَ HTML نصّيّاً بمعيار HTML5 (RCDATA/raw text)،
+// فمرجعُ محرفٍ حرفيٌّ داخلهما (كـ"medien/amina&#45;00.mp3" في new
+// Audio(...)) لا يفكّه المتصفّحُ إطلاقاً؛ فكُّه هنا كان يحوّل الطلبَ
+// الحرفيَّ المكسورَ إلى مسارٍ موجودٍ خطأً فيُخفي كسراً فعليّاً (ملاحظة
+// Codex). النمطُ نفسُه المستخدَم لإسقاط هذا المحتوى في
+// check-robots-and-indexing.js.
+const RAW_TEXT_ELEMENT_RE = /<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>/gi;
+function decodeHtmlEntitiesOutsideRawText(text) {
+  let result = "";
+  let lastIndex = 0;
+  let m;
+  RAW_TEXT_ELEMENT_RE.lastIndex = 0;
+  while ((m = RAW_TEXT_ELEMENT_RE.exec(text))) {
+    result += decodeHtmlEntities(text.slice(lastIndex, m.index)) + m[0];
+    lastIndex = RAW_TEXT_ELEMENT_RE.lastIndex;
+  }
+  return result + decodeHtmlEntities(text.slice(lastIndex));
+}
 
 const referenced = new Set();
 for (const file of SOURCE_FILES) {
@@ -133,7 +181,7 @@ for (const file of SOURCE_FILES) {
   // فعلاً على القرص، فذلك يُخفي مساراً حقيقيّاً مكسوراً عن هذا الفحص
   // (ملاحظة Codex). تطبيقُ الفكّ على .html كما على .js كان يفوّت هذه الحالة.
   const jsUnescaped = file.endsWith(".js") ? unescapeJsStringEscapes(raw) : raw;
-  const text = file.endsWith(".html") ? decodeHtmlEntities(jsUnescaped) : jsUnescaped;
+  const text = file.endsWith(".html") ? decodeHtmlEntitiesOutsideRawText(jsUnescaped) : jsUnescaped;
   const matches = text.match(MEDIA_REF) || [];
   for (const m of matches) referenced.add(decodePercentEscapes(stripTrailingSentencePunct(m)));
 }
