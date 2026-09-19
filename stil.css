@@ -117,6 +117,10 @@ body[data-ar="klick"] .ar-schalt:not(.offen) .ar{
   filter:blur(4px);cursor:pointer;user-select:none;opacity:.65;
 }
 body[data-ar="klick"] .ar-schalt:not(.offen) .ar::after{content:" ↩︎ اضغط"}
+body[data-ar="klick"] .ar-schalt[role="button"]{cursor:pointer;border-radius:8px}
+body[data-ar="klick"] .ar-schalt[role="button"]:focus-visible{
+  outline:3px solid var(--akzent);outline-offset:3px;
+}
 
 .schritte{list-style:none;padding:0;margin:0;counter-reset:s}
 .schritte li{
