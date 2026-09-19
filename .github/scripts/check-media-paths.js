@@ -33,9 +33,19 @@ function stripTrailingSentencePunct(ref) {
 const paket = JSON.parse(fs.readFileSync(path.join(ROOT, "PAKET.json"), "utf8"));
 const listed = new Set(paket.dateien || []);
 
+// جافاسكربت يسمح بكتابة "/" داخل نصٍّ حرفيٍّ مهروبةً ("medien\/x.mp3")، وهي
+// تُقيَّم إلى "medien/x.mp3" وقت التشغيل، لكنّ المصدر الخامّ يحمل شرطةً
+// مائلةً عكسيّةً قبل كلّ "/" كهذه، فلا يطابقها هذا النمط أصلاً (فيمرّ
+// المسارُ بلا تحقّقٍ صامتاً بدل أن يُبلَّغ مفقوداً — ملاحظة Codex). نفكّ هذا
+// الهروب في نسخةٍ من النصّ خاصّةٍ بالمطابقة فقط، قبل البحث عن المسارات.
+function unescapeForwardSlashes(text) {
+  return text.replace(/\\\//g, "/");
+}
+
 const referenced = new Set();
 for (const file of SOURCE_FILES) {
-  const text = fs.readFileSync(path.join(ROOT, file), "utf8");
+  const raw = fs.readFileSync(path.join(ROOT, file), "utf8");
+  const text = unescapeForwardSlashes(raw);
   const matches = text.match(MEDIA_REF) || [];
   for (const m of matches) referenced.add(stripTrailingSentencePunct(m));
 }
