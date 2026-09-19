@@ -42,13 +42,20 @@ const DIACRITIC = /[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]/g;
 // ينتهي بتاءٍ متحرّكةٍ ("اعتُمدت")، والصفةُ المنصوبة ("معتمداً") يبقى ألِفُها
 // بعد حذف تنوين الفتح تشكيلاً لا حرفاً — إغفال أيٍّ من الثلاثة كان يُفلت
 // صيغته من المطابقة (ملاحظة Codex: الصيغة المنصوبة تحديداً).
+// STATUS.md يُعرَض Markdown، وMarkdown يمرّر وسمَ HTML ضمنيّاً كـ"<strong>"
+// إلى الصفحة المعروضة بلا تغييرٍ ("clinically <strong>approved</strong>"
+// تُعرَض "clinically approved" متّصلةً)؛ الفاصلُ بين كلمتَي كلّ عبارةٍ أدناه
+// يقبل الآن وسماً واحداً أو أكثر بالتبادل مع المسافة (لا يتوقّف عند ">" داخل
+// قيمة سمةٍ مقتبسةٍ، أسوةً بـTAG_GAP في check-no-approval-claims.js)، فلا
+// يُفلت وسمٌ بينهما الادّعاءَ من الاكتشاف (ملاحظة Codex).
+const TAG_GAP = '<(?:"[^"]*"|\'[^\']*\'|[^<>])*>';
 const CLAIM_PATTERNS = [
-  /(?:ا|م)عتمد[ةتا]?\s+سريريا/,
-  /(?:ا|م)عتمد[ةتا]?\s+طبيا/,
-  "clinically approved",
-  "medically approved",
-  "klinisch freigegeben",
-  "medizinisch freigegeben",
+  new RegExp(`(?:ا|م)عتمد[ةتا]?(?:\\s|${TAG_GAP})+سريريا`),
+  new RegExp(`(?:ا|م)عتمد[ةتا]?(?:\\s|${TAG_GAP})+طبيا`),
+  new RegExp(`clinically(?:\\s|${TAG_GAP})+approved`),
+  new RegExp(`medically(?:\\s|${TAG_GAP})+approved`),
+  new RegExp(`klinisch(?:\\s|${TAG_GAP})+freigegeben`),
+  new RegExp(`medizinisch(?:\\s|${TAG_GAP})+freigegeben`),
 ];
 const BANNED_SUBSTRINGS = [
   "elevenlabs",
