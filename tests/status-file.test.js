@@ -76,7 +76,33 @@ function foldReferenceLabel(text) {
   return text.replace(DIACRITIC, "").replace(/\s+/g, " ").trim().toLowerCase();
 }
 
-function normalize(raw) {
+// يفكّ مراجعَ محارف HTML (العدديّة والاسميّة الشائعة)، أسوةً بالدالّة نفسها
+// في check-robots-and-indexing.js/check-no-approval-claims.js: عبارةٌ
+// كـ"clinically&nbsp;approved" في Markdown تُعرَض "clinically approved"
+// بمسافةٍ حقيقيّةٍ فعليّاً، لكنّ "&nbsp;" الحرفيّة نصٌّ عاديٌّ لا مسافةٌ
+// بمعنى \s، فتُفلت أنماط CLAIM_PATTERNS من المطابقة ما لم تُفكَّ أوّلاً
+// (ملاحظة Codex). المرجعُ العدديّ لا يلزمه ";" بمعيار HTML5.
+const NAMED_ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
+function decodeHtmlEntities(text) {
+  return text.replace(/&(#[xX][0-9a-fA-F]+;?|#\d+;?|[a-zA-Z]+;)/g, (whole, ref) => {
+    if (ref[0] === "#") {
+      const digits = ref.replace(/;$/, "");
+      const codePoint =
+        digits[1] === "x" || digits[1] === "X" ? parseInt(digits.slice(2), 16) : parseInt(digits.slice(1), 10);
+      if (Number.isNaN(codePoint)) return whole;
+      try {
+        return String.fromCodePoint(codePoint);
+      } catch {
+        return whole;
+      }
+    }
+    const name = ref.slice(0, -1);
+    return Object.prototype.hasOwnProperty.call(NAMED_ENTITIES, name) ? NAMED_ENTITIES[name] : whole;
+  });
+}
+
+function normalize(rawInput) {
+  const raw = decodeHtmlEntities(rawInput);
   // إزالة فواصل تنسيق Markdown (**تشديد**، `شفرة`، ~~شطب~~) قبل طيّ المسافات:
   // بلا هذا، عبارةٌ كـ"معتمد **سريريّاً**" تبقى غيرَ مطابقةٍ لأنماط \s+ رغم أنّ
   // الصفحة المعروضة تحمل الادّعاء فعلاً (ملاحظة Codex).
