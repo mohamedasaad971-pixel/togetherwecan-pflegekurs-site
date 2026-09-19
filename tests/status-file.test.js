@@ -169,8 +169,16 @@ const GAP_TAG_NAMES = new Set([
   "ul", "ol", "h1", "h2", "h3", "h4", "h5", "h6", "section", "article",
   "header", "footer", "blockquote", "hr", "dt", "dd", "pre",
 ]);
+// تعليقُ HTML («<!-- ... -->») نصٌّ خاملٌ لا يعرضه المتصفّح إطلاقاً ولا
+// يترك فراغاً منظوراً مكانه (بخلاف <br>)؛ نمطُ الوسم أدناه يشترط حرفاً بعد
+// "<"/"</" فلا يطابق "<!--" أصلاً، فيبقى تعليقٌ كـ"clinically
+// <!-- ملاحظة --> approved" فاصلاً حرفيّاً بين الكلمتين يُفلت المطابقةَ
+// (ملاحظة Codex). يُسقَط هنا أوّلاً، بلا أثرٍ (فراغٍ) أسوةً بوسمٍ سطريٍّ.
+function stripComments(text) {
+  return text.replace(/<!--[\s\S]*?-->/g, "");
+}
 function stripInlineHtml(text) {
-  return text.replace(
+  return stripComments(text).replace(
     /<\/?([a-zA-Z][a-zA-Z0-9]*)\b(?:"[^"]*"|'[^']*'|[^<>])*>/g,
     (whole, tagName) => (GAP_TAG_NAMES.has(tagName.toLowerCase()) ? " " : "")
   );
@@ -226,27 +234,35 @@ test("STATUS.md exists and is not empty", () => {
 test("STATUS.md leaks no internal details or approval claims", () => {
   const raw = fs.readFileSync(STATUS_PATH, "utf8");
   const normalized = normalize(raw);
-  // فحوصُ البيانات الشخصيّة/المعرّفات تعمل على النصّ بعد فكّ مراجع HTML،
-  // وإسقاط فواصل تشديد Markdown، وإسقاط وسم HTML مضمّنٍ (بنفس تفريق
-  // stripInlineHtml() بين السطريّ والفاصل): رقمُ هاتفٍ بفواصل مُرمَّزةٍ كـ
-  // "+49&ensp;151&ensp;..."، أو مُشدَّدةٍ كـ"+49 **151** ..."، أو داخل وسمٍ
-  // سطريٍّ كـ"+49 <strong>151</strong> ..." — كلُّها تُعرَض رقماً عاديّاً
-  // فعليّاً، لكنّ PHONE_RE على نصٍّ غيرِ معالَجٍ لا يرى إلا الفاصلَ الحرفيَّ
-  // بين الأرقام (ملاحظة Codex، ثلاث جولات). هذا لا يزال أخفَّ من
-  // normalize() الكاملة (لا حذف تشكيلٍ ولا طيّ حالةٍ)، لكنّه يشارك معها
-  // الآن إسقاطَ الوسم بنفس المنطق (وسمٌ فاصلٌ حقيقيٌّ كـ<br> يُستبدَل
-  // بمسافة، لا فراغاً، فلا يُلصق مجموعتَي أرقامٍ منفصلتَين بصريّاً).
-  const decoded = stripInlineHtml(decodeHtmlEntities(raw).replace(/[*_~`]/g, ""));
+  // فحوصُ البيانات الشخصيّة/المعرّفات تُطبَّق على نصَّين معاً (يكفي أحدهما
+  // ليُبلَّغ خطأً)، لا نصٍّ واحدٍ:
+  // ١) `entityDecoded` — النصّ الخامّ بعد فكّ مراجع HTML وإسقاط التعليقات
+  //    فقط، بلا لمس أيّ وسمٍ أو سمةٍ: بيانٌ شخصيٌّ داخل قيمة سمةٍ (كـ
+  //    `<a href="mailto:م@مثال.اختبار">للتواصل</a>` أو `href="tel:+49-..."`)
+  //    ينشره المصدرُ العامُّ فعليّاً بصرف النظر عمّا يُعرَض للقارئ، وكان
+  //    `stripInlineHtml()` يُسقط الوسمَ بكامل سماته (فيُسقط قيمة href
+  //    معه) قبل أن تراه EMAIL_RE/PHONE_RE أصلاً (ملاحظة Codex).
+  // ٢) `strippedForPersonalData` — بعد إسقاط تشديد Markdown ووسم HTML
+  //    المضمّن أيضاً (بنفس تفريق stripInlineHtml() بين السطريّ والفاصل):
+  //    رقمُ هاتفٍ بفواصل مُرمَّزةٍ كـ"+49&ensp;151&ensp;..."، أو مُشدَّدةٍ كـ
+  //    "+49 **151** ..."، أو مقسومٍ بوسمٍ سطريٍّ كـ"+49 <strong>151</strong>
+  //    ..." — كلُّها تُعرَض رقماً عاديّاً واحداً فعليّاً، لكنّ الفاصلَ الحرفيَّ
+  //    يمنع مطابقته في النصّ الخامّ وحده (ملاحظة Codex، جولاتٌ سابقة).
+  const entityDecoded = decodeHtmlEntities(raw).replace(/<!--[\s\S]*?-->/g, "");
+  const strippedForPersonalData = stripInlineHtml(entityDecoded.replace(/[*_~`]/g, ""));
+  function leaksPersonalData(re) {
+    return re.test(entityDecoded) || re.test(strippedForPersonalData);
+  }
 
-  assert.equal(EMAIL_RE.test(decoded), false, "STATUS.md must not contain an email address");
-  assert.equal(PHONE_RE.test(decoded), false, "STATUS.md must not contain a phone number");
+  assert.equal(leaksPersonalData(EMAIL_RE), false, "STATUS.md must not contain an email address");
+  assert.equal(leaksPersonalData(PHONE_RE), false, "STATUS.md must not contain a phone number");
   assert.equal(
-    HEX_ID_RE.test(decoded),
+    leaksPersonalData(HEX_ID_RE),
     false,
     "STATUS.md must not contain a long hex id (looks like a job/asset id)"
   );
   assert.equal(
-    PREFIXED_ID_RE.test(decoded),
+    leaksPersonalData(PREFIXED_ID_RE),
     false,
     "STATUS.md must not contain an asset_/job_ prefixed identifier"
   );
