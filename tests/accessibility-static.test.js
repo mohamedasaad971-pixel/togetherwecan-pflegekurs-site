@@ -18,6 +18,17 @@ test("translation reveal is keyboard accessible and stateful", () => {
 });
 
 test("delegated translation handlers are bound once", () => {
-  assert.match(app, /data-ar-schalt-gebunden/);
-  assert.equal((app.match(/addEventListener\("click"/g) || []).length, 1);
+  const start = app.indexOf("function arSchaltBinden()");
+  const end = app.indexOf("/* ————— الصفحة الأولى", start);
+
+  assert.notEqual(start, -1, "translation binding function should exist");
+  assert.notEqual(end, -1, "translation binding function should have a boundary");
+
+  const bindingBlock = app.slice(start, end);
+  assert.match(bindingBlock, /data-ar-schalt-gebunden/);
+  assert.equal(
+    (bindingBlock.match(/\.addEventListener\s*\(\s*["']click["']/g) || []).length,
+    1,
+    "translation binding should register exactly one delegated click listener"
+  );
 });
