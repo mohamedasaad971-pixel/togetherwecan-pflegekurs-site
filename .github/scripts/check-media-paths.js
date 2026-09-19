@@ -92,6 +92,32 @@ function unescapeJsStringEscapes(raw) {
   );
 }
 
+// يفكّ مراجعَ محارف HTML (العدديّة والاسميّة الشائعة)، أسوةً بالفكّ نفسِه في
+// check-no-approval-claims.js وcheck-robots-and-indexing.js: قيمةُ سمةٍ مثل
+// src="medien/&#109;issing.mp3" يراها المتصفّحُ "medien/missing.mp3"
+// فعليّاً، لا النصَّ الحرفيَّ غيرَ المفكوك — وMEDIA_REF لا يطابق "&" أصلاً،
+// فمسارٌ مكسورٌ بهذا الشكل كان يُفلت من الفحص كلّيّاً بدل أن يُبلَّغ مفقوداً
+// (ملاحظة Codex). يُطبَّق هذا الفكّ على .js أيضاً لا .html فقط: نصوصُ حوارٍ
+// في ui-de.js/ui-en.js تحمل HTML حرفيّاً (يُدرَج لاحقاً بـinnerHTML)، فقد
+// تحمل مرجعَ محرفٍ بنفس الطريقة.
+const HTML_NAMED_ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
+function decodeHtmlEntities(text) {
+  return text.replace(/&(#[xX][0-9a-fA-F]+;?|#\d+;?|[a-zA-Z]+;)/g, (whole, ref) => {
+    if (ref[0] === "#") {
+      const digits = ref.replace(/;$/, "");
+      const codePoint = digits[1] === "x" || digits[1] === "X" ? parseInt(digits.slice(2), 16) : parseInt(digits.slice(1), 10);
+      if (Number.isNaN(codePoint)) return whole;
+      try {
+        return String.fromCodePoint(codePoint);
+      } catch {
+        return whole;
+      }
+    }
+    const name = ref.slice(0, -1);
+    return Object.prototype.hasOwnProperty.call(HTML_NAMED_ENTITIES, name) ? HTML_NAMED_ENTITIES[name] : whole;
+  });
+}
+
 const referenced = new Set();
 for (const file of SOURCE_FILES) {
   const raw = fs.readFileSync(path.join(ROOT, file), "utf8");
@@ -102,7 +128,8 @@ for (const file of SOURCE_FILES) {
   // "medien/amina-00.mp3" — ولو صادف أنّ فكَّها هنا ينتج مساراً موجوداً
   // فعلاً على القرص، فذلك يُخفي مساراً حقيقيّاً مكسوراً عن هذا الفحص
   // (ملاحظة Codex). تطبيقُ الفكّ على .html كما على .js كان يفوّت هذه الحالة.
-  const text = file.endsWith(".js") ? unescapeJsStringEscapes(raw) : raw;
+  const jsUnescaped = file.endsWith(".js") ? unescapeJsStringEscapes(raw) : raw;
+  const text = decodeHtmlEntities(jsUnescaped);
   const matches = text.match(MEDIA_REF) || [];
   for (const m of matches) referenced.add(decodePercentEscapes(stripTrailingSentencePunct(m)));
 }
