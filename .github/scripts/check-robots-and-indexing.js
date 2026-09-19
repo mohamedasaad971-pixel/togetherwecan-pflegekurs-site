@@ -86,7 +86,10 @@ function decodeEntities(value) {
   // الناتج (كـ"noi;ndex" بدل "noindex")، وهو خطأٌ انزلق حين أُضيف اختيارُ
   // ";" في جولةٍ سابقة (اكتُشف أثناء التحقّق من إصلاحٍ مشابهٍ في الملفّ
   // الآخر، لا بملاحظةٍ من Codex على هذا الموضع تحديداً).
-  return value.replace(/&(#x[0-9a-fA-F]+;?|#\d+;?|[a-zA-Z]+;)/g, (whole, ref) => {
+  // "X" مقبولةٌ أيضاً بديلاً عن "x" في مرجعٍ سداسيّ عشريّ بمعيار HTML5
+  // (&#X6E; صالحةٌ تماماً كـ&#x6E;)؛ استبعادها كان يترك المرجعَ كلَّه غيرَ
+  // مطابَقٍ فلا يُفكّ (ملاحظة Codex).
+  return value.replace(/&(#[xX][0-9a-fA-F]+;?|#\d+;?|[a-zA-Z]+;)/g, (whole, ref) => {
     if (ref[0] === "#") {
       const digits = ref.replace(/;$/, "");
       const codePoint = digits[1] === "x" || digits[1] === "X" ? parseInt(digits.slice(2), 16) : parseInt(digits.slice(1), 10);

@@ -17,6 +17,19 @@ const SOURCE_FILES = fs
 // كلّياً إن جاء المحرفُ غيرُ ASCII أوّل اسم الملفّ (ملاحظة Codex).
 const MEDIA_REF = /medien\/[\p{L}\p{N}\p{M}_.\-/]+/gu;
 
+// "." من أحرف المسار المشروعة (امتدادُ الملفّ)، فلا يمكن استبعادها من صنف
+// المحارف أعلاه؛ لكنّ هذا يجعل المطابقة تبتلع نقطةَ نهاية جملةٍ نثريّةٍ تلي
+// المسارَ مباشرةً (كـ"Audio: medien/amina-00.mp3.")، فيُبلَّغ مسارٌ مفقودٌ لا
+// وجودَ له أصلاً. نحذف تذييلاً من علامات ترقيمٍ ختاميّةٍ شائعةٍ من نهاية كلّ
+// مطابَقةٍ، لكن فقط حين يبقى بعد الحذف امتدادُ ملفٍّ فعليٌّ (نقطةٌ فحروفٌ/أرقامٌ
+// في النهاية) — لا حين يكون جزءاً حقيقيّاً من اسم ملفٍّ لا نعرفه (ملاحظة Codex).
+const TRAILING_SENTENCE_PUNCT_RE = /[.,;:!?]+$/;
+const HAS_EXTENSION_RE = /\.[\p{L}\p{N}]+$/u;
+function stripTrailingSentencePunct(ref) {
+  const stripped = ref.replace(TRAILING_SENTENCE_PUNCT_RE, "");
+  return stripped !== ref && HAS_EXTENSION_RE.test(stripped) ? stripped : ref;
+}
+
 const paket = JSON.parse(fs.readFileSync(path.join(ROOT, "PAKET.json"), "utf8"));
 const listed = new Set(paket.dateien || []);
 
@@ -24,7 +37,7 @@ const referenced = new Set();
 for (const file of SOURCE_FILES) {
   const text = fs.readFileSync(path.join(ROOT, file), "utf8");
   const matches = text.match(MEDIA_REF) || [];
-  for (const m of matches) referenced.add(m);
+  for (const m of matches) referenced.add(stripTrailingSentencePunct(m));
 }
 
 const missingOnDisk = [];

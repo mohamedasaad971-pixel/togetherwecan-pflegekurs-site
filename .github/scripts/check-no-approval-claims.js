@@ -86,7 +86,9 @@ function decodeHtmlEntities(text) {
   // ";" اختياريّةٌ بعد الصيغتَين العدديّتين، ويجب أن يلتقطها النمطُ نفسُه حين
   // تكون موجودةً — وإلّا بقيت معلَّقةً حرفيّاً في الناتج (كـ"appro;ved" بدل
   // "approved").
-  return text.replace(/&(#x[0-9a-fA-F]+;?|#\d+;?|[a-zA-Z]+;)/g, (whole, ref) => {
+  // "X" مقبولةٌ أيضاً بديلاً عن "x" في مرجعٍ سداسيّ عشريّ بمعيار HTML5،
+  // أسوةً بنفس الإصلاح في check-robots-and-indexing.js (ملاحظة Codex).
+  return text.replace(/&(#[xX][0-9a-fA-F]+;?|#\d+;?|[a-zA-Z]+;)/g, (whole, ref) => {
     if (ref[0] === "#") {
       const digits = ref.replace(/;$/, "");
       const codePoint = digits[1] === "x" || digits[1] === "X" ? parseInt(digits.slice(2), 16) : parseInt(digits.slice(1), 10);
@@ -135,13 +137,16 @@ function normalizeWithLineMap(raw) {
 // جملةٍ أعمّ مثل "المحتوى معتمد سريريّاً ومنهجيّاً" — استثناءٌ نمطيٌّ سابقٌ
 // كهذا كان يسمح بأيّ جملةٍ من هذا الشكل (ملاحظة Codex على #6).
 const COMBINED_CLAIM = /(?:ا|م)عتمد[ة]?\s+سريريا/;
+// الإنجليزيّة/الألمانيّة بفاصلٍ [\s-]+ لا مسافةٍ حرفيّةٍ وحدها: الصيغةُ
+// الموصولة بشرطةٍ ("clinically-approved") ادّعاءٌ بنفس المعنى، ولم تكن
+// السلاسلُ الحرفيّةُ السابقةُ (مطابَقةٌ بـindexOf) تكتشفها (ملاحظة Codex).
 const BANNED_PHRASES = [
   COMBINED_CLAIM,
   /معتمد[ة]?\s+طبيا/,
-  "clinically approved",
-  "klinisch freigegeben",
-  "medically approved",
-  "medizinisch freigegeben",
+  /clinically[\s-]+approved/,
+  /klinisch[\s-]+freigegeben/,
+  /medically[\s-]+approved/,
+  /medizinisch[\s-]+freigegeben/,
 ];
 
 // المواضع الوحيدة المسموح فيها بعبارة الادّعاء: شارتا حالةٍ مشروطتان ببيانات
