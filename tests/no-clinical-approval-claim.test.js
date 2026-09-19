@@ -7,19 +7,11 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const ROOT = path.join(__dirname, "..");
-const SHIPPED_FILES = [
-  "index.html",
-  "app.js",
-  "ui-de.js",
-  "ui-en.js",
-  "daten.js",
-  "karten.js",
-  "diagnose.js",
-  "fortschritt.js",
-  "pruefung.js",
-  "uebungen.js",
-  "wiederholung.js",
-];
+// امسح كلَّ ملفّ .js/.html في الجذر بدل قائمةٍ يدويّة، كي لا يفوت ملفٌّ
+// جديدٌ (فات modus.js من قائمةٍ سابقة هنا — راجع مراجعة Codex على #5).
+const SHIPPED_FILES = fs
+  .readdirSync(ROOT)
+  .filter((f) => f.endsWith(".js") || f.endsWith(".html"));
 
 const DIACRITICS = /[ؐ-ًؚ-ٰٟۖ-ۭ]/g;
 function normalize(text) {
@@ -48,9 +40,7 @@ function matchesBannedPhrase(normalizedLine, phrase) {
 test("no shipped file claims general clinical/medical approval", () => {
   const offenders = [];
   for (const file of SHIPPED_FILES) {
-    const fullPath = path.join(ROOT, file);
-    if (!fs.existsSync(fullPath)) continue;
-    const raw = fs.readFileSync(fullPath, "utf8");
+    const raw = fs.readFileSync(path.join(ROOT, file), "utf8");
     const lines = raw.split("\n");
     lines.forEach((line, i) => {
       const normalized = normalize(line);
