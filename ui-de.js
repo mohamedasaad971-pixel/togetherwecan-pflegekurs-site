@@ -505,6 +505,8 @@ window.UI_DE = {
  "والحكمُ لأذنك:</p><ul class=\"s-liste\">": "und das Urteil hat Ihr Ohr:</p><ul class=\"s-liste\">",
  "والمحطّتان تقيسهما بنفسك بمعاييرهما. ولا تدخلها جملُ التمارين ": "die beiden Stationen beurteilen Sie selbst nach ihren Kriterien. Und es gehen keine Übungssätze ein, die ",
  "ولا توجد مفرداتٌ في هذا البناء بعد. جرّب ": "In diesem Build gibt es noch keine Vokabeln. Versuchen Sie ",
+ "لا توجد مفرداتٌ لهذه الوحدة في <code>vokabeln[]</code>. جرّب ": "Für diese Einheit gibt es keine Vokabeln in <code>vokabeln[]</code>. Versuchen Sie ",
+ "كلَّ البطاقات": "alle Karten",
  "وتدريبٌ شفهيٌّ أو عمليّ، ومعيارُ تقييم. وثلاثةٌ من أربعةٍ فجوة.</p>": "einem mündlichen oder praktischen Training und einem Bewertungskriterium. Drei von vier sind eine Lücke.</p>",
  "وتنتظر الفيديو.</p>": "und wartet auf das Video.</p>",
  "وجملةٌ حكمتَ على نطقك فيها، ومفردةٌ نسيتَها. ولا شيءَ يُرسَل، ": "ein Satz, bei dem Sie Ihre Aussprache beurteilt haben, ein Begriff, den Sie vergessen haben. Nichts wird gesendet, ",

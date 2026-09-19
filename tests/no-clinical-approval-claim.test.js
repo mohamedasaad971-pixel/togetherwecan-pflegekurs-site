@@ -27,15 +27,23 @@ function normalize(text) {
 }
 
 // عباراتٌ ادّعاءُ اعتمادٍ سريريّ/طبّيّ عامّ، لا تسمياتُ حالةٍ مشروطةٌ ببيانات
-// عنصرٍ بعينه (تلك خارج نطاق هذا الحارس، راجع issue #4).
+// عنصرٍ بعينه (راجع issue #4): شارةُ "معتمد سريريّاً ومنهجيّاً" في صفحة
+// التغطية مستثناةٌ عمداً بالنمط السلبيّ (?!\s*ومنهجيا) أدناه، لأنّ "ومنهجيّاً"
+// بعدها يجعلها تسميةَ حالةٍ مزدوجةَ الشرط لا ادّعاءً عامّاً.
 const BANNED_PHRASES = [
-  normalize("اعتمد سريريا"),
-  normalize("معتمد طبيا"),
+  /(?:ا|م)عتمد سريريا(?!\s*ومنهجيا)/,
+  /معتمد طبيا/,
   "clinically approved",
   "klinisch freigegeben",
   "medically approved",
   "medizinisch freigegeben",
 ];
+
+function matchesBannedPhrase(normalizedLine, phrase) {
+  return phrase instanceof RegExp
+    ? phrase.test(normalizedLine)
+    : normalizedLine.includes(phrase);
+}
 
 test("no shipped file claims general clinical/medical approval", () => {
   const offenders = [];
@@ -47,7 +55,7 @@ test("no shipped file claims general clinical/medical approval", () => {
     lines.forEach((line, i) => {
       const normalized = normalize(line);
       for (const phrase of BANNED_PHRASES) {
-        if (normalized.includes(phrase)) {
+        if (matchesBannedPhrase(normalized, phrase)) {
           offenders.push(`${file}:${i + 1} contains banned phrase "${phrase}"`);
         }
       }

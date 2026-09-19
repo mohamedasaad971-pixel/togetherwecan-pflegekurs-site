@@ -1,5 +1,5 @@
-/* مشغّل الدورة. يقرأ window.DATEN (محتوًى معتمدٌ سريريّاً فقط)، ويحمّل
-   window.DATEN_INTERN عند الطلب للمعاينة الداخليّة وحدَها.
+/* مشغّل الدورة. يقرأ window.DATEN (محتوى نسخة الطلّاب، لم تراجعه جهةٌ
+   سريريّة بعد)، ويحمّل window.DATEN_INTERN عند الطلب للمعاينة الداخليّة وحدَها.
    يعمل بفتح الملفّ مباشرةً — لا خادمَ ولا شبكة. */
 (function () {
   "use strict";
@@ -2447,10 +2447,15 @@
     }
 
     if (!alle.length) {
-      h += ui('<div class="band warn">لا مفردةَ واحدة هنا.') +
-        ui('<span class="klein">البطاقاتُ تُشتقّ من <code>vokabeln[]</code> في المحتوى، ') +
-        ui("ولا توجد مفرداتٌ في هذا البناء بعد. جرّب ") +
-        ui('<a href="#/karten-intern">بطاقات المعاينة الداخليّة</a>.</span></div>');
+      h += ui('<div class="band warn">لا مفردةَ واحدة هنا.');
+      if (nurId) {
+        h += ui('<span class="klein">لا توجد مفرداتٌ لهذه الوحدة في <code>vokabeln[]</code>. جرّب ') +
+          '<a href="#/karten' + (intern ? "-intern" : "") + '">' + ui("كلَّ البطاقات") + "</a>.</span></div>";
+      } else {
+        h += ui('<span class="klein">البطاقاتُ تُشتقّ من <code>vokabeln[]</code> في المحتوى، ') +
+          ui("ولا توجد مفرداتٌ في هذا البناء بعد. جرّب ") +
+          ui('<a href="#/karten-intern">بطاقات المعاينة الداخليّة</a>.</span></div>');
+      }
       return h;
     }
 

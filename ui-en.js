@@ -504,6 +504,8 @@ window.UI_EN = {
  "والحكمُ لأذنك:</p><ul class=\"s-liste\">": "and the judgement is your ear's:</p><ul class=\"s-liste\">",
  "والمحطّتان تقيسهما بنفسك بمعاييرهما. ولا تدخلها جملُ التمارين ": "and you judge the two stations yourself by their criteria. And it does not use exercise sentences that are ",
  "ولا توجد مفرداتٌ في هذا البناء بعد. جرّب ": "There are no vocabulary items in this build yet. Try ",
+ "لا توجد مفرداتٌ لهذه الوحدة في <code>vokabeln[]</code>. جرّب ": "There are no vocabulary items for this unit in <code>vokabeln[]</code>. Try ",
+ "كلَّ البطاقات": "all cards",
  "وتدريبٌ شفهيٌّ أو عمليّ، ومعيارُ تقييم. وثلاثةٌ من أربعةٍ فجوة.</p>": "an oral or practical training station, and an assessment criterion. Three out of four is a gap.</p>",
  "وتنتظر الفيديو.</p>": "and are waiting for the video.</p>",
  "وجملةٌ حكمتَ على نطقك فيها، ومفردةٌ نسيتَها. ولا شيءَ يُرسَل، ": "a sentence you judged your own speech on, a word you forgot. Nothing is sent, ",
