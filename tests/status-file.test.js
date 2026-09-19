@@ -173,15 +173,32 @@ const GAP_TAG_NAMES = new Set([
 // يترك فراغاً منظوراً مكانه (بخلاف <br>)؛ نمطُ الوسم أدناه يشترط حرفاً بعد
 // "<"/"</" فلا يطابق "<!--" أصلاً، فيبقى تعليقٌ كـ"clinically
 // <!-- ملاحظة --> approved" فاصلاً حرفيّاً بين الكلمتين يُفلت المطابقةَ
-// (ملاحظة Codex). يُسقَط هنا أوّلاً، بلا أثرٍ (فراغٍ) أسوةً بوسمٍ سطريٍّ.
+// (ملاحظة Codex). يُسقَط بلا أثرٍ (فراغٍ) أسوةً بوسمٍ سطريٍّ — لكن فقط عند
+// إعادة بناء النصّ *المعروض* فعليّاً (stripInlineHtml أدناه)؛ فحوصُ البيانات
+// الحسّاسة تحتاج التعليقَ باقياً (محتواه منشورٌ في المصدر العامّ بصرف النظر
+// عن العرض)، فتستخدم stripTags() وحدها بلا stripComments (راجع فحوصَ
+// البيانات الشخصيّة/التفاصيل الداخليّة أدناه، وملاحظة Codex الثانية: بيانٌ
+// حسّاسٌ داخل تعليقٍ يحتوي وسماً يقطعه، كـ"<!-- +49 <strong>151</strong>
+// ... -->"، يفلت الفحصَ إن حُذف التعليقُ كاملاً أو إن بقي الوسمُ داخله).
 function stripComments(text) {
   return text.replace(/<!--[\s\S]*?-->/g, "");
 }
-function stripInlineHtml(text) {
-  return stripComments(text).replace(
+// فاصلُ سطرٍ إجباريٌّ بصيغة Markdown ("\" مباشرةً قبل فاصل سطرٍ) يُعرَض
+// <br> فعليّاً (أسوةً بمسافتَين ختاميّتين قبل فاصل السطر، الصيغة الأخرى
+// الأكثر شيوعاً وتُعالَج تلقائيّاً لاحقاً عبر طيّ \s+ العاديّ)، فيُستبدَل
+// بمسافةٍ واحدة قبل مطابقة أنماط الوسم — وإلّا بقيت الـ"\" الحرفيّة حاجزاً
+// بين الكلمتين رغم عرضهما منفصلتَين بسطرٍ فعليّاً (ملاحظة Codex).
+function replaceHardBreaks(text) {
+  return text.replace(/\\\r?\n/g, " ");
+}
+function stripTags(text) {
+  return replaceHardBreaks(text).replace(
     /<\/?([a-zA-Z][a-zA-Z0-9]*)\b(?:"[^"]*"|'[^']*'|[^<>])*>/g,
     (whole, tagName) => (GAP_TAG_NAMES.has(tagName.toLowerCase()) ? " " : "")
   );
+}
+function stripInlineHtml(text) {
+  return stripTags(stripComments(text));
 }
 
 function normalize(rawInput) {
@@ -246,15 +263,19 @@ test("STATUS.md leaks no internal details or approval claims", () => {
   //    جولتان: السمات ثمّ التعليقات). لا يُطبَّق هذا على CLAIM_PATTERNS
   //    عمداً: ادّعاءُ اعتمادٍ يُعَدّ ادّعاءً حين يُعرَض لقارئٍ فعليّاً، لا حين
   //    يبقى نصّاً خاملاً داخل تعليقٍ لا يُصيَّر إطلاقاً.
-  // ٢) `strippedForPersonalData` — بعد إسقاط التعليقات وتشديد Markdown ووسم
-  //    HTML المضمّن أيضاً (بنفس تفريق stripInlineHtml() بين السطريّ
-  //    والفاصل): رقمُ هاتفٍ بفواصل مُرمَّزةٍ كـ"+49&ensp;151&ensp;..."، أو
-  //    مُشدَّدةٍ كـ"+49 **151** ..."، أو مقسومٍ بوسمٍ سطريٍّ كـ"+49
-  //    <strong>151</strong> ..." — كلُّها تُعرَض رقماً عاديّاً واحداً
-  //    فعليّاً، لكنّ الفاصلَ الحرفيَّ يمنع مطابقته في `sourceText` وحده
-  //    (ملاحظة Codex، جولاتٌ سابقة).
+  // ٢) `strippedForPersonalData` — بعد إسقاط تشديد Markdown ووسم HTML
+  //    المضمّن (stripTags() وحدها، لا stripInlineHtml()، فالتعليقات تبقى):
+  //    رقمُ هاتفٍ بفواصل مُرمَّزةٍ كـ"+49&ensp;151&ensp;..."، أو مُشدَّدةٍ كـ
+  //    "+49 **151** ..."، أو مقسومٍ بوسمٍ سطريٍّ كـ"+49 <strong>151</strong>
+  //    ..." — حتى لو وقع هذا كلُّه داخل تعليقٍ (كـ"<!-- +49
+  //    <strong>151</strong> ... -->" — ملاحظة Codex الثانية) — كلُّها تُعرَض
+  //    رقماً عاديّاً واحداً فعليّاً أو منشورةٌ في المصدر العامّ على حالها،
+  //    لكنّ الفاصلَ الحرفيَّ يمنع مطابقته في `sourceText` وحده. استخدامُ
+  //    stripTags() لا stripInlineHtml() هنا مقصودٌ: الأخيرة تُسقط التعليقاتِ
+  //    كاملةً (مناسبةٌ لإعادة بناء النصّ المعروض في normalize()، لا لفحصٍ
+  //    يلزمه أن يرى محتوى التعليق نفسَه).
   const sourceText = decodeHtmlEntities(raw);
-  const strippedForPersonalData = stripInlineHtml(sourceText.replace(/[*_~`]/g, ""));
+  const strippedForPersonalData = stripTags(sourceText.replace(/[*_~`]/g, ""));
   function leaksSensitiveData(re) {
     return re.test(sourceText) || re.test(strippedForPersonalData);
   }
