@@ -41,23 +41,42 @@ if (starGroups.length === 0) {
   errors.push("robots.txt لم تعد فيه مجموعة User-agent: * — سلوكُ الفهرسة للعامّة غيرُ معرَّف.");
 } else {
   const rules = starGroups.flatMap((g) => g.rules);
-  const hasDisallowRoot = rules.some((r) => r.type === "disallow" && r.value === "/");
+  // "Disallow: /" و"Disallow: /*" متكافئتان عمليّاً: كلُّ مسارٍ يبدأ بـ"/"،
+  // و"*" تطابق أيّ شيءٍ بعدها (حتى الفراغ) — فكلتاهما تمنعان الموقعَ كلّه.
+  // لا نحاول هنا تطبيق دلالات مطابقة مساراتٍ عامّةً (كـ"/*.pdf$")، بل هذه
+  // الحالةَ المحدَّدةَ فقط: قاعدةٌ لا تحمل غير "/" ونجمةٍ اختياريّةٍ بعدها.
+  const BLOCKS_EVERYTHING = /^\/\*?$/;
+  const hasDisallowRoot = rules.some((r) => r.type === "disallow" && BLOCKS_EVERYTHING.test(r.value));
   const hasAllowRoot = rules.some((r) => r.type === "allow" && r.value === "/");
   if (hasDisallowRoot) {
-    errors.push('robots.txt: مجموعة User-agent: * صارت تحتوي "Disallow: /" — يمنع فهرسة الموقع كلّه.');
+    errors.push('robots.txt: مجموعة User-agent: * صارت تحتوي قاعدةَ Disallow تمنع كلَّ مسارٍ ("/" أو "/*") — يمنع فهرسة الموقع كلّه.');
   } else if (!hasAllowRoot) {
     errors.push('robots.txt: مجموعة User-agent: * لم تعد تحتوي "Allow: /" — الموقعُ العامّ لن يُفهرَس بثقة.');
   }
 }
 
-// يقرأ قيمةَ سمةٍ من وسمٍ سواءٌ اقتُبست بـ" أو ' أو بلا اقتباسٍ أصلاً
-// (الثلاثةُ HTML صحيحةٌ وتعمل في المتصفّح). حدُّ اسم السمة بـ (?<![\w-])
-// قبلها يمنع مطابقة "name" داخل سمةٍ أخرى تنتهي به، مثل "data-name".
+// يفكّك الوسمَ إلى سماتٍ (اسمٌ ← قيمة) بالمرور عليه سمةً سمةً، بدل البحث عن
+// اسم سمةٍ بتعبيرٍ نمطيٍّ في أيّ موضعٍ من نصّ الوسم — فذلك البحثُ قد يجد
+// نصَّ سمةٍ حقيقيّةٍ داخل قيمةٍ مقتبسةٍ لسمةٍ أخرى (كـ data-note='name="x"')
+// ويرجع بقيمةٍ خاطئة. كلُّ تكرارٍ للنمط يلتهم سمةً واحدةً كاملةً (اسمَها ثم
+// قيمتَها المقتبسة أو غير المقتبسة إن وُجدت) قبل الانتقال إلى ما بعدها.
+const ATTR_RE = /([^\s"'=<>`\/]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g;
+function parseTagAttrs(tag) {
+  const inner = tag.replace(/^<[a-zA-Z][a-zA-Z0-9-]*/, "").replace(/\/?>$/, "");
+  const attrs = {};
+  let m;
+  ATTR_RE.lastIndex = 0;
+  while ((m = ATTR_RE.exec(inner))) {
+    const name = m[1].toLowerCase();
+    if (!(name in attrs)) {
+      attrs[name] = m[2] !== undefined ? m[2] : m[3] !== undefined ? m[3] : m[4] !== undefined ? m[4] : "";
+    }
+  }
+  return attrs;
+}
 function readAttr(tag, attrName) {
-  var re = new RegExp('(?<![\\w-])' + attrName + '\\s*=\\s*(?:"([^"]*)"|\'([^\']*)\'|(\\S+))', "i");
-  var m = tag.match(re);
-  if (!m) return null;
-  return m[1] !== undefined ? m[1] : m[2] !== undefined ? m[2] : m[3].replace(/[>/]+$/, "");
+  const value = parseTagAttrs(tag)[attrName.toLowerCase()];
+  return value === undefined ? null : value;
 }
 
 const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
