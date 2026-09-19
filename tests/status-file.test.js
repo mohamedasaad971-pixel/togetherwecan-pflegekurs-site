@@ -11,6 +11,19 @@ const STATUS_PATH = path.join(__dirname, "..", "STATUS.md");
 
 const EMAIL_RE = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/;
 const HEX_ID_RE = /\b[0-9a-f]{12,}\b/i;
+
+// نفس مدى التشكيل العربيّ المستبعَد في tests/no-clinical-approval-claim.test.js،
+// كي لا يُفلت ادّعاءٌ مشكَّلٌ مثل "معتمَد سريريّاً" من المطابقة (ملاحظة Codex).
+const DIACRITIC = /[ؐ-ًؚ-ٰٟۖ-ۭ]/g;
+
+// عبارةُ الادّعاء بصيغتَي الفعل والصفة مذكّرةً ومؤنّثة ("معتمد"/"معتمدة"/"اعتُمد")،
+// بعد حذف التشكيل وطيّ المسافات (بما فيها فواصل الأسطر) إلى مسافةٍ واحدة.
+const CLAIM_PATTERNS = [
+  /(?:ا|م)عتمد[ة]?\s+سريريا/,
+  /معتمد[ة]?\s+طبيا/,
+  "clinically approved",
+  "medically approved",
+];
 const BANNED_SUBSTRINGS = [
   "elevenlabs",
   "midjourney",
@@ -21,13 +34,11 @@ const BANNED_SUBSTRINGS = [
   "asset id",
   "traceback",
   "stack trace",
-  "معتمد سريريا",
-  "معتمد طبيا",
-  "معتمدة سريريا",
-  "معتمدة طبيا",
-  "clinically approved",
-  "medically approved",
 ];
+
+function normalize(raw) {
+  return raw.replace(DIACRITIC, "").replace(/\s+/g, " ").toLowerCase();
+}
 
 test("STATUS.md exists and is not empty", () => {
   assert.ok(fs.existsSync(STATUS_PATH), "STATUS.md is missing");
@@ -37,7 +48,7 @@ test("STATUS.md exists and is not empty", () => {
 
 test("STATUS.md leaks no internal details or approval claims", () => {
   const raw = fs.readFileSync(STATUS_PATH, "utf8");
-  const lower = raw.toLowerCase();
+  const normalized = normalize(raw);
 
   assert.equal(EMAIL_RE.test(raw), false, "STATUS.md must not contain an email address");
   assert.equal(
@@ -46,10 +57,12 @@ test("STATUS.md leaks no internal details or approval claims", () => {
     "STATUS.md must not contain a long hex id (looks like a job/asset id)"
   );
 
-  const offenders = BANNED_SUBSTRINGS.filter((s) => lower.includes(s));
+  const offenders = [...BANNED_SUBSTRINGS, ...CLAIM_PATTERNS].filter((phrase) =>
+    phrase instanceof RegExp ? phrase.test(normalized) : normalized.includes(phrase)
+  );
   assert.deepEqual(
     offenders,
     [],
-    `STATUS.md contains banned substrings: ${offenders.join(", ")}`
+    `STATUS.md contains banned content: ${offenders.join(", ")}`
   );
 });
