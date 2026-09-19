@@ -684,7 +684,8 @@
     h += '<p class="klein">' + statusChip(ui("سريريّ"), e._status_klinisch) + " " +
       statusChip(ui("منهجيّ"), e._status_curriculum) + "</p>";
     if ((e.vokabeln || []).length) {
-      h += '<p class="klein"><a href="#/karten-intern/' + esc(e.id) + '">' +
+      var kartenPfad = intern ? "#/karten-intern/" : "#/karten/";
+      h += '<p class="klein"><a href="' + kartenPfad + esc(e.id) + '">' +
         ui("بطاقاتُ هذه الوحدة (") + alsListe(e.vokabeln).length + ui(" مفردة) ←</a></p>");
     }
     if (e._quellen_status === "draft") {
