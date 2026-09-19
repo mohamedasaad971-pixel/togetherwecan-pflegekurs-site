@@ -247,21 +247,28 @@ function tagName(tagText) {
 // قيمةَ كلّ سمةٍ نصّيّةٍ معروفةٍ من الوسم قبل إسقاطه، ونُدرجها في النصّ
 // المطابَق (محاطةً بمسافتَين، كنصٍّ منفصلٍ لا كجزءٍ من تدفّق الكلمات
 // المجاورة).
-const TEXT_BEARING_ATTRS = ["alt", "title", "value", "placeholder", "aria-label", "aria-description", "label"];
-// "(?:^|[^a-zA-Z0-9-])" لا "\b" قبل اسم السمة: "\b" حدٌّ بين محرفٍ كلاميٍّ
-// وآخر غيرِ كلاميّ، لكنّ "-" نفسَه غيرُ كلاميٍّ فيصنع حدّاً زائفاً داخل اسمٍ
-// مركَّبٍ بشرطةٍ — فنمط "label" كان يطابق أيضاً منتصف "aria-label" (الحدُّ
-// الزائفُ بعد "-")، فتُستخرَج القيمةُ نفسُها مرّتين (مرّةً كـ"aria-label"،
-// ومرّةً كـ"label" داخلها) — اكتُشف بالتحقّق الذاتيّ، لا بملاحظة Codex.
-// الشرطُ الجديد يرفض "-" صراحةً كمحرفٍ سابقٍ صالح.
-const TEXT_ATTR_RES = TEXT_BEARING_ATTRS.map(
-  (name) => new RegExp(`(?:^|[^a-zA-Z0-9-])${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s"'<>]+))`)
-);
+const TEXT_BEARING_ATTRS = new Set(["alt", "title", "value", "placeholder", "aria-label", "aria-description", "label"]);
+// يفكّك الوسمَ إلى سماتٍ (اسمٌ ← قيمة) بالمرور عليه سمةً سمةً — كلُّ تكرارٍ
+// يلتهم سمةً واحدةً كاملةً (اسمَها ثم قيمتَها المقتبسة أو غيرَ المقتبسة)
+// قبل الانتقال إلى ما بعدها — بدل البحث عن اسم سمةٍ في أيّ موضعٍ من نصّ
+// الوسم بتعبيرٍ نمطيٍّ مستقلٍّ لكلّ اسم: ذلك البحثُ المستقلُّ كان يجد نصَّ
+// سمةٍ حقيقيّةٍ داخل قيمةٍ مقتبسةٍ لسمةٍ أخرى (كـ"title" داخل
+// data-note=' title="clinically approved" ') ويُخفق الفحصَ خطأً على محتوًى
+// آمنٍ فعليّاً — لا سمةَ title حقيقيّةً هناك أصلاً (ملاحظة Codex). نفسُ
+// نمط ATTR_RE/parseTagAttrs المستخدَم أصلاً في check-robots-and-indexing.js
+// لنفس السبب. النصُّ هنا مأخوذٌ من normalized (بعد normalizeWithLineMap)،
+// وفراغاتُه كلُّها مسافاتٌ ASCII عاديّةٌ مُطبَّعةٌ بالفعل، فـ"\s" هنا كافٍ
+// (لا حاجة لتقييد ASCII كما في check-robots-and-indexing.js التي تعمل على
+// نصٍّ خامّ قد يحمل لامسافةً فاصلةً حرفيّاً).
+const ATTR_TOKEN_RE = /([^\s"'=<>`/]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g;
 function extractTextBearingAttrValues(tagText) {
+  const inner = tagText.replace(/^<\/?[a-zA-Z][a-zA-Z0-9-]*/, "").replace(/>$/, "");
   const values = [];
-  for (const re of TEXT_ATTR_RES) {
-    const m = tagText.match(re);
-    if (m) values.push(m[1] ?? m[2] ?? m[3] ?? "");
+  let m;
+  ATTR_TOKEN_RE.lastIndex = 0;
+  while ((m = ATTR_TOKEN_RE.exec(inner))) {
+    if (!TEXT_BEARING_ATTRS.has(m[1].toLowerCase())) continue;
+    values.push(m[2] !== undefined ? m[2] : m[3] !== undefined ? m[3] : m[4] !== undefined ? m[4] : "");
   }
   return values;
 }
