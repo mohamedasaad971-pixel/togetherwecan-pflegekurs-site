@@ -113,12 +113,11 @@ td.n{color:var(--matt);width:52px;font-variant-numeric:tabular-nums;white-space:
 
 /* الترجمة: كاملة · عند الطلب · مخفيّة */
 body[data-ar="aus"] .ar-schalt{display:none}
-body[data-ar="klick"] .ar-schalt:not(.offen) .ar{
+body[data-ar="klick"] .ar-schalt:not(.offen) .ar-inhalt{
   filter:blur(4px);cursor:pointer;user-select:none;opacity:.65;
 }
-body[data-ar="klick"] .ar-schalt:not(.offen) .ar::after{content:" ↩︎ اضغط"}
-body[data-ar="klick"] .ar-schalt[role="button"]{cursor:pointer;border-radius:8px}
-body[data-ar="klick"] .ar-schalt[role="button"]:focus-visible{
+body[data-ar="klick"] .ar-umschalter{margin:0 0 6px}
+body[data-ar="klick"] .ar-umschalter:focus-visible{
   outline:3px solid var(--akzent);outline-offset:3px;
 }
 
