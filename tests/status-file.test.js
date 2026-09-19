@@ -29,6 +29,8 @@ const CLAIM_PATTERNS = [
   /معتمد[ة]?\s+طبيا/,
   "clinically approved",
   "medically approved",
+  "klinisch freigegeben",
+  "medizinisch freigegeben",
 ];
 const BANNED_SUBSTRINGS = [
   "elevenlabs",
