@@ -47,8 +47,13 @@ const DIACRITIC = /[ؐ-ًؚ-ٰٟۖ-ۭ]/;
 // المفحوصة.
 const LINE_SEPARATOR = String.fromCharCode(0x2028);
 const PARAGRAPH_SEPARATOR = String.fromCharCode(0x2029);
+// "\r?\n" وحدها كانت تفوّت CR منفردةً (بلا LF تاليةٍ): فاصلُ سطرٍ صالحٌ
+// بمعيار ECMAScript أيضاً (LineTerminatorSequence)، مثل LF وCRLF وLS وPS
+// (ملاحظة Codex). "\r\n" تُطابَق أوّلاً ككتلةٍ واحدةٍ (بديلٌ أوّل)، فلا
+// تُستهلَك الـ"\r" وحدَها تاركةً الـ"\n" التالية بلا استيعاب؛ CR منفردةٌ (لا
+// LF بعدها) أو LF منفردةٌ أو LS أو PS تُطابَق عبر صنف المحارف التالي.
 const JS_ESCAPE_RE = new RegExp(
-  "\\\\(?:(\\r?\\n|[" + LINE_SEPARATOR + PARAGRAPH_SEPARATOR + "])|u\\{([0-9a-fA-F]+)\\}|u([0-9a-fA-F]{4})|x([0-9a-fA-F]{2})|([0-3][0-7]{0,2}|[4-7][0-7]?)|(.))",
+  "\\\\(?:(\\r\\n|[\\r\\n" + LINE_SEPARATOR + PARAGRAPH_SEPARATOR + "])|u\\{([0-9a-fA-F]+)\\}|u([0-9a-fA-F]{4})|x([0-9a-fA-F]{2})|([0-3][0-7]{0,2}|[4-7][0-7]?)|(.))",
   "g"
 );
 function unescapeJsStringEscapes(raw) {
