@@ -42,20 +42,19 @@ const DIACRITIC = /[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]/g;
 // ينتهي بتاءٍ متحرّكةٍ ("اعتُمدت")، والصفةُ المنصوبة ("معتمداً") يبقى ألِفُها
 // بعد حذف تنوين الفتح تشكيلاً لا حرفاً — إغفال أيٍّ من الثلاثة كان يُفلت
 // صيغته من المطابقة (ملاحظة Codex: الصيغة المنصوبة تحديداً).
-// STATUS.md يُعرَض Markdown، وMarkdown يمرّر وسمَ HTML ضمنيّاً كـ"<strong>"
-// إلى الصفحة المعروضة بلا تغييرٍ ("clinically <strong>approved</strong>"
-// تُعرَض "clinically approved" متّصلةً)؛ الفاصلُ بين كلمتَي كلّ عبارةٍ أدناه
-// يقبل الآن وسماً واحداً أو أكثر بالتبادل مع المسافة (لا يتوقّف عند ">" داخل
-// قيمة سمةٍ مقتبسةٍ، أسوةً بـTAG_GAP في check-no-approval-claims.js)، فلا
-// يُفلت وسمٌ بينهما الادّعاءَ من الاكتشاف (ملاحظة Codex).
-const TAG_GAP = '<(?:"[^"]*"|\'[^\']*\'|[^<>])*>';
+// عبارةُ الادّعاء بصيغتَي الفعل والصفة، بمسافةٍ عاديّةٍ بين الكلمتين: وسمُ
+// HTML ضمنيٌّ محتمَلٌ بينهما (كـ"clinically <strong>approved</strong>")
+// يُسقَط بالفعل في normalize() نفسِها (أدناه) قبل أن تصل هذه الأنماطُ إلى
+// النصّ، فلا حاجةَ لتحمّلٍ خاصٍّ بالوسم هنا (كان مضافاً سابقاً في كلّ نمطٍ
+// على حدة، فأُزيل بعد نقل الإسقاط إلى normalize() ليشمل BANNED_SUBSTRINGS
+// أيضاً — ملاحظة Codex).
 const CLAIM_PATTERNS = [
-  new RegExp(`(?:ا|م)عتمد[ةتا]?(?:\\s|${TAG_GAP})+سريريا`),
-  new RegExp(`(?:ا|م)عتمد[ةتا]?(?:\\s|${TAG_GAP})+طبيا`),
-  new RegExp(`clinically(?:\\s|${TAG_GAP})+approved`),
-  new RegExp(`medically(?:\\s|${TAG_GAP})+approved`),
-  new RegExp(`klinisch(?:\\s|${TAG_GAP})+freigegeben`),
-  new RegExp(`medizinisch(?:\\s|${TAG_GAP})+freigegeben`),
+  /(?:ا|م)عتمد[ةتا]?\s+سريريا/,
+  /(?:ا|م)عتمد[ةتا]?\s+طبيا/,
+  "clinically approved",
+  "medically approved",
+  "klinisch freigegeben",
+  "medizinisch freigegeben",
 ];
 const BANNED_SUBSTRINGS = [
   "elevenlabs",
@@ -81,8 +80,26 @@ function foldReferenceLabel(text) {
 // كـ"clinically&nbsp;approved" في Markdown تُعرَض "clinically approved"
 // بمسافةٍ حقيقيّةٍ فعليّاً، لكنّ "&nbsp;" الحرفيّة نصٌّ عاديٌّ لا مسافةٌ
 // بمعنى \s، فتُفلت أنماط CLAIM_PATTERNS من المطابقة ما لم تُفكَّ أوّلاً
-// (ملاحظة Codex). المرجعُ العدديّ لا يلزمه ";" بمعيار HTML5.
-const NAMED_ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
+// (ملاحظة Codex). المرجعُ العدديّ لا يلزمه ";" بمعيار HTML5. القائمةُ تشمل
+// مراجعَ المسافة البيضاء الاسميّةَ الأخرى التي يفكّها العارضُ (لا "nbsp"
+// وحدها): "&ensp;"/"&emsp;" وأخواتهما تُعرَض مسافاتٍ فعليّةً أيضاً، فتُفلت
+// نفسَ إفلات "&nbsp;" لو اقتُصر عليها وحدها (ملاحظة Codex الثانية).
+const NAMED_ENTITIES = {
+  amp: "&",
+  lt: "<",
+  gt: ">",
+  quot: '"',
+  apos: "'",
+  nbsp: " ",
+  ensp: " ",
+  emsp: " ",
+  emsp13: " ",
+  emsp14: " ",
+  numsp: " ",
+  puncsp: " ",
+  thinsp: " ",
+  hairsp: " ",
+};
 function decodeHtmlEntities(text) {
   return text.replace(/&(#[xX][0-9a-fA-F]+;?|#\d+;?|[a-zA-Z]+;)/g, (whole, ref) => {
     if (ref[0] === "#") {
@@ -132,6 +149,14 @@ function normalize(rawInput) {
       referenceLabels.has(foldReferenceLabel(text)) ? text : whole
     )
     .replace(/[*_~`]/g, "")
+    // إسقاطُ وسم HTML مضمّنٍ (واحدٍ أو أكثر، واعٍ بالاقتباس فلا يتوقّف عند
+    // ">" داخل قيمة سمةٍ مقتبسةٍ، أسوةً بمطابقة meta في
+    // check-robots-and-indexing.js) إلى مسافةٍ واحدة، لا فقط ضمن أنماط
+    // CLAIM_PATTERNS: وسمٌ كـ"<strong>" بين "api" و"key" يُفلت BANNED_
+    // SUBSTRINGS أيضاً (مطابَقةٌ بـ.includes() الحرفيّة لا نمطاً)، فوضعُ
+    // الإسقاط هنا يشمل كلَّ فحصٍ لاحقٍ معاً بدل تكرار التحمّل في كلّ نمطٍ
+    // (ملاحظة Codex).
+    .replace(/<(?:"[^"]*"|'[^']*'|[^<>])*>/g, " ")
     .replace(/\s+/g, " ")
     .toLowerCase();
 }
