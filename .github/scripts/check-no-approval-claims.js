@@ -57,17 +57,24 @@ const BANNED_PHRASES = [
 // المواضع الوحيدة المسموح فيها بعبارة الادّعاء: شارتا حالةٍ مشروطتان ببيانات
 // متطلَّبٍ بعينه في صفحة التغطية (#/abdeckung) — واحدةٌ لكلّ متطلَّب، وأخرى
 // لاكتمالها كلِّها معاً — لا ادّعاءٌ عامّ. خارج نطاق issue #4 بقرار صاحب
-// المستودع.
-const ALLOWED_EXACT_SEGMENTS = new Set([
-  "معتمد سريريا ومنهجيا",
-  "كل المتطلبات معتمدة سريريا ومنهجيا.",
-]);
+// المستودع. الاستثناءُ مربوطٌ بالملفّ أيضاً لا بنصّ الشارة وحده: الملفّات
+// الثلاثة هي مواضعُ الشارتَين الفعليّة فقط (app.js يولّدهما، وui-de.js/
+// ui-en.js يحملانهما كمفتاحَي ترجمةٍ حرفيَّين) — فنشرُ نفس النصّ حرفيّاً في
+// أيّ ملفٍّ آخر (كـ index.html) يبقى مرفوضاً، لا مستثنًى تلقائيّاً بمجرّد
+// تطابق النصّ (ملاحظة Codex).
+const ALLOWED_EXACT_SEGMENTS_BY_FILE = {
+  "app.js": new Set(["معتمد سريريا ومنهجيا", "كل المتطلبات معتمدة سريريا ومنهجيا."]),
+  "ui-de.js": new Set(["معتمد سريريا ومنهجيا", "كل المتطلبات معتمدة سريريا ومنهجيا."]),
+  "ui-en.js": new Set(["معتمد سريريا ومنهجيا", "كل المتطلبات معتمدة سريريا ومنهجيا."]),
+};
 
-function isAllowedExactSegment(normalized, matchIndex) {
+function isAllowedExactSegment(file, normalized, matchIndex) {
+  const allowed = ALLOWED_EXACT_SEGMENTS_BY_FILE[file];
+  if (!allowed) return false;
   const before = normalized.lastIndexOf(">", matchIndex);
   const after = normalized.indexOf("<", matchIndex);
   if (before === -1 || after === -1) return false;
-  return ALLOWED_EXACT_SEGMENTS.has(normalized.slice(before + 1, after).trim());
+  return allowed.has(normalized.slice(before + 1, after).trim());
 }
 
 function findMatchIndices(normalized, phrase) {
@@ -96,7 +103,7 @@ for (const file of SHIPPED_FILES) {
   const { normalized, lineOfIndex } = normalizeWithLineMap(raw);
   for (const phrase of BANNED_PHRASES) {
     for (const idx of findMatchIndices(normalized, phrase)) {
-      if (phrase === COMBINED_CLAIM && isAllowedExactSegment(normalized, idx)) continue;
+      if (phrase === COMBINED_CLAIM && isAllowedExactSegment(file, normalized, idx)) continue;
       offenders.push(`${file}:${lineOfIndex[idx]} — "${phrase}"`);
     }
   }

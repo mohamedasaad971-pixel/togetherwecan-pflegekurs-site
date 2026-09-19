@@ -74,9 +74,22 @@ function parseTagAttrs(tag) {
   }
   return attrs;
 }
+// يفكّ مراجع محارف HTML (العدديّة والاسميّة الشائعة) في قيمة السمة قبل
+// مقارنتها: المتصفّح والزاحفُ يريان "no&#105;ndex" هو "noindex" فعليّاً، لا
+// النصَّ الحرفيَّ غيرَ المفكوك (ملاحظة Codex).
+const NAMED_ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
+function decodeEntities(value) {
+  return value.replace(/&(#x[0-9a-fA-F]+|#\d+|[a-zA-Z]+);/g, (whole, ref) => {
+    if (ref[0] === "#") {
+      const codePoint = ref[1] === "x" || ref[1] === "X" ? parseInt(ref.slice(2), 16) : parseInt(ref.slice(1), 10);
+      return Number.isNaN(codePoint) ? whole : String.fromCodePoint(codePoint);
+    }
+    return Object.prototype.hasOwnProperty.call(NAMED_ENTITIES, ref) ? NAMED_ENTITIES[ref] : whole;
+  });
+}
 function readAttr(tag, attrName) {
   const value = parseTagAttrs(tag)[attrName.toLowerCase()];
-  return value === undefined ? null : value;
+  return value === undefined ? null : decodeEntities(value);
 }
 
 const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
