@@ -10,7 +10,10 @@ const path = require("node:path");
 const STATUS_PATH = path.join(__dirname, "..", "STATUS.md");
 
 const EMAIL_RE = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/;
-const HEX_ID_RE = /\b[0-9a-f]{12,}\b/i;
+// لا \b: فاصلا الكلمة والمعرّف حرفا كلمةٍ كلاهما ("_" و[0-9a-f])، فلا حدَّ بينهما
+// عند بادئةٍ تقليديّةٍ كـ"asset_" أو"job_" (ملاحظة Codex)؛ استبعادُ التوسّع بحرفٍ
+// سداسيَّ عشريَّ إضافيٍّ على أيّ طرفٍ يكفي لاكتشاف المعرّف بلا مطابقةٍ زائفة.
+const HEX_ID_RE = /(?<![0-9a-f])[0-9a-f]{12,}(?![0-9a-f])/i;
 
 // نفس مدى التشكيل العربيّ المستبعَد في tests/no-clinical-approval-claim.test.js
 // (U+0610–U+061A، U+064B–U+065F، U+0670، U+06D6–U+06ED)، كي لا يُفلت ادّعاءٌ
@@ -50,7 +53,14 @@ const BANNED_SUBSTRINGS = [
 ];
 
 function normalize(raw) {
-  return raw.replace(DIACRITIC, "").replace(/\s+/g, " ").toLowerCase();
+  // إزالة فواصل تنسيق Markdown (**تشديد**، `شفرة`، ~~شطب~~) قبل طيّ المسافات:
+  // بلا هذا، عبارةٌ كـ"معتمد **سريريّاً**" تبقى غيرَ مطابقةٍ لأنماط \s+ رغم أنّ
+  // الصفحة المعروضة تحمل الادّعاء فعلاً (ملاحظة Codex).
+  return raw
+    .replace(DIACRITIC, "")
+    .replace(/[*_~`]/g, "")
+    .replace(/\s+/g, " ")
+    .toLowerCase();
 }
 
 test("STATUS.md exists and is not empty", () => {
