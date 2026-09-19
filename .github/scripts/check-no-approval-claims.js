@@ -263,33 +263,43 @@ Object.assign(HTML_NAMED_ENTITIES, {
 // "X" مقبولةٌ أيضاً بديلاً عن "x" في مرجعٍ سداسيّ عشريّ بمعيار HTML5،
 // أسوةً بنفس الإصلاح في check-robots-and-indexing.js (ملاحظة Codex).
 const ENTITY_RE = /&(#[xX][0-9a-fA-F]+;?|#\d+;?|[a-zA-Z]+;)/g;
-// الفكُّ يقع الآن دائماً على نصٍّ طُبِّع بالفعل (مُصغَّرٌ حروفُه، راجع
-// normalizeWithLineMap)، فالمرجعُ الاسميّ في النصّ يصل هنا مُصغَّراً دوماً
-// (كـ"&tab;" لا "&Tab;") — لا مطابقةَ بحثٍ حساسةً لحالة الأحرف تفيد هنا.
-// نبحث بمفتاحٍ مُصغَّرٍ الحروف عن نسخةٍ مصغَّرةِ المفاتيح من الجدول، ونُصغِّر
-// ناتجَ الفكّ (الاسميّ والعدديّ معاً) قبل إرجاعه، ليبقى متّسقاً مع بقيّة
-// النصّ المُطبَّع المحيط به — وإلّا بقيت بعضُ محارف الناتج (كـÁ من &Aacute;)
-// بحالتها الأصليّة رغم أنّ كلَّ ما حولها مُصغَّرٌ بالفعل.
-const HTML_NAMED_ENTITIES_LOWER = {};
-for (const key of Object.keys(HTML_NAMED_ENTITIES)) {
-  const lowerKey = key.toLowerCase();
-  if (!(lowerKey in HTML_NAMED_ENTITIES_LOWER)) {
-    HTML_NAMED_ENTITIES_LOWER[lowerKey] = HTML_NAMED_ENTITIES[key].toLowerCase();
-  }
-}
+// المراجعُ الاسميّةُ حسّاسةٌ لحالة الأحرف بمعيار HTML5 ("&Tab;" مرجعٌ صالحٌ،
+// "&tab;" ليس كذلك — يبقى حرفيّاً كما هو ولا يُفكّ). محاولةٌ أولى بحثت
+// بمفتاحٍ مُصغَّرٍ (لأنّ normalizeWithLineMap كان يُصغِّر كلَّ النصّ قبل
+// وصوله هنا) كانت تُحسم كلَّ مطابقةٍ بلا حساسيّةٍ لحالة الأحرف، فتُفكّ
+// "&tab;" الحرفيّة كأنّها "&Tab;" الصالحة وتُفشل الفحصَ خطأً على نصٍّ
+// يبقى فيه "&tab;" ظاهراً حرفيّاً فعلاً (ملاحظة Codex). الإصلاحُ الفعليّ في
+// normalizeWithLineMap: مرجعُ محرفٍ محتملٌ (يطابق ENTITY_RE) يُنسَخ إلى
+// normalized بحالة أحرفه الأصليّة كما هو، بمعزلٍ عن تصغير بقيّة النصّ من
+// حوله — فيصل هنا بحالته الحقيقيّة، والمطابقةُ التالية حسّاسةٌ لحالة
+// الأحرف كما يلزم.
 function decodeEntityRef(ref) {
+  let replacement;
   if (ref[0] === "#") {
     const digits = ref.replace(/;$/, "");
     const codePoint = digits[1] === "x" || digits[1] === "X" ? parseInt(digits.slice(2), 16) : parseInt(digits.slice(1), 10);
     if (Number.isNaN(codePoint)) return null;
     try {
-      return String.fromCodePoint(codePoint).toLowerCase();
+      replacement = String.fromCodePoint(codePoint);
     } catch {
       return null;
     }
+  } else {
+    const name = ref.slice(0, -1);
+    if (!Object.prototype.hasOwnProperty.call(HTML_NAMED_ENTITIES, name)) return null;
+    replacement = HTML_NAMED_ENTITIES[name];
   }
-  const name = ref.slice(0, -1).toLowerCase();
-  return Object.prototype.hasOwnProperty.call(HTML_NAMED_ENTITIES_LOWER, name) ? HTML_NAMED_ENTITIES_LOWER[name] : null;
+  // ناتجُ الفكّ لم يمرّ بخطوتَي normalizeWithLineMap (تصغيرٌ، إسقاطُ تشكيل)
+  // لأنّه لم يكن موجوداً بعدُ حين عملت عليه: مرجعٌ عدديٌّ قد يُعيد علامةَ
+  // تشكيلٍ عربيّةً حرفيّاً (كـ"&#1614;" ← U+064E) لم يرَها فحصُ DIACRITIC
+  // هناك أصلاً، فتُطبَّقان هنا الآن على الناتج المفكوك تحديداً (ملاحظة
+  // Codex).
+  let out = "";
+  for (const ch of replacement) {
+    if (DIACRITIC.test(ch)) continue;
+    out += ch.toLowerCase();
+  }
+  return out;
 }
 // نفسُ فكّ المراجع أعلاه، لكن مع خريطةٍ تُعيد كلَّ فهرسٍ في الناتج المفكوك
 // إلى فهرسه الأصليّ في النصّ الخامّ — تلزم عند فكّ المراجع بعد تحديد حدود
@@ -336,13 +346,40 @@ function decodeHtmlEntitiesWithIndexMap(text) {
 // يقع لاحقاً في stripTagsWithMap، بعد إيجاد الوسوم وتفكيك سماتها على النصّ
 // الخامّ غير المفكوك، وعلى النصّ المستخرَج (قيمةُ سمةٍ، أو نصٌّ بين وسمَين)
 // فقط لا على الوسم بأكمله.
+// مرجعُ محرفٍ محتملٌ (يطابق ENTITY_RE بدءاً من "&") يُنسَخ إلى normalized
+// بحالة أحرفه الأصليّة كما هو — لا يُصغَّر مع بقيّة النصّ — لأنّ الأسماءَ
+// الاسميّةَ حسّاسةٌ لحالة الأحرف (فكٌّ لاحقٌ حسّاسٌ لحالة الأحرف يحتاج
+// النصَّ الأصليَّ لا نسخةً مُصغَّرة؛ ملاحظة Codex، بعد أن أصلحتُ الجولةَ
+// السابقةَ بتصغير المفتاح والمرجع معاً فأخفقت المطابقةَ بلا حساسيّةٍ لحالة
+// الأحرف على مرجعٍ حرفيٍّ غيرِ صالحٍ كـ"&tab;").
 function normalizeWithLineMap(raw) {
+  const text = unescapeJsStringEscapes(raw);
   let normalized = "";
   const lineOfIndex = [];
   let line = 1;
   let inWhitespaceRun = false;
-  for (const ch of unescapeJsStringEscapes(raw)) {
-    if (DIACRITIC.test(ch)) continue;
+  const entityRe = new RegExp(ENTITY_RE.source, "y");
+  let i = 0;
+  while (i < text.length) {
+    if (text[i] === "&") {
+      entityRe.lastIndex = i;
+      const m = entityRe.exec(text);
+      if (m) {
+        for (const ch of m[0]) {
+          normalized += ch;
+          lineOfIndex.push(line);
+        }
+        inWhitespaceRun = false;
+        i += m[0].length;
+        continue;
+      }
+    }
+    const codePoint = text.codePointAt(i);
+    const ch = String.fromCodePoint(codePoint);
+    if (DIACRITIC.test(ch)) {
+      i += ch.length;
+      continue;
+    }
     if (/\s/.test(ch)) {
       if (!inWhitespaceRun) {
         normalized += " ";
@@ -350,11 +387,13 @@ function normalizeWithLineMap(raw) {
         inWhitespaceRun = true;
       }
       if (ch === "\n") line++;
+      i += ch.length;
       continue;
     }
     inWhitespaceRun = false;
     normalized += ch.toLowerCase();
     lineOfIndex.push(line);
+    i += ch.length;
   }
   return { normalized, lineOfIndex };
 }
